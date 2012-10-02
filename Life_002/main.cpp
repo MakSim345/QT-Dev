@@ -22,7 +22,6 @@ int main(int argc, char *argv[])
     // lifeWidget w;
     mainView w;
     //starsMainView w;
-    
     w.show();
     return a.exec();
 }
