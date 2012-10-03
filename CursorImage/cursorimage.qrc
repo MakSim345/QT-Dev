@@ -1,0 +1,7 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource>
+        <file>Resources/clock.png</file>
+        <file alias="Clock">Resources/clock.png</file>
+    </qresource>
+</RCC>
+

@@ -26,5 +26,4 @@ public slots:
 private slots:
     void slotBatteryNotify();
 };
-
 #endif // WIDGETBATTERY_H
