@@ -3,25 +3,26 @@
 ** ======================================================================
 **
 ** ======================================================================
-**  Copyright (c) 2007 by Max Schlee
+**  Copyright (c) 
 ** ======================================================================
 */
+ #include <QtGui>
+ #include <QtCore> 
+ #include <QApplication>
 
-#include <QtGui>
+ #include "digitalclock.h"
 
-// ----------------------------------------------------------------------
-int main(int argc, char** argv)
-{
-    QApplication app(argc, argv);
-    QWidget      wgt;
-    // QPixmap      pix("clock.png");
-    // QPixmap      pix(":/Resources/Clock");
-    QPixmap      pix(":/Clock");
-    QCursor      cur(pix);
-
-    wgt.setCursor(cur);
-    wgt.resize(180, 100);
-    wgt.show();
-
-    return app.exec();
-}
+ int main(int argc, char *argv[])
+ {
+     QApplication app(argc, argv);
+     DigitalClock clock;
+     QIcon *mainWinIcon;
+     mainWinIcon = new QIcon();
+     mainWinIcon->addFile(":/Clock");
+     clock.setGeometry(200, 200, 350, 100);
+     clock.setWindowIcon(*mainWinIcon);
+     clock.show();
+     return app.exec();
+ }
+ 
+ 
