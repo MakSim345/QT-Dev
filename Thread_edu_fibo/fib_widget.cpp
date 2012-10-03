@@ -78,7 +78,7 @@ void fib_widget::EndOfCalculation()
 
 void fib_widget::DisplayIteration(double nIteration)
 {
-    //lsdFibNumber->display(Fibonacci)
+    //lsdFibNumber->display(Fibonacci);
 	line3->setText(QString::number(nIteration));
 }
 
