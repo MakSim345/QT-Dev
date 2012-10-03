@@ -1,0 +1,7 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>Resources/plane.png</file>
+    <file alias="Plane">Resources/plane.png</file>
+    <file alias="Dot">Resources/anekdotik.png</file>
+    </qresource>
+</RCC>
