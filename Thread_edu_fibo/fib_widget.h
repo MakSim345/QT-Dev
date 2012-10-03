@@ -23,6 +23,7 @@ public:
 
     QLineEdit* line3;
     QLineEdit* line4;
+    QLineEdit* lnResut;
     
     QPushButton* bCountDown;
     QPushButton* bRnd;
@@ -40,6 +41,7 @@ public:
     void StartMyThread();
     void EndOfCalculation();
     void DisplayIteration(double iteration_counter);
+    void DisplayResult(double result);
     // int GetRNDValue();
 };
 

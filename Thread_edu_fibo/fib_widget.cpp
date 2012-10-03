@@ -25,6 +25,8 @@ fib_widget::fib_widget(QWidget *parent)
 
     line3 =    new QLineEdit (this);
     line4 =    new QLineEdit (this);
+    lnResut =  new QLineEdit (this);
+
     lsdFibNumber = new QLCDNumber();
     lsdFibNumber->setSegmentStyle(QLCDNumber::Filled);
     lsdFibNumber->setAutoFillBackground(1);
@@ -39,7 +41,8 @@ fib_widget::fib_widget(QWidget *parent)
     connect(slider, SIGNAL(valueChanged(int)), lcd, SLOT(display(int)));
     
     connect (&m_thread, SIGNAL(currentIteration(double)), this, SLOT(DisplayIteration(double)));
-    connect (&m_thread, SIGNAL(currentValue(int)), lsdFibNumber, SLOT(display(int)) );
+    connect (&m_thread, SIGNAL(currentValue(double)), lsdFibNumber, SLOT(display(double)) );
+    connect (&m_thread, SIGNAL(currentValue(double)), this, SLOT(DisplayResult(double)) );
     // connect (&m_thread, SIGNAL(finished()), qApp, SLOT(quit()));
     connect (&m_thread, SIGNAL(finished()), this, SLOT(EndOfCalculation()));
 
@@ -47,6 +50,7 @@ fib_widget::fib_widget(QWidget *parent)
     layout->addWidget(slider);
     layout->addWidget(line3);
     layout->addWidget(line4);
+    layout->addWidget(lnResut);
     layout->addWidget(lsdFibNumber);
 
     hLayout->addWidget(bRnd);
@@ -60,10 +64,12 @@ fib_widget::fib_widget(QWidget *parent)
 void fib_widget::StartMyThread()
 {
 	line4->setText("Running....");
+    lnResut->setText("Running...");
     bCountDown->setEnabled(false);
 	m_thread.setMValue( lcd->intValue() );
 	m_thread.start();
 }
+
 void fib_widget::EndOfCalculation()
 {
     bCountDown->setEnabled(true);
@@ -74,6 +80,11 @@ void fib_widget::DisplayIteration(double nIteration)
 {
     //lsdFibNumber->display(Fibonacci)
 	line3->setText(QString::number(nIteration));
+}
+
+void fib_widget::DisplayResult(double result)
+{
+    lnResut->setText(QString::number(result));
 }
 
 void fib_widget::hello(QString name)

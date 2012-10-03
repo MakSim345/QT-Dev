@@ -31,7 +31,7 @@ private:
     
 signals:
 	void finished();
-    void currentValue(int);
+    void currentValue(double);
     void currentIteration(double);
 };
 
