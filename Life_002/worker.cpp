@@ -1,13 +1,11 @@
 //============================================================
 //
-// Copyright (c) 2011 GENERAL ELECTRIC COMPANY
-//
 //============================================================
 //
 // File:           Worker.cpp
 // Project:        Genie Carestation SW
 //
-// Author:         YS / Genie SW Team
+// Author:         YS 
 //
 //============================================================
 // Description:
