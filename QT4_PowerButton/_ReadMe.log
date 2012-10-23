@@ -1,0 +1,41 @@
+
+DESCRIPTION:
+^^^^^^^^^^^^
+
+Power button in red/green/yellow colors
+
+
+INSTALLATION:
+^^^^^^^^^^^^^
+
+qmake
+make
+make install (as root, install the libqpowerplug.so in /usr/lib/qt4/plugins/designer)
+
+
+TEST:
+^^^^^
+
+cd /test
+qmake
+make
+in /bin directory the test program
+
+
+
+HARDWARE/SOFTWARE:
+^^^^^^^^^^^^^^^^^^
+
+Build on Linux (ArchLinux) with Qt4 library and QDevelop
+
+
+CHANGELOG
+^^^^^^^^^
+
+ver 0.2: adding QColor property
+
+
+INFO:
+^^^^^
+
+g_cigala@virgilio.it
