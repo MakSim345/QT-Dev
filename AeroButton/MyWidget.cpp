@@ -14,7 +14,7 @@
        
     */
     setWindowTitle("AeroButton Test");
-	// setWindowIcon(QPixmap(":/images/qBinClock.png"));
+    // setWindowIcon(QPixmap(":/images/qBinClock.png"));
     
     // setFixedSize(350, 220);
      
@@ -45,8 +45,8 @@
  
  //aerobutton_quit->setGeometry(10, 20, 230, 40);
  //aerobutton_test->setGeometry(10, 70, 230, 40);
- 		
-    QVBoxLayout *mainLayout = new QVBoxLayout;	 
+         
+    QVBoxLayout *mainLayout = new QVBoxLayout;     
     QVBoxLayout *buttonLayout = new QVBoxLayout;
     QHBoxLayout *buttonLayout2 = new QHBoxLayout;
     QHBoxLayout *buttonLayout3 = new QHBoxLayout;
@@ -133,17 +133,17 @@ MyWidget::MyWidget()
      setFixedSize(350, 220);
 
      aerobutton_quit = new AeroButton("Exit", this);
-	 aerobutton_test = new AeroButton("Test", this);
-	 
-	 QPushButton *quit = new QPushButton(tr("Quit"), this);
-	 
-	 aerobutton_quit->setFont(QFont("Times", 15, QFont::Bold));
-	 aerobutton_test->setFont(QFont("Times", 15, QFont::Bold));
-	 //aerobutton_quit->setGeometry(10, 20, 230, 40);
-	 //aerobutton_test->setGeometry(10, 70, 230, 40);
-	 quit->setFont(QFont("Times", 20, QFont::Bold));
-		
-	 QVBoxLayout *layout = new QVBoxLayout;
+     aerobutton_test = new AeroButton("Test", this);
+     
+     QPushButton *quit = new QPushButton(tr("Quit"), this);
+     
+     aerobutton_quit->setFont(QFont("Times", 15, QFont::Bold));
+     aerobutton_test->setFont(QFont("Times", 15, QFont::Bold));
+     //aerobutton_quit->setGeometry(10, 20, 230, 40);
+     //aerobutton_test->setGeometry(10, 70, 230, 40);
+     quit->setFont(QFont("Times", 20, QFont::Bold));
+        
+     QVBoxLayout *layout = new QVBoxLayout;
      
      layout->addWidget(aerobutton_test);
      layout->addWidget(aerobutton_quit);
@@ -151,7 +151,7 @@ MyWidget::MyWidget()
      //layout->addWidget(slider);
      setLayout(layout);
         
-	 //QObject::connect(aerobutton_quit, SIGNAL(clicked()), &app, SLOT(quit()));
+     //QObject::connect(aerobutton_quit, SIGNAL(clicked()), &app, SLOT(quit()));
      // connect(aerobutton_quit, SIGNAL(clicked()), qApp, SLOT(quit()));
      // connect(aerobutton_quit, SIGNAL(clicked()), this, SLOT(closeApp() ));
      connect(aerobutton_test, SIGNAL(clicked()), this, SLOT(showMessageBox() ));
