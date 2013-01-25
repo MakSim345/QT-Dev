@@ -11,6 +11,6 @@ int main( int argc, char *argv[] )
     //QLabel my_label("Hello world!");
     //my_label.show();
     // connect(quit, SIGNAL(clicked()), qApp, SLOT(closeApp() ));
-     window.show();
+    window.show();
     return app.exec();
 }
