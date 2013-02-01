@@ -8,15 +8,16 @@ int main(int argc, char *argv[])
 
     MyThread mThread1;
     mThread1.my_name ="one";
-    mThread1.start();
 
     MyThread mThread2;
     mThread2.my_name ="two";
-    mThread2.start();
 
     MyThread mThread3;
     mThread3.my_name ="three" ;
-    mThread3.start();
+    
+    mThread1.start(QThread::HighestPriority);
+    mThread2.start();
+    mThread3.start(QThread::LowestPriority);
 
     return a.exec();
 }
