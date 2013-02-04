@@ -50,6 +50,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_mainWidget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="appleButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="keyboardwidget02.qrc">
@@ -61,6 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="appleButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

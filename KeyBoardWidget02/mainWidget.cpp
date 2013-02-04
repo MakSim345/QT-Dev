@@ -1,12 +1,8 @@
 // ============================================================
 //
-// Copyright (c) 2008 GENERAL ELECTRIC COMPANY
 //
 // ============================================================
 //
-// Project:        Intrinsic Carestation SW
-//
-// Author:         YS / ICS SW Team
 //
 // ============================================================
 // Description:
@@ -151,6 +147,8 @@ void mainWidget::initWidgets()
     btnLog  = QPushButton("?", )
     btnLog.hide()
     */
+	vMainLayout->addLayout(hBtnFirstRowLayout);
+	setLayout(vMainLayout);
 }
 
 // Create button with givem alphabetic letters and connect with an appropriate signals.
