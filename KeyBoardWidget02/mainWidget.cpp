@@ -9,6 +9,7 @@
 // ============================================================
 
 #include "mainWidget.h"
+#include "appleButton.h"
 #include <QDebug>
 
 mainWidget::mainWidget(QWidget *parent):
@@ -154,9 +155,10 @@ void mainWidget::initWidgets()
 // Create button with givem alphabetic letters and connect with an appropriate signals.
 QWidget* mainWidget::createButton(QString caption)
 {
-    QPushButton* m_button = new QPushButton(caption);
+    // QPushButton* m_button = new QPushButton(caption);
+    appleButton* m_button = new appleButton();
     m_button->setFocusPolicy(Qt::ClickFocus);
-    //m_button = appleButton(caption);
+
     
     //arrayOfButtons.append(*m_button);
     
