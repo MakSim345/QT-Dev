@@ -6,9 +6,10 @@
 **  Copyright (c) 
 ** ======================================================================
 */
- #include <QtGui>
- #include <QtCore> 
- #include <QApplication>
+#include <QtGui>
+#include <QtCore>
+#include <QWidget>
+#include <QApplication>
 
  #include "digitalclock.h"
 

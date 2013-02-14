@@ -24,12 +24,12 @@
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Debug">
-      <UniqueIdentifier>{8156a46d-d30b-40c1-b859-0da316c07ecc}</UniqueIdentifier>
+      <UniqueIdentifier>{f80e445d-4fdb-4d0f-99cb-8350ffc2950d}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Release">
-      <UniqueIdentifier>{811fedc7-4027-48cb-8dfe-930eb6d1df85}</UniqueIdentifier>
+      <UniqueIdentifier>{e07725bf-dec3-4555-b43f-46f4dbad9a2d}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
@@ -38,16 +38,19 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="AeroButton.cpp">
+    <ClCompile Include="aerobutton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_AeroButton.cpp">
+    <ClCompile Include="GeneratedFiles\Debug\moc_aerobutton.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_AeroButton.cpp">
+    <ClCompile Include="GeneratedFiles\Release\moc_aerobutton.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="AeroButton2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_AeroButton2.cpp">
@@ -55,9 +58,6 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_AeroButton2.cpp">
       <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="MyWidget.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_MyWidget.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -67,7 +67,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="AeroButton.h">
+    <CustomBuild Include="aerobutton.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="AeroButton2.h">

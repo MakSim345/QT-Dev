@@ -63,7 +63,7 @@ void WidgetBattery::paintEvent ( QPaintEvent * event )
 
     //////// SETTINGS
 
-    QColor color_battery_border(250, 250, 250);
+    QColor color_battery_border(25, 25, 25);
     //QColor color_battery_border(250, 0, 0);
     QColor color_gradient1 = QColor(0, 220, 0);
     QColor color_gradient2 = QColor(0, 70, 0);

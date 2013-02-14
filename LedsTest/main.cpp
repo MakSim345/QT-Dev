@@ -1,5 +1,6 @@
 /* main.cpp */
 #include <QtGui>
+#include <QApplication>
 #include <iostream>
 #include "mywidget.h"
  

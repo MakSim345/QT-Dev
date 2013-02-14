@@ -1,10 +1,16 @@
 #ifndef _MAIN_VIEW_H_
 #define _MAIN_VIEW_H_
  
-#include <QtGui>
-#include <math.h>
+//#include <QtGui>
+#include <QTimer>
+//#include <math.h>
 #include <QPixmap>
 #include <QWidget>
+#include <QSlider>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QLayout>
+
 #include "lifeWidget.h"
 
 class mainView : public QWidget

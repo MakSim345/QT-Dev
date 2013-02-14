@@ -18,6 +18,7 @@
 *.lib
 *.sbr
 *.sdf
+*.opensdf
 *.pdb
 *.o
 *.obj

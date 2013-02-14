@@ -3,6 +3,9 @@
 
 #include <QtCore>
 #include <QtGui>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QLayout>
 
 class AeroButton2 : public QPushButton
 {

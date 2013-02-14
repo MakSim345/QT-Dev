@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AeroButton", "AeroButton.vcxproj", "{26442108-86FF-477E-919D-7A87B94AFCA9}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AeroButton", "AeroButton.vcxproj", "{BD3CF43D-DC6F-48AF-B51A-02BF57A574B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{26442108-86FF-477E-919D-7A87B94AFCA9}.Debug|Win32.ActiveCfg = Debug|Win32
-		{26442108-86FF-477E-919D-7A87B94AFCA9}.Debug|Win32.Build.0 = Debug|Win32
-		{26442108-86FF-477E-919D-7A87B94AFCA9}.Release|Win32.ActiveCfg = Release|Win32
-		{26442108-86FF-477E-919D-7A87B94AFCA9}.Release|Win32.Build.0 = Release|Win32
+		{BD3CF43D-DC6F-48AF-B51A-02BF57A574B9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BD3CF43D-DC6F-48AF-B51A-02BF57A574B9}.Debug|Win32.Build.0 = Debug|Win32
+		{BD3CF43D-DC6F-48AF-B51A-02BF57A574B9}.Release|Win32.ActiveCfg = Release|Win32
+		{BD3CF43D-DC6F-48AF-B51A-02BF57A574B9}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

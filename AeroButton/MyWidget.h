@@ -1,5 +1,4 @@
 #include "AeroButton.h"
-#include "AeroButton2.h"
 
 class MyWidget : public QWidget
 {

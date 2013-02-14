@@ -20,11 +20,6 @@ void MyThread::run()
     }
 }
 
-
-
-
-
-
 /*
 MyThread::MyThread()
    :m_nValue(10)

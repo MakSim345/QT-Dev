@@ -2,6 +2,9 @@
 #include <QtGui>
 #include "qled.h"
 #include <windows.h>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QLayout>
 
 long  Get1msTimeMS(void);
 

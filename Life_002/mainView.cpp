@@ -77,7 +77,8 @@ void mainView::initWidgets()
 
 void mainView::setConnections()
  {
-    connect(bQuit, SIGNAL(clicked()), qApp, SLOT(quit()));    
+    // connect(bQuit, SIGNAL(clicked()), this, SLOT(quit()));
+    // connect(bQuit, SIGNAL(clicked()), &app, SLOT(quit()));
     connect(bStart, SIGNAL(clicked()), this, SLOT(startGame()));
     // connect(bStart, SIGNAL(clicked()), this, SLOT (StartMyThread()));
     connect(bRnd, SIGNAL(clicked ()), this, SLOT (setValue ()));
@@ -112,7 +113,7 @@ void mainView::StartMyThread()
     //lnMSTime->setText(QString::number(GetRNDValue()));
     //lcd->display(lnMSTime->text());
     // lnMSTime->setText(QString::number(Get1msTimeMS() ));
-    QApplication::beep();
+    //QApplication::beep();
 }
 
 void mainView::onExit()

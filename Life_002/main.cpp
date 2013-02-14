@@ -14,14 +14,13 @@
 //============================================================
 #include "lifeWidget.h"
 #include "mainView.h"
-#include <QtGui/QApplication>
+#include <QApplication>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    // lifeWidget w;
-    mainView w;
-    //starsMainView w;
-    w.show();
+    mainView *w = new mainView();    
+    a.connect(w->bQuit, SIGNAL( clicked() ), &a, SLOT( quit() ) );    
+    w->show();
     return a.exec();
 }

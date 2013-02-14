@@ -12,13 +12,12 @@
 //============================================================
 // Description:
 //============================================================
-#include <QMessageBox>
-#include <QTimer>
-#include <QMouseEvent>
-#include <QDebug>
-#include <QRectF>
-#include <QPainter>
-#include <qmath.h>
+//#include <QMessageBox>
+//#include <QTimer>
+//#include <QMouseEvent>
+//#include <QDebug>
+//#include <QRectF>
+//#include <qmath.h>
 
 #include "lifeWidget.h"
 

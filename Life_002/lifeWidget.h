@@ -1,6 +1,7 @@
 #ifndef _LIFE_WIDGET_H_
 #define _LIFE_WIDGET_H_
 
+#include <QPainter>
 #include <QColor>
 #include <QWidget>
 #include "colony.h"

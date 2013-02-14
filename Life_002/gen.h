@@ -54,8 +54,8 @@ const int nIterationNumber = 100;
 
 #define  TX0023     "\n\rLast Compilation: %s, %s"
     
-#define MIN(x,y)     (((x) < (y)) ? (x) : (y))
-#define MAX(x,y)     (((x) > (y)) ? (x) : (y))    
+//#define MIN(x,y)     (((x) < (y)) ? (x) : (y))
+//#define MAX(x,y)     (((x) > (y)) ? (x) : (y))    
 
 #define MEAN_ARR 136
         

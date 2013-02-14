@@ -65,7 +65,7 @@ void MyWidget::setValue()
  lnMSTime->setText(QString::number(Get1msTimeMS() ));
  bLed1->toggleValue();
  bLed2->toggleValue();
- QApplication::beep();
+ // QApplication::beep();
 }
 
 int MyWidget::GetRNDValue()

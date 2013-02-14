@@ -1,7 +1,9 @@
 #ifndef WIDGETBATTERY_H
 #define WIDGETBATTERY_H
 
-#include <QWidget>
+#include <QLabel>
+#include <QLayout>
+
 
 class WidgetBattery : public QWidget
 {
