@@ -1,0 +1,6 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="AnekDot">
+        <file>Resources/anekdotik.png</file>
+        <file alias="Dot">anekdotik.png</file>
+    </qresource>
+</RCC>
