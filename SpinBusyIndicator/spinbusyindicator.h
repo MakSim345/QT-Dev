@@ -37,7 +37,7 @@ signals:
    void actualOuterRadiusChanged();
 
 protected slots:
-    virtual void updateSpinner();
+    //virtual void updateSpinner();
 
 private:
     qreal m_innerRadius;
