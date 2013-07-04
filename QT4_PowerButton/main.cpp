@@ -1,4 +1,8 @@
 #include <QApplication>
+#include <QWidget>
+#include <QLCDNumber>
+#include <QSlider>
+#include <QVBoxLayout>
 #include "MyWidget.h"
 #include "qpower.h"
 

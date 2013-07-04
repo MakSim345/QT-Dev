@@ -22,8 +22,7 @@
 #define QPOWER_H
 
 #include <QtGui>
-//#include <QtDesigner/QDesignerExportWidget>
-
+#include <QWidget>
 
 // class QDESIGNER_WIDGET_EXPORT QPower : public QWidget
 class QPower : public QWidget

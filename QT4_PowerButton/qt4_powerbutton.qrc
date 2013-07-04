@@ -1,4 +1,4 @@
 <RCC>
-    <qresource prefix="QT4_PowerButton">
+    <qresource prefix="Qt4_PowerButton">
     </qresource>
 </RCC>

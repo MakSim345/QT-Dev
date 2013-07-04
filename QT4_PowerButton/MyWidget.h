@@ -1,7 +1,10 @@
-// #include "AeroButton.h"
 #include <QApplication>
-
 #include "qpower.h"
+#include <QWidget>
+#include <QLCDNumber>
+#include <QSlider>
+#include <QVBoxLayout>
+#include <QPushButton>
 
 class MyWidget : public QWidget
 {

@@ -6,12 +6,12 @@
 
 void MyWidget::showMessageBox()
 {
- QMessageBox::about(this, "Application", "Vista aero style");
+    // QMessageBox::about(this, "Application", "Vista aero style");
 }
 
 void MyWidget::closeApp()
 {
- close();
+    close();
 }
  
 void MyWidget::on_aerobutton_test_clicked()
