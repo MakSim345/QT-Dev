@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="splash_screen_01">
+        <file alias="splash_picture">Resources/splash.png</file>
+    </qresource>
+</RCC>
