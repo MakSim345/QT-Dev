@@ -2,6 +2,12 @@
 #define _ICS_WIDGET_BP_H_
 
 #include <QtGui>
+#include <QApplication>
+#include <QLabel>
+#include <QScrollBar>
+#include <QPushButton>
+#include <QVBoxLayout>
+
 #include "customwidget.h"
 
 

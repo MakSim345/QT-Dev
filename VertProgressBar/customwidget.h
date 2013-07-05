@@ -2,6 +2,7 @@
 #define _CUSTOM_WIDGET_
 
 #include <QtGui>
+#include <QFrame>
 
  class CustomWidget : public QFrame
  {

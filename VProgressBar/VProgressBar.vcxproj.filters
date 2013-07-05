@@ -35,6 +35,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GeneratedFiles\qrc_vprogressbar.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
     <ClCompile Include="customwidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -44,31 +47,16 @@
     <ClCompile Include="GeneratedFiles\Release\moc_customwidget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="mainc.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mainWidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_mainWidget.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_mainWidget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\qrc_vertprogressbar.cpp">
-      <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <CustomBuild Include="vprogressbar.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
     <CustomBuild Include="customwidget.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="mainWidget.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="vertprogressbar.qrc">
-      <Filter>Resource Files</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>
