@@ -1,0 +1,14 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource>
+        <file alias="BinClock">Resources/qBinClock.png</file>
+        <file alias="Background_Brushed">Resources/bg_brushed.png</file>
+        <file alias="Default_ON">Resources/style_default_on.png</file>
+        <file alias="Default_OFF">Resources/style_default_off.png</file>
+        <file alias="Yellow_ON">Resources/style_flatyellow_on.png</file>
+        <file alias="Yellow_OFF">Resources/style_flatyellow_off.png</file>
+        <file alias="Red_ON">Resources/style_flatred_on.png</file>
+        <file alias="Red_OFF">Resources/style_flatred_off.png</file>
+        <file alias="Green_ON">Resources/style_flatgreen_on.png</file>
+        <file alias="Green_OFF">Resources/style_flatgreen_off.png</file>
+    </qresource>
+</RCC>
