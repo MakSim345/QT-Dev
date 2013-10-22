@@ -81,7 +81,7 @@ void mainView::setConnections()
     // connect(bQuit, SIGNAL(clicked()), &app, SLOT(quit()));
     connect(bStart, SIGNAL(clicked()), this, SLOT(startGame()));
     // connect(bStart, SIGNAL(clicked()), this, SLOT (StartMyThread()));
-    connect(bRnd, SIGNAL(clicked ()), this, SLOT (setValue ()));
+    connect(bRnd, SIGNAL(clicked ()), this, SLOT (setValue()));
     // connect(slider, SIGNAL(valueChanged(int)), lcd, SLOT(display(int)));
     connect(timer, SIGNAL(timeout()), lifeWgt, SLOT(newGeneration()));
     connect(timer, SIGNAL(timeout()), this, SLOT(updateLabels()));

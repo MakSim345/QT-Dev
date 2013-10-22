@@ -1,3 +1,6 @@
+#ifndef _GEN_H_
+#define _GEN_H_
+
 #define INT_BTN_W 100
 #define INT_BTN_H 50
 
@@ -20,3 +23,20 @@
 #define STR_BTN_QUIT   "&Quit"
 #define STR_COMPANY_NAME "YS"
 #define STR_APP_NAME "CountDown Timer"
+
+
+#include <QTimer>    
+#include <QPixmap>
+#include <QString>
+#include <QSpinBox>
+#include <QLabel>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QRadioButton>
+#include <QVBoxLayout>
+#include <QHBoxLayout>
+#include <QFrame>
+#include <QGroupBox>
+#include <QMessageBox>
+
+#endif
