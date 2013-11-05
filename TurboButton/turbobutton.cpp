@@ -15,7 +15,7 @@
 
 TurboButton::TurboButton(QDialog *parent)
      : QDialog(parent, Qt::FramelessWindowHint)
-     //: QDialog(parent)
+     //:QDialog(parent)
      , nCounter(0)
      , radioButtonsTime(0) // 0 - minutes, 1 - seconds
      , radioButtonsSound(0) //
@@ -55,18 +55,20 @@ void TurboButton::initTimerBoxes()
     txtRemain->setAlignment(Qt::AlignCenter);
     txtRemain->setFont(QFont(m_FontName, 80));
     txtRemain->setGeometry(QRect(90, 260, 300, 120));
-    txtRemain->move(140, 75);
+    txtRemain->move(115, 65);
+    txtRemain->setStyleSheet(
+        "color: black;"
+        );
 }
 
 void TurboButton::initButtons()
 {
     btnStart = new QPushButton(this);
     btnStart->setStyleSheet(
-        "background: transparent;"
+        "background: transparent; border-image: url(://Resources/Button_Restart.png);"
         );
      btnStart->setGeometry(QRect(90, 260, 180, 180));
-    // btnStart->setGeometry(QRect(90, 260, 18, 18));
-    btnStart->move(210, 310);
+    btnStart->move(175, 250);
   
     btnQuit = new QPushButton(STR_BTN_QUIT);
     btnQuit->setMinimumSize(INT_BTN_W, INT_BTN_H);
@@ -138,7 +140,7 @@ void TurboButton::tuneMainWindow()
     setMainWindowTitle("");    
     picOn.load("://Resources/TurboButton01.jpg");
     // picOn.load(":/MainViewOFF");
-    picOff.load("://Resources/TurboButton02.jpg");    
+    picOff.load("://Resources/TurboButton01.jpg");    
     // pic.load("Resources/TurboButton01.png");
     // setStyleSheet("background-image: url(:/Resources/TurboButton01.png)");
 }
@@ -157,6 +159,9 @@ void TurboButton::setConnections()
 
 void TurboButton::onStart()
 {    
+    btnStart->setStyleSheet(
+        "background: transparent; border-image: url(://Resources/Button_Shutdown.png);"
+        );
     startTimer();
     updateRemainTxt();
     btnStart->setEnabled(false);
@@ -203,6 +208,9 @@ void TurboButton::decrementCounter()
         btnStart->setEnabled(true);
         raiseAlarm();
         isRun = false;
+        btnStart->setStyleSheet(
+        "background: transparent; border-image: url(://Resources/Button_Restart.png);"
+        );
         this->update();
     }
     updateRemainTxt();
