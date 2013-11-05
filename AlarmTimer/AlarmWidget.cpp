@@ -81,8 +81,8 @@ void AlarmWidget::initButtons()
     btnQuit = new QPushButton(STR_BTN_QUIT);
     btnQuit->setMinimumSize(INT_BTN_W, INT_BTN_H);
 
-    // QIcon m_iconPlane(":/Resources/plane.png");
-    QIcon m_iconPlane(STR_PLANE_ICON);
+    QIcon m_iconPlane(":/Resources/plane.png");
+    // QIcon m_iconPlane(STR_PLANE_ICON);
     btnQuit->setIcon(m_iconPlane);
     btnQuit->setIconSize(QSize(30, 30));
 
