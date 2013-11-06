@@ -1,0 +1,2293 @@
+/*============================================================
+//
+//
+//============================================================
+//
+// File:           GenieStylesheet.qss
+//
+//
+//============================================================
+// REM: every variable name preceed with # is linked to function setObjectName()
+// with appropriate name as a parameter in source code.
+//===========================================================*/
+
+
+/*===============Set FONT For ALL Widgets. Requirements: Segoe UI===============*/
+
+*
+{
+    font: small "Segoe UI";
+    /*font: bold italic large "Curlz MT"*/
+    /*font: small "Curlz MT";*/
+}
+
+/* When QLabel is set with a string value that contins html notation(e.g CO<sub>2<sub/>),
+ * it might prevent its parent widget from reciving mouse up events. */
+QLabel
+{
+    qproperty-textInteractionFlags: NoTextInteraction;
+    /*border: 1px solid gray;*/
+}
+
+GDLabel
+{
+   /* border: 1px solid red;*/
+}
+
+
+/*===============  General setting for the  MainView========================*/
+#Genie
+{
+    border: 0px solid gray;
+    border-radius: 3px;
+    background-color: rgba(50, 50, 50, 255);
+    qproperty-setX: 1920;
+    qproperty-setY: 1080;
+    /*qproperty-setX: 1680;
+    qproperty-setY: 1050;*/
+    /*qproperty-setX: 1440;
+    qproperty-setY: 900;*/
+    qproperty-showInFullScreen: true;
+    qproperty-drawersAnimDuration:300;
+    background-image: url(:/SetupBackground);
+    background-repeat: repeat-xy;
+
+}
+
+#Genie #hLayoutVentGas
+{
+    spacing: 5px;
+}
+
+#Battery
+{
+    qproperty-Icon: url(:/icon_menus_power_battery_night.png);
+    max-width:65;
+}
+
+GDWidget
+{
+    qproperty-PrivatePopupInstance:true;
+}
+
+/*===============GDTrendWaveforms style=============================*/
+GDTrendWaveforms
+{
+    color:white;
+    font-size:11pt;
+    border: 1px solid rgba(104, 117, 163, 255);
+    background: transparent;
+    qproperty-GridColor:rgba(104, 117, 163, 255);
+    qproperty-FillColor:rgba(124, 252, 0, 50);
+    qproperty-StateIndicatorsStyle: INDICATORS_NONE;
+    qproperty-OutlineWidth:3;
+    qproperty-OutlineColor:rgba(20, 255, 20, 255);
+    qproperty-BackgroundRectFill: rgba(0, 0, 0, 255);
+    qproperty-IndexRectFill: rgba(61, 61, 61, 255);
+    qproperty-Animated: true;
+    qproperty-DelegateMouseEvents: false;
+    qproperty-LeftBtnDragEffect: DRAG_BROWSE;
+    qproperty-PreventBrowsingToNonExistingData: true;
+    qproperty-PartialRepaintsOptimization: true;
+    qproperty-ShowNoDataAlert: true;
+    qproperty-MinPixelsPerSample:2;
+    qproperty-MinPixelsPerSampleForAnim:2;
+}
+
+GDTrendWaveforms[Tags="Pressure"]
+{
+    color:yellow;
+    qproperty-OutlineColor:green;
+    qproperty-FillColor:rgba(124, 252, 0, 128);
+}
+
+GDTrendWaveforms[Tags="Flow"]
+{
+    color:green;
+    qproperty-OutlineColor:blue;
+    qproperty-FillColor:rgba(255, 255, 51, 128);
+}
+
+GDTrendWaveforms[Tags="Volume"]
+{
+    color:white;
+    qproperty-OutlineColor:white;
+    qproperty-FillColor:rgba(124, 252, 0, 128);
+}
+
+/*=============== Waveforms style=============================*/
+GDWaveforms
+{
+    color:white; /* default waveforms color*/
+    font-size:11pt;
+    border-radius:8px;
+    background: transparent;
+    border: 1px solid rgba(64, 64, 64, 255);
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop: 0.00 rgba(127, 127, 127, 127),
+        stop: 0.03 rgba(127, 127, 127, 63),
+        stop: 0.06 rgba(127, 127, 127, 30),
+        stop: 0.09 rgba(127, 127, 127, 15),
+        stop: 0.12 rgba(127, 127, 127, 7),
+        stop: 0.15 rgba(127, 127, 127, 2),
+        stop: 0.18 rgba(127, 127, 127, 0),
+        stop: 1.00 rgba(127, 127, 127, 0));
+    qproperty-GridColor:rgba(104, 117, 163, 255);
+    qproperty-FillColor:transparent;
+    qproperty-StateIndicatorsStyle:INDICATORS_NONE;
+    qproperty-StateIndicatorWidth:3;
+    qproperty-OutlineWidth:2;
+    qproperty-PrevSweepOutlineWidth: 1;
+    qproperty-MinPixelsPerSample:2;
+    qproperty-MinPixelsPerSampleForAnim:2;
+    qproperty-AntiAliasing:true;
+    qproperty-StateIndicatorColor1:rgba(0,0,0,0);
+    qproperty-BrowseOnlyWhenLatched:true;
+    qproperty-EnableScaleGestures:false;
+    qproperty-ShowTimeLabelUnit:true;
+    qproperty-PartialRepaintsOptimization:true;
+    /*qproperty-NumOfVerticalGridLines: 1;
+    qproperty-NumOfHorizontalGridLines: 1;*/
+    qproperty-ShowLabels: true;
+    qproperty-AutoScalingEnabled:false;
+}
+
+GDErasingBarWaveform
+{
+    color:white; /* default waveforms color*/
+    font-size:11pt;
+    background: transparent;
+    /*
+    border-radius:8px;
+    border: 1px solid rgba(64, 64, 64, 255);
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop: 0.00 rgba(127, 127, 127, 127),
+        stop: 0.03 rgba(127, 127, 127, 63),
+        stop: 0.06 rgba(127, 127, 127, 30),
+        stop: 0.09 rgba(127, 127, 127, 15),
+        stop: 0.12 rgba(127, 127, 127, 7),
+        stop: 0.15 rgba(127, 127, 127, 2),
+        stop: 0.18 rgba(127, 127, 127, 0),
+        stop: 1.00 rgba(127, 127, 127, 0));
+    */
+    qproperty-AntiAliasing: true;
+    qproperty-OutlineWidth:8;
+    qproperty-GridColor:rgba(104, 117, 163, 255);
+    qproperty-ShowTimeLabelUnit:true;
+    qproperty-AutoScalingEnabled:false;
+    qproperty-OutlineCapStyle:RoundCap; 
+
+    /*
+
+    qproperty-StateIndicatorsStyle:INDICATORS_NONE;
+    qproperty-StateIndicatorWidth:3;
+    qproperty-PrevSweepOutlineWidth: 1;
+    qproperty-MinPixelsPerSample:2;
+    qproperty-MinPixelsPerSampleForAnim:2;
+    qproperty-StateIndicatorColor1:rgba(0,0,0,0);
+    qproperty-BrowseOnlyWhenLatched:true;
+    qproperty-EnableScaleGestures:false;
+    
+    qproperty-PartialRepaintsOptimization:true;*/
+    
+}
+
+#TrendsCluster
+{
+    margin:0;
+    qproperty-verticalSpacing:0;
+    qproperty-horizontalSpacing:0;
+    qproperty-rows: 5;
+    qproperty-columns:1;
+    qproperty-TimeFrameSec: 600;
+    qproperty-AxisOrigin: 0;
+    qproperty-TimeOrigin:99;
+    qproperty-CurrentTimeLag: 1000;
+    qproperty-Browsable: true;
+    qproperty-FreezeWhenScrolling:true;
+    qproperty-SweepSync:true;
+    qproperty-SweepWhenNoSync:true;
+    qproperty-AnimatedSweepSync:true;
+}
+
+#WaveformsCluster
+{
+    qproperty-columns:1;
+    qproperty-rows:3;
+    qproperty-SweepSync:true;
+    qproperty-Browsable:false;
+    qproperty-TimeFrameSec:15;
+    qproperty-SweepWhenNoSync:true;
+    qproperty-DefaultDisplayWidget:GDWaveforms;
+    qproperty-TimeOrigin:1;
+    qproperty-AnimatedSweepSync:false;
+    qproperty-AutoScalingManualOverride:false;
+    qproperty-FreezeWhenScrolling:false; /* Don't use this property with GDErasingBarWaveforms since there're still some issues while scrolling */
+    qproperty-EnableScrolling: false;
+    margin:2;
+}
+
+GDTrends[Tags="Pressure"], GDWaveforms[Tags="Pressure"],
+GDErasingBarWaveform[Tags="Pressure"], GDWaveformsDecorated[Tags="Pressure"]
+{
+    color:yellow;
+}
+
+GDTrends[Tags="Flow"], GDWaveforms[Tags="Flow"],
+GDErasingBarWaveform[Tags="Flow"], GDWaveformsDecorated[Tags="Flow"]
+{
+    color:green;
+}
+
+GDTrends[Tags="Volume"], GDWaveforms[Tags="Volume"],
+GDErasingBarWaveform[Tags="Volume"], GDWaveformsDecorated[Tags="Volume"]
+{
+    color:white;
+}
+
+/*=============== GDLoopGraph style=============================*/
+LoopsFrame GDLoopGraphGenie
+{
+    color:white;
+    /*border:1px solid white;*/
+    border-radius:10;
+    /*border: 1px solid rgba(40, 47, 72, 255);*/
+    /*qproperty-GridColor:rgba(104, 117, 163, 255);*/
+    background: transparent;
+    min-width: 180px;
+    min-height: 80px;
+    qproperty-BrowsingCursorMovesOverCompleteGraph: false;
+    qproperty-DrawCursorWhenNotBrowsing: false;
+    qproperty-AutoScalingEnabled:true;
+    qproperty-AutoScalingManualOverride:false;
+    qproperty-ShowGrid: false;
+    qproperty-PartialRepaintsOptimization: true;
+    qproperty-AntiAliasing:true;
+    qproperty-AutoUpScaleDelay: 5;
+    qproperty-AutoDownScaleDelay: 5;
+    qproperty-StateColor1: red;
+    qproperty-StateColor2: white;
+    qproperty-HistoryLevel: 1;
+    qproperty-LevelOfDetails: 1;
+    qproperty-DrawXYAxis: true;
+    qproperty-FixedAspectRatio: 1;
+    margin: 2;
+}
+
+GDAbstractDial
+{
+    qproperty-IgnoreLimits: true;
+}
+
+#LoopFrameHeader
+{
+    qproperty-image: ":/Buttons/CloseCross";
+    margin-left: 10px;
+    margin-top: -2px;
+    margin-right: -1px;
+}
+
+#LoopFrameHeader #Button
+{
+    max-width: 50px;
+    min-width: 50px;
+    max-height: 30px;
+}
+
+#LoopFrameHeader QLabel
+{
+    font: small "Segoe UI Semibold";
+    font-size: 15px;
+    color: rgba(255, 255, 255, 255);
+}
+
+/*=============== GDFlowTubes style=============================*/
+GDFlowTubes
+{
+    qproperty-ScaleTickWidth:2;
+    qproperty-TubeRadius:0;
+    qproperty-ScaleWidth:5;
+    qproperty-ScaleTransparency:0;
+    qproperty-ScaleColor: rgba(115, 117, 129, 100);
+    min-width: 150px;
+    max-width: 150px;
+    min-height: 600px;
+}
+
+GDFlowTubes GDLabel
+{
+    color: white;
+    font-size:13pt;
+    font: small "Segoe UI Semibold";
+}
+
+#FlowTubesCaption
+{
+    color: white;
+    font-size: 13pt;
+    font: small "Segoe UI Semibold";
+}
+
+GDFlowTubes #ScaleUnitLabel
+{
+    color: rgba(100, 100, 100, 255);
+    font-size:13pt;
+}
+
+GDFlowTubes GDBar
+{
+     border: 1px solid rgba(115, 117, 129, 100);
+     border-radius: 0px;
+     background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0,
+        stop:0.0 rgba(0, 0, 0, 255),
+        stop:0.6 rgba(0, 0, 0, 255),
+        stop:1.0 rgba(85, 85, 85, 255));
+      min-width: 30px;
+}
+
+GDFlowTubes #OxygenBar::chunk
+{
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0,
+        stop:0 rgba(200, 200, 200, 255),
+        stop:0.352273 rgba(255, 255, 255, 255),
+        stop:0.420455 rgba(255, 255, 255, 255),
+        stop:1 rgba(200, 200, 200, 255));
+    border-bottom-right-radius: 1px;
+    border-bottom-left-radius: 1px;
+}
+
+GDFlowTubes #AirBar::chunk
+{
+    background-color: transparent;
+    background-image: url(:/Genie/AirTubeBackground);
+    image-position: center;
+    margin:0px;
+    border-bottom-right-radius: 1px;
+    border-bottom-left-radius: 1px;
+}
+
+/*=============== GDTrendView style=============================*/
+GDTrendView
+{
+    font-size:11pt;
+    background: transparent;
+}
+
+GDTrendView[Tags="Pressure"]
+{
+    color:yellow;
+    qproperty-OutlineColor:yellow;
+}
+
+GDTrendView[Tags="Flow"]
+{
+    color:green;
+    qproperty-OutlineColor:green;
+}
+
+GDTrendView[Tags="Volume"]
+{
+    color:white;
+    qproperty-OutlineColor:white;
+}
+
+#GasControlCluster, #IVControlCluster
+{
+    qproperty-DefaultDisplayWidget:GDParamButtonGenie;
+    qproperty-columns:2;
+    qproperty-rows:30;
+    qproperty-horizontalSpacing: 1;
+    qproperty-verticalSpacing: 10;
+    qproperty-EnableScrolling: false;
+    margin: 0;
+    qproperty-FillOrientation: Horizontal;
+    qproperty-Alignment: AlignVCenter;
+}
+
+#VentControlCluster
+{
+    qproperty-DefaultDisplayWidget:GDParamButtonGenie;
+    qproperty-FillOrientation: Horizontal;
+    qproperty-Alignment: AlignVCenter;
+    qproperty-columns:3;
+    qproperty-rows:6;
+    qproperty-horizontalSpacing:1;
+    qproperty-verticalSpacing:10;
+    qproperty-EnableScrolling: false;
+    margin: 0;
+
+}
+/*
+#VentControlClusterTwo
+{
+    qproperty-DefaultDisplayWidget:GDParamButtonGenie;
+    qproperty-columns:5;
+    qproperty-rows:1;
+    qproperty-horizontalSpacing:1;
+    qproperty-verticalSpacing:0;
+    margin:1;
+    qproperty-EnableScrolling: true;
+}
+*/
+#GasControlCluster GDParamButtonGenie, #VentControlCluster GDParamButtonGenie, #IVControlCluster GDParamButtonGenie
+{
+    qproperty-Skin: "Genie";
+    qproperty-Popup: "GDLinearDialPopupGenie";
+    qproperty-Style: "AllVertical2";
+}
+
+MinitrendButton
+{
+    qproperty-Skin: "Genie";
+    qproperty-Popup: "GDLinearDialPopupGenie";
+}
+
+#LoopsCluster
+{
+    qproperty-DefaultDisplayWidget:GDLoopGraphGenie;
+    qproperty-Browsable:false;
+    qproperty-Animated:false;
+    qproperty-columns:2;
+    qproperty-rows:1;
+    qproperty-verticalSpacing:30;
+    qproperty-horizontalSpacing: 10;
+    margin:10;
+    qproperty-FillOrientation: Horizontal;
+   /* qproperty-Collapse:false;*/
+}
+
+#Label_Alarms
+{
+    color: white;
+    background-color:rgba(170, 0, 0, 255);
+    border-top: 1px solid rgba(170, 0, 0, 255);
+    border-left: 1px solid rgba(170, 0, 0, 255);
+    border-right: 1px solid rgba(170, 0, 0, 255);
+    border-bottom: 1px solid rgba(170, 0, 0, 255);
+    border-radius:5px;
+    text-align: bottom;
+}
+
+/*===============  GDButton and QPushButton: normal, disabled, pressed, hover etc.======*/
+GDButton, QPushButton, GDButtonImage
+{
+    color: rgba(180, 180, 180, 255);
+    font-size: 11pt;
+    /*border: 1px solid rgba(64, 64, 64, 255);*/
+}
+
+GDButton:disabled, QPushButton:disabled, GDButtonImage:disabled
+{
+    background-color: gray;
+}
+
+/*GDButton:hover, QPushButton:hover, GDButtonImage:hover
+{
+    background-color:
+    border: 1px solid rgba(114, 117, 136, 255);
+}
+*/
+GDButton:pressed, QPushButton:pressed, GDButtonImage:pressed
+{
+    /*border-radius: 10px;*/
+    /*border: 1px solid rgba(64, 64, 64, 255);*/
+}
+
+/*================= GDBaseTile Common settings ===========================*/
+GDBaseTile #Title
+{
+    /*font-weight: bold;*/
+}
+
+GDBaseTile #ContentFrame
+{
+    min-width: 70px;
+    min-height: 70px;
+}
+
+GDBaseTile #BaseTileCaption
+{
+    font: small "Segoe UI Semibold";
+    color: white;
+    font-size: 11pt;
+    /*margin-left: 5px;*/
+    /*color: rgba(255, 255, 255, 200);*/
+}
+
+/*=============== BasicControlBar: =======================================*/
+#BasicControlBar
+{
+    background-color: transparent;
+}
+
+/*=============== Buttons on BasicControlBar: =============================*/
+#Button_Trends, #Button_Spirometry, #Button_Navigator,
+#Button_Belowless, #Button_FlowTubes, #Button_System
+{
+    background-color: transparent;
+
+    border: 0px solid gray;
+
+    min-height: 100px;
+    min-width: 100px;
+
+    max-height: 100px;
+    max-width: 100px;
+}
+
+#Button_FlowTubes:pressed, #Button_Trends:pressed, #Button_Spirometry:pressed,
+#Button_Navigator:pressed, #Button_Belowless:pressed, #Button_System:pressed
+{
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop:0.0 rgba(5, 16, 25, 255),
+        stop:1.0 rgba(21, 61, 105, 255));
+    border: 1px solid rgba(76, 91, 108, 255);
+    /*padding: 3, 1, 1, 3;*/
+}
+
+#Button_FlowTubes:checked, #Button_Trends:checked, #Button_Spirometry:checked,
+#Button_Navigator:checked, #Button_Belowless:checked, #Button_System:checked
+{
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop:0.0 rgba(105, 16, 25, 255),
+        stop:1.0 rgba(121, 61, 105, 255));
+    border: 1px solid rgba(76, 91, 108, 255);
+    /*padding: 3, 1, 1, 3;*/
+}
+
+#Button_FlowTubes GDLabel, #Button_Navigator GDLabel
+{
+    font: small "Segoe UI Semibold";
+    color: rgba(155, 155, 155, 255);
+    font-size: 10pt;
+}
+
+#SpirometryButtonLoop
+{
+    color:white;
+    /*border:1px solid white;*/
+    border-radius:10;
+    /*border: 1px solid rgba(40, 47, 72, 255);*/
+    /*qproperty-GridColor:rgba(104, 117, 163, 255);*/
+    background: transparent;
+    /* The width-to-height -ratio must be the same as with the main lops */
+    max-width: 40px;
+    max-height: 80px;
+    qproperty-BrowsingCursorMovesOverCompleteGraph: false;
+    qproperty-DrawCursorWhenNotBrowsing: false;
+    qproperty-AutoScalingEnabled:true;
+    qproperty-AutoScalingManualOverride:false;
+    qproperty-ShowGrid: false;
+    qproperty-PartialRepaintsOptimization: true;
+    qproperty-AntiAliasing:true;
+    qproperty-AutoUpScaleDelay: 5;
+    qproperty-AutoDownScaleDelay: 5;
+    qproperty-StateColor1: red;
+    qproperty-StateColor2: white;
+    qproperty-HistoryLevel: 1;
+    qproperty-LevelOfDetails: 1;
+    qproperty-DrawXYAxis: true;
+    qproperty-ShowMainLabel: false;
+    qproperty-ShowRepLabels: false;
+    qproperty-FixedAspectRatio: 1;
+    margin-bottom: 2;
+    margin-top: 2;
+}
+
+#SystemTileImage
+{
+    min-width: 90px;
+    min-height: 70px;
+}
+
+/*=============== Placeholder on BasicControlBar: =========================*/
+#ControlBar_Placeholder
+{
+    background-color: rgba(88, 166, 251, 200);
+}
+/*============== GDParamGenie class defaults ====================*/
+GDParamGenie #Primary
+{
+    font-weight: bold;
+}
+
+GDParamGenie #MaxLimit, GDParamGenie #MinLimit,
+GDParamGenie #Title, GDParamGenie #Units
+{
+    font-size: 18px;
+}
+/*============= GDNumericSetGenie class defaults ================*/
+GDNumericSetGenie QLabel#Title, GDNumericSetGenie QLabel#Units,
+GDNumericSetGenie QLabel#Low, GDNumericSetGenie QLabel#High
+{
+    font-size: 18px;
+}
+
+GDNumericSetGenie > QLabel#Primary
+{
+    font-size: 44px;
+    font-weight: bold;
+}
+
+/*=============== Params settings ===============================*/
+/*Req: To make alarm limits and units less visible, make them half-transparent*/
+
+QGroupBox QLabel
+{
+    /*General setting for all QLabels in numeric widgets:*/
+    font: small "Segoe UI";
+    color: rgba(255, 255, 255, 255); /*white*/
+}
+
+#O2_et_label, #O2_fi_label, #CO2_et_label, #CO2_fi_label,
+#CO2_label, #O2_label, #Sev_et_label, #Sev_fi_label, #Sev_label
+{
+    font-size: 20px;
+    font: small "Segoe UI Semibold";
+    color:  rgba(200, 200, 200, 255); /*white*/
+}
+
+#Param_Ppeak #Primary, #Param_Pmean #Primary, #Param_Peep #Primary,
+#Param_Compl #Primary
+{
+    font: small "Segoe UI Semibold";
+    color: rgba(255, 255, 153, 255); /*yellow*/
+}
+
+#Param_Ppeak #Title, #Param_Pmean #Title, #Param_Peep #Title,
+#Param_Compl #Title
+{
+    color: rgba(200, 200, 120, 255); /*yellow*/
+}
+
+#Param_Ppeak #Low, #Param_Ppeak #High, #Param_Ppeak #Units,
+#Param_Pmean #MinLimit, #Param_Pmean #MaxLimit, #Param_Pmean #Units,
+#Param_Peep  #MinLimit, #Param_Peep #MaxLimit, #Param_Peep #Units,
+#Param_Compl #MinLimit, #Param_Compl #MaxLimit, #Param_Compl #Units
+{
+    color: rgba(153, 153, 120, 255); /*yellow*/
+}
+
+#Param_MV #Primary, #Param_Ppeak #Primary
+{
+    min-height: 68px;
+    max-height: 68px;
+    font: small "Segoe UI Semibold";
+    font-size: 64px;
+    min-width: 140px;
+    margin: 2px;
+}
+
+#Param_Ppeak #Title, #Param_MV #Title
+{
+    max-height: 25px;
+    font-size: 15px;
+}
+
+#Param_MV #Primary, #Param_TV #Primary, #Param_BreathRate #Primary,
+#Param_Raw #Primary
+{
+    font: small "Segoe UI Semibold";
+    color: rgba(87, 208, 119, 255); /*green*/
+}
+
+#Param_MV #Title, #Param_TV #Title, #Param_BreathRate #Title, #Param_Raw #Title
+{
+    font: small "Segoe UI Semibold";
+    color: rgba(68, 163, 93, 255); /*green*/
+}
+
+#Param_MV #Low, #Param_MV #High, #Param_MV #Units,
+#Param_TV #MinLimit, #Param_TV #MaxLimit, #Param_TV #Units,
+#Param_BreathRate  #MinLimit, #Param_BreathRate #MaxLimit, #Param_BreathRate #Units,
+#Param_Raw #MinLimit, #Param_Raw #MaxLimit, #Param_Raw #Units
+{
+     color: rgba(52, 124, 71, 255); /*green*/
+}
+
+#Param_CO2_et #Title, #Param_CO2_fi #Title,
+#Param_O2_et #Title, #Param_O2_fi #Title,
+#Param_Sev_et #Title, #Param_Sev_fi #Title,
+#Param_RQ #Title, #Param_EE #Title,
+#Param_VCO2 #Title, #Param_VO2 #Title
+{
+    color: rgba(255, 255, 255, 255); /*white*/
+}
+
+#Param_CO2_et #Primary, #Param_CO2_fi #Primary,
+#Param_O2_et #Primary, #Param_O2_fi #Primary,
+#Param_Sev_et #Primary, #Param_Sev_fi #Primary,
+#Param_RQ #Primary, #Param_EE #Primary,
+#Param_VCO2 #Primary, #Param_VO2 #Primary
+{
+    font: small "Segoe UI Semibold";
+    color:  rgba(255, 255, 255, 255); /*white*/
+}
+
+
+
+#Param_CO2_et #MinLimit, #Param_CO2_fi #MinLimit,
+#Param_O2_et #MinLimit, #Param_O2_fi #MinLimit,
+#Param_Sev_et #MinLimit, #Param_Sev_fi #MinLimit,
+#Param_CO2_et #MaxLimit, #Param_CO2_fi #MaxLimit,
+#Param_O2_et #MaxLimit, #Param_O2_fi #MaxLimit,
+#Param_Sev_et #MaxLimit, #Param_Sev_fi #MaxLimit,
+#Param_RQ #MinLimit, #Param_EE #MinLimit,
+#Param_VCO2 #MinLimit, #Param_VO2 #MinLimit,
+#Param_RQ #MaxLimit, #Param_EE #MaxLimit,
+#Param_VCO2 #MaxLimit, #Param_VO2 #MaxLimit
+{
+    color:  rgba(153, 153, 153, 255); /*white*/
+    font-size: 15px;
+}
+
+
+#Param_CO2_et, #Param_CO2_fi,
+#Param_O2_et, #Param_O2_fi,
+#Param_Sev_et, #Param_Sev_fi,
+#Param_RQ, #Param_EE,
+#Param_VCO2, #Param_VO2,
+GDParamGenie#Param_Pmean, GDParamGenie#Param_Peep, GDParamGenie#Param_TV,
+GDParamGenie#Param_BreathRate, #Param_Compl, #Param_Raw
+{
+    min-height: 1px;
+    max-height: 150px;
+}
+
+#Param_CO2_et #Units, #Param_CO2_fi #Units,
+#Param_O2_et #Units, #Param_O2_fi #Units,
+#Param_Sev_et #Units, #Param_Sev_fi #Units,
+#Param_RQ #Units, #Param_EE #Units,
+#Param_VCO2 #Units, #Param_VO2 #Units
+{
+    color:  rgba(153, 153, 153, 255); /*white*/
+}
+
+#Param_AA1_et #Title, #Param_AA1_fi #Title
+{
+    color: rgba(255, 255, 100, 255); /*yellow*/
+}
+
+#Param_AA1_et #Primary, #Param_AA1_fi #Primary
+{
+    font: small "Segoe UI Semibold";
+    color: rgba(255, 255, 100, 255); /*yellow*/
+}
+
+#Param_AA1_et  #MinLimit, #Param_AA1_et #MaxLimit,
+#Param_AA1_fi  #MinLimit, #Param_AA1_fi #MaxLimit
+{
+     color: rgba(153, 153, 60, 255); /*yellow*/
+}
+
+#Param_AA2_et QLabel, #Param_AA2_fi QLabel
+{
+    color: rgba(0, 102, 153, 255); /*blue*/
+}
+
+#Param_SEV_et QLabel, #Param_SEV_fi QLabel
+{
+    color: rgba(255, 255, 100, 255); /*yellow*/
+    /*color: rgba(110, 102, 153, 255); /*blue*/
+}
+
+#Param_Pmean, #Param_TV, #Param_Compl, #Param_Raw, #Param_Peep, #Param_BreathRate
+{
+    qproperty-Layout: GenieLayout_NoMinMaxLimits;
+}
+
+#Param_SEV_fi, #Param_O2_fi, #Param_CO2_fi, #Param_DES_fi, #Param_Sev_fi, #Param_AA2_fi
+{
+    qproperty-GenieLayout: GenieLayout_OnlyPrimary;
+}
+
+#Param_SEV_et, #Param_O2_et, #Param_CO2_et, #Param_DES_et, #Param_Sev_et, #Param_AA2_et
+{
+    /* qproperty-Layout: GenieLayout_NoUnits;*/
+    qproperty-GenieLayout: GenieLayout_Horizontal_NoLabel;
+}
+
+#Param_RQ, #Param_EE, #Param_VCO2, #Param_VO2
+{
+     /*qproperty-Layout: GenieLayout; */
+}
+
+#Param_Ppeak, #Param_MV
+{
+    qproperty-GenieLayout: Style_No_Bar;
+    min-width: 277px;
+}
+
+GDParamGenie#Param_CO2_et
+{
+    min-width: 170px;
+    min-height: 80px;
+}
+
+GDParamGenie#Param_CO2_et #Primary
+{
+    /*min-width: 115px;
+    max-width: 115px;
+    min-height: 68px;
+    max-height: 68px;*/
+    font-size: 50px;
+    /*Margin: 2px;*/
+}
+/*
+GDParamGenie#Param_CO2_fi, GDParamGenie#Param_O2_fi, GDParamGenie#Param_Sev_fi
+
+{
+    min-width: 90px;
+    min-height: 80px;
+}
+*/
+/*
+GDParamGenie#Param_VCO2, GDParamGenie#Param_VO2, GDParamGenie#Param_RQ,
+GDParamGenie#Param_EE
+{
+    min-width: 90px;
+    min-height: 35px;
+}
+
+GDParamGenie#Param_O2_et, GDParamGenie#Param_AA1_et
+{
+    min-width: 160px;
+    min-height: 55px;
+}
+*/
+GDParamGenie#Param_CO2_fi #Primary, GDParamGenie#Param_O2_fi #Primary,
+GDParamGenie#Param_Sev_fi #Primary, GDParamGenie#Param_O2_et #Primary,
+GDParamGenie#Param_Sev_et #Primary
+{
+    /*min-width: 120px;
+    max-width: 120px;
+    min-height: 48px;
+    max-height: 48px;*/
+    font-size: 35px;
+    /*margin: 2px;*/
+}
+
+#Param_RQ #Primary, #Param_EE #Primary, #Param_VCO2 #Primary, #Param_VO2 #Primary
+{
+    font-size: 10px;
+    /*margin: 2px;*/
+}
+
+
+#Param_RQ #Units, #Param_EE #Units, #Param_VCO2 #Units, #Param_VO2 #Units,
+#Param_RQ #Title, #Param_EE #Title, #Param_VCO2 #Title, #Param_VO2 #Title,
+#Param_RQ #MinLimit, #Param_EE #MinLimit, #Param_VCO2 #MinLimit, #Param_VO2 #MinLimit,
+#Param_RQ #MaxLimit, #Param_EE #MaxLimit, #Param_VCO2 #MaxLimit, #Param_VO2 #MaxLimit
+{
+    font-size: 8px;
+    /*max-height: 17px;*/
+}
+
+
+/*GDParamGenie#Param_Pmean, GDParamGenie#Param_Peep, GDParamGenie#Param_TV,
+GDParamGenie#Param_BreathRate, #Param_Compl, #Param_Raw
+{
+    min-width: 123px;
+    max-width: 123px;
+    min-height: 96px;
+}*/
+
+GDParamGenie#Param_Pmean #Primary, GDParamGenie#Param_Peep #Primary,
+GDParamGenie#Param_TV #Primary, GDParamGenie#Param_BreathRate #Primary,
+GDParamGenie#Param_Compl #Primary, GDParamGenie#Param_Raw #Primary
+{
+   /* max-height: 48px;
+    min-height: 48px;*/
+    font-size: 35px;
+   /* margin: 2px;*/
+}
+
+GDParamGenie#Param_Pmean #Units, GDParamGenie#Param_Peep #Units, GDParamGenie#Param_TV #Units,
+GDParamGenie#Param_Pmean #Title, GDParamGenie#Param_Peep #Title, GDParamGenie#Param_TV #Title,
+GDParamGenie#Param_Pmean #MinLimit, GDParamGenie#Param_Peep #MinLimit, GDParamGenie#Param_TV #MinLimit,
+GDParamGenie#Param_Pmean #MaxLimit, GDParamGenie#Param_Peep #MaxLimit, GDParamGenie#Param_TV #MaxLimit,
+GDParamGenie#Param_BreathRate #Units, GDParamGenie#Param_Compl #Units, GDParamGenie#Param_Raw #Units,
+GDParamGenie#Param_BreathRate #Title, GDParamGenie#Param_Compl #Title, GDParamGenie#Param_Raw #Title,
+GDParamGenie#Param_BreathRate #MinLimit, GDParamGenie#Param_Compl #MinLimit, GDParamGenie#Param_Raw #MinLimit,
+GDParamGenie#Param_BreathRate #MaxLimit, GDParamGenie#Param_Compl #MaxLimit, GDParamGenie#Param_Raw #MaxLimit
+{
+    font-size: 15px;
+    /*max-height: 17px;*/
+}
+
+GDNumericSetGenie#Title
+{
+    border: 1px light gray;
+}
+
+
+
+/*=============== ComboBox VentStates settings START =====================================*/
+#ComboBoxVentStates
+{
+    font: small "Segoe UI Semibold";
+    min-width: 150px;
+    max-width: 150px;
+    min-height: 79px;
+    font-size: 18pt;
+    padding: 3 1 1 3;
+
+    qproperty-arrowColor: rgba(180, 180, 180, 255);
+    qproperty-arrowWidth: 4;
+    qproperty-layoutStyle: 1;
+}
+
+#ComboBoxVentStates #btnMainPress
+{
+    /*border-image: url(:/Buttons/PhaseComboBox);*/
+    background-color: transparent;
+    border: 1px solid gray;
+    min-width: 150px;
+    max-width: 150px;
+    /*min-height: 80px;*/
+}
+
+#ComboBoxVentStates #btnMainPress:pressed
+{
+    /*border-image: url(:/Buttons/PhaseComboBoxPressed);*/
+}
+
+#ComboBoxVentStates QAbstractItemView
+{
+    /*This is a style for drop-down area: */
+    selection-background-color: gray;
+    border: 1px solid white;
+    font: small "Segoe UI Semibold";
+    color: rgba(180, 180, 180, 255);
+    background-color: rgba(25, 25, 25, 255);
+}
+
+#ComboBoxVentStates #labelMainIndex
+{
+    font: small "Segoe UI Semibold";
+    color: rgba(255, 255, 255, 255);
+    font-size: 16pt;
+}
+
+#ComboBoxVentStates #labelInfo
+{
+    font: small "Segoe UI Semibold";
+    color: rgba(180, 180, 180, 255);
+    font-size: 12pt;
+}
+
+#ComboBoxVentStates:drop-down
+{
+    /*remove original arrow: */
+    border-width: 0px;
+
+}
+
+#ComboBoxVentStates:down-arrow
+{
+    image: url(noimg);
+    border-width: 0px;
+}
+
+/*=============== ComboBox VentStates settings END =====================================*/
+
+
+/*=============== ComboBoxDataSource & Co settings: START =====================================*/
+#ComboBoxDataSource,
+#ComboBoxScaling,
+#ComboBoxPressureData
+{
+    color: rgba(165, 165, 165, 255);
+    font: small "Segoe UI Semibold";
+    font-size: 18pt;
+    min-width: 120px;
+    max-width: 120px;
+    min-height: 45px;
+
+    qproperty-arrowColor: rgba(180, 180, 180, 255);
+    qproperty-arrowWidth: 4;
+    qproperty-layoutStyle: 1;
+}
+
+#ComboBoxDataSource #btnMainPress,
+#ComboBoxPressureData #btnMainPress,
+#ComboBoxScaling #btnMainPress
+{
+    border-image: url(:/Buttons/PhaseComboBox);
+    /* qproperty-transparentImage: true;*/ /* REM: fully transparent button */
+    min-width: 122px;
+    max-width: 122px;
+    min-height: 45px;
+}
+
+#ComboBoxDataSource #btnMainPress:pressed,
+#ComboBoxPressureData #btnMainPress:pressed,
+#ComboBoxScaling #btnMainPress:pressed
+{
+    border-image: url(:/Buttons/PhaseComboBoxPressed);
+}
+
+#ComboBoxDataSource #btnMainPress:disabled,
+#ComboBoxPressureData #btnMainPress:disabled,
+#ComboBoxScaling #btnMainPress:disabled
+{
+
+    border-image: url(:/ExpandButtonPressed) ;
+}
+
+
+#ComboBoxDataSource QAbstractItemView,
+#ComboBoxPressureData QAbstractItemView,
+#ComboBoxScaling QAbstractItemView
+{
+    /*This is a style for drop-down area: */
+    selection-background-color: gray;
+    border: 1px solid white;
+    font: small "Segoe UI Semibold";
+    color: rgba(180, 180, 180, 255);
+    background-color: rgba(25, 25, 25, 255);
+    font-size: 16pt;
+}
+
+#ComboBoxDataSource #labelMainIndex,
+#ComboBoxPressureData #labelMainIndex,
+#ComboBoxScaling #labelMainIndex
+{
+    font: small "Segoe UI Semibold";
+    color: rgba(255, 255, 255, 255);
+    font-size: 16pt;
+}
+
+#ComboBoxDataSource #labelInfo,
+#ComboBoxPressureData #labelInfo,
+#ComboBoxScaling #labelInfo
+{
+    font: small "Segoe UI Semibold";
+    color: rgba(180, 180, 180, 255);
+    font-size: 12pt;
+}
+
+#SpirometryDrawer GDLabel
+{
+    font: small "Segoe UI Semibold";
+    color: rgba(180, 180, 180, 255);
+    font-size: 12pt;
+    text-align: center;
+}
+
+/*=============== ComboBoxDataSource settings END =====================================*/
+
+#ComboBoxVentMode
+{
+    font: small "Segoe UI Semibold";
+    font-size:18pt; /*font size for drop-down part*/
+    min-width: 310px;
+    max-width: 310px;
+
+    qproperty-arrowColor: rgba(180, 180, 180, 255);
+    qproperty-arrowWidth: 4;
+    qproperty-layoutStyle: 2;
+    qproperty-transparentImage: true; /* fully transparent button */
+}
+
+#ComboBoxVentMode #btnMainPress
+{
+    min-width: 310px;
+    max-width: 310px;
+    min-height: 30px;
+}
+
+#ComboBoxVentMode #btnMainPress:pressed
+{
+    border: 1px solid white;
+}
+
+#ComboBoxVentMode QAbstractItemView
+{
+    /*This is a style for drop-down area: */
+    font: small "Segoe UI Semibold";
+    selection-background-color: gray;
+    border: 1px solid white;
+    color: rgba(180, 180, 180, 255);
+    background-color: rgba(25, 25, 25, 255);
+}
+
+#ComboBoxVentMode #labelMainIndex
+{
+    font: small "Segoe UI Semibold";
+    color: rgba(255, 255, 255, 255);
+    font-size: 18pt;
+}
+
+#ComboBoxVentMode #labelInfo
+{
+    font: small "Segoe UI Semibold";
+    color: rgba(180, 180, 180, 255);
+    font-size: 12pt;
+}
+
+#ComboSliderVentControl
+{
+    border: 1px solid white;
+
+    border-top: 1px solid rgba(0, 0, 0, 255);
+    /*border-left: 1px solid rgba(170, 0, 0, 255);
+    border-right: 1px solid rgba(170, 0, 0, 255);
+    border-bottom: 1px solid rgba(170, 0, 0, 255);*/
+
+    border-radius: 1px;
+    background: transparent;
+    qproperty-duration: 100;
+}
+
+#ComboSliderVentControl #ComboLabel
+{
+    font: small "Segoe UI Semibold";
+    color: rgba(165, 165, 165, 255);
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 16pt;
+}
+
+#ComboSliderVentControl #ComboLabelR
+{
+    font: small "Segoe UI Semibold";
+    color: rgba(165, 165, 165, 255);
+    background-color:  rgba(0, 0, 0, 0);
+    font-size: 12pt;
+}
+
+/*=============== Buttons settings on the Gas and Ventilator controls(frames) ===================*/
+#ButtonExpandGas, #ButtonExpandVent
+{
+    font: small "Segoe UI Semibold";
+    border-image: url(:/ExpandButton);
+    max-width:  90px;
+    max-height: 30px;
+}
+
+#ButtonExpandVent
+{
+    margin-top: 5px;
+    min-width: 90px;
+    min-height: 30px;
+}
+
+#ButtonExpandGas:pressed, #ButtonExpandVent:pressed
+{
+    border-image: url(:/ExpandButtonPressed) ;
+}
+
+/*=============== Numerics settings: Frames for groupboxes =========================*/
+
+#groupBox_Ventilation
+{
+    background: transparent;
+    border: 0px;
+    /*
+    border-radius:8px;
+    border: 1px solid rgba(64, 64, 64, 255);
+    
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop: 0.000 rgba(127, 127, 127, 127),
+        stop: 0.015 rgba(127, 127, 127, 63),
+        stop: 0.030 rgba(127, 127, 127, 30),
+        stop: 0.045 rgba(127, 127, 127, 15),
+        stop: 0.060 rgba(127, 127, 127, 7),
+        stop: 0.075 rgba(127, 127, 127, 2),
+        stop: 0.090 rgba(127, 127, 127, 0),
+        stop: 1.000 rgba(127, 127, 127, 0));
+    */
+}
+
+#groupBox_Gases
+{
+    border-radius:8px;
+    border: 1px solid rgba(64, 64, 64, 255);
+    background: transparent;
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop: 0.00 rgba(127, 127, 127, 127),
+        stop: 0.03 rgba(127, 127, 127, 63),
+        stop: 0.06 rgba(127, 127, 127, 30),
+        stop: 0.09 rgba(127, 127, 127, 15),
+        stop: 0.12 rgba(127, 127, 127, 7),
+        stop: 0.15 rgba(127, 127, 127, 2),
+        stop: 0.18 rgba(127, 127, 127, 0),
+        stop: 1.00 rgba(127, 127, 127, 0));
+}
+
+#NumericsBubbleAreaFrame
+{
+    max-height: 300px;
+}
+
+/*==============================================================================*/
+/*========================== Flow Tubes Frame SETTINGS =========================*/
+/*==============================================================================*/
+
+#FlowTubesFrame
+{
+    qproperty-Target: 0;
+    qproperty-startOpen: false;
+    qproperty-autoOpen: false;
+    qproperty-closing: LeftSide;
+    qproperty-duration: 300;
+    border-radius:8px;
+    max-width: 180px;
+    min-width: 180px;
+    border: 1px solid rgba(64, 64, 64, 255);
+    background: transparent;
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop: 0.000 rgba(127, 127, 127, 127),
+        stop: 0.010 rgba(127, 127, 127, 63),
+        stop: 0.015 rgba(127, 127, 127, 30),
+        stop: 0.022 rgba(127, 127, 127, 15),
+        stop: 0.030 rgba(127, 127, 127, 7),
+        stop: 0.037 rgba(127, 127, 127, 2),
+        stop: 0.045 rgba(127, 127, 127, 0),
+        stop: 1.000 rgba(127, 127, 127, 0));
+}
+
+#FlowTubesFrameHeader
+{
+    qproperty-image: ":/Buttons/CloseCross";
+    margin-left: 10px;
+    margin-top: -2px;
+    margin-right: -1px;
+}
+
+#FlowTubesFrameHeader #Title
+{
+    font: small "Segoe UI Semibold";
+    font-size: 15px;
+    color: rgba(255, 255, 255, 255);
+}
+
+#FlowTubesFrameHeader #Button
+{
+    max-width: 50px;
+    min-width: 50px;
+    max-height: 30px;
+}
+
+/*==============================================================================*/
+/*========================== Spiro Loops Frame SETTINGS ========================*/
+/*==============================================================================*/
+#SpirometryDrawer
+{
+    border-radius:8px;
+    /* max-width: 350px; */
+    min-width: 280px;
+    border: 1px solid rgba(64, 64, 64, 255);
+    margin-left: 3px;
+    background: transparent;
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop: 0.000 rgba(127, 127, 127, 127),
+        stop: 0.010 rgba(127, 127, 127, 63),
+        stop: 0.015 rgba(127, 127, 127, 30),
+        stop: 0.022 rgba(127, 127, 127, 15),
+        stop: 0.030 rgba(127, 127, 127, 7),
+        stop: 0.037 rgba(127, 127, 127, 2),
+        stop: 0.045 rgba(127, 127, 127, 0),
+        stop: 1.000 rgba(127, 127, 127, 0));
+}
+
+#LoopsFrame
+{
+    border: 1px solid rgba(64, 64, 64, 255);
+    margin-left: 3px;
+    background: transparent;
+    min-height: 150px;
+    max-height: 150px;
+}
+
+
+#WaveformsCluster
+{
+    color:white;
+    border: 0px solid red;
+    background: transparent;
+    min-width: 200px;
+    max-width: 1000px;
+    min-height: 500px;
+}
+
+#NumericsFrame
+{
+    color:white;
+    border: 0px solid white;
+}
+
+#NumericsFrame GDLabel
+{
+    color: rgba(255, 255, 255, 255);
+    font: small "Segoe UI";
+    font-size: 11pt;
+    border-radius: 5px;
+}
+
+#NumericsBubbleO2Frame, #NumericsBubbleCO2Frame, #NumericsBubbleSevFrame
+{
+    min-height: 200px;
+    max-height: 200px;
+    min-width: 200px;
+    max-width: 200px;
+    background: qradialgradient(cx: 0.5, cy: 0.5,
+        fx: 0.5, fy: 0.5, radius: 0.5, 
+        stop: 0 rgba(255, 255, 255, 0),
+        stop: 0.8 rgba(255, 255, 255, 10),
+        stop: 0.9 rgba(255, 255, 255, 50),
+        stop: 0.91 rgba(255, 255, 255, 200),
+        stop: 0.92 rgba(255, 255, 255, 50),
+        stop: 0.93 rgba(255, 255, 255, 20),
+        stop: 1 rgba(255, 255, 255, 0));
+        
+    
+}
+
+#Trend_Param_CO2_et, #Trend_Param_O2_et
+{
+    min-height: 20px;
+    max-height: 20px;
+    min-width: 10px;
+    max-width: 10px;
+}
+
+
+/*=========== FOLLOW IS FOR DEBUG ONLY: white frames for sub-widgets.==========*/
+/*
+QFrame
+{
+    color:white;
+    border: 1px solid white;
+    background: transparent;
+}
+*/
+/*=========== DEBUG END: white frames for sub-widgets.==========================*/
+
+
+/*=============== QSplitters settings===========================================*/
+QSplitter::handle
+{
+    image: url(:/1.png);
+}
+
+QSplitter::handle:vertical
+{
+    height: 2px;
+}
+
+/*=============== Sliders aka Drawers settings======================================*/
+QTabBar
+{
+    border: 20px solid rgba(148, 154, 178, 255);
+}
+
+
+QTabWidget MinitrendButton
+{
+
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop: 0       rgba(140, 150, 200, 255),
+        stop: 1.0     rgba(80, 90, 110, 255));
+    border: 1px solid black;
+    border-radius: 0px;
+}
+
+QTabBar::tab
+{
+    height: 30px;
+    width: 65px;
+    border-radius: 0px;
+}
+
+QTabBar::tab
+{
+    color: White;
+    font: small "Segoe UI Semibold";
+    font-size: 14px;
+    background-color: red;
+    border: 1px solid rgba(55, 55, 55, 255);
+    border-bottom-color: rgba(71, 69, 72, 255); /* same as the pane color */
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    min-width: 8px;
+    padding: 2px;
+ }
+
+QTabBar::tab:selected, QTabBar::tab:hover
+{
+    background: rgba(71, 69, 72, 255);
+}
+
+QTabBar::tab:!selected
+{
+    margin-top: 5px;
+    font-size: 12px;
+    color: rgba(177, 177, 172, 255);
+    background: rgba(44, 44, 40, 255);
+    height: 25px;
+
+}
+
+#FrameTopBar
+{
+    max-height: 90px;
+    min-height: 90px;
+}
+
+/*GDSlideDrawer for GasControlFrame and VentControlFrame:  */
+#GasControlSlider, #VentControlSlider, #IVControlSlider
+{
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop: 0.00 rgba(255, 255, 255, 100),
+        stop: 0.02 rgba(255, 255, 255, 90),
+        stop: 0.04 rgba(255, 255, 255, 80),
+        stop: 0.06 rgba(255, 255, 255, 70),
+        stop: 0.08 rgba(255, 255, 255, 60),
+        stop: 0.10 rgba(255, 255, 255, 60),
+        stop: 0.12 rgba(255, 255, 255, 60),
+        stop: 0.14 rgba(255, 255, 255, 60),
+        stop: 1.00 rgba(255, 255, 255, 60));
+    border: 0px solid rgba(119, 119, 119, 255);
+    /*border-top: 1px solid rgba(119, 119, 119, 255);
+    border-left: 1px solid rgba(119, 119, 119, 255);
+    border-right: 1px solid rgba(119, 119, 119, 255);
+    border-bottom: 1px solid rgba(119, 119, 119, 255);
+    */
+    border-radius:5px;
+}
+
+
+#GasControlSlider #GasControlFrameCornerButton, #VentControlSlider #VentControlFrameCornerButton
+{
+    max-width: 50px;
+    min-width: 50px;
+    min-height: 30px;
+    margin-right: -2;
+    margin-top: -2;
+}
+
+#IVControlSlider #IVControlFrameCornerButton
+{
+    max-width: 49px;
+    min-width: 49px;
+    min-height: 30px;
+    margin-left: -1;
+    margin-top: -2;
+    margin-right: -1;
+}
+
+#IVControlSlider #IVControlTitle
+{
+    font: small "Segoe UI Semibold";
+    color: rgba(165, 165, 165, 255);
+    font-size: 16pt;
+}
+
+#GasControlSlider, #VentControlSlider
+{
+    min-height: 400px;
+    max-height: 400px;
+    max-width: 330px;
+    min-width: 330px;
+    qproperty-buttonOpenIconFile: ":/Buttons/OpenUpArrow";
+    qproperty-Target: 130;
+    qproperty-startOpen: false;
+    qproperty-autoOpen: false;
+    qproperty-closing: Down;
+    margin-bottom: 2px;
+}
+
+#GasControlCluster, #VentControlCluster, #IVControlCluster
+{
+    min-height: 90px;
+}
+
+#IVControlSlider
+{
+    max-width: 330px;
+    min-width: 330px;
+    /*qproperty-buttonOpenIconFile: ":/Buttons/OpenRightArrow";*/
+}
+
+/*Labels on top of GasControlFrame and VentControlFrame:  */
+#GasControlSlider GDLabel, #VentControlSlider GDLabel
+{
+    font: small "Segoe UI Semibold";
+    color: rgba(165, 165, 165, 255);
+    font-size: 16pt;
+}
+
+GDSlideDrawer QLabel
+{
+    /*background-color:  rgba(255, 255, 255, 0);
+    border: 1px solid red;*/
+}
+
+#VentControlContainerFrame
+{
+    min-width: 1000;
+    min-height: 400;
+    border: 0px solid white;
+}
+
+#IVControlSlider #IVControlFrameButton
+{
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop:0.0 rgba(38, 116, 201, 255),
+        stop:1.0 rgba(26, 65, 120, 255));
+
+    border-radius: 3px;
+    border: 0px solid blue;
+
+    min-height: 80px;
+    min-width: 80px;
+
+    max-height: 80px;
+    max-width: 80px;
+}
+
+/*=============== GDParamButtonGenie: font, color, bargraph============================*/
+GDParamButtonGenie QLabel
+{
+    font: small "Segoe UI Semibold";
+    color : rgba(255, 255, 255, 255);
+}
+
+GDParamButtonGenie GDBargraph
+{
+    color : blue;
+    min-height: 10px;
+    qproperty-Bar: rgba(202, 206, 232, 255);
+    /*qproperty-Back: yellow; */
+    qproperty-Secondary: red;
+}
+
+MinitrendGraph
+{
+    background-color: rgba(0,0,0,0);
+}
+
+/*=============== GDParamButtonGenie: as a button normal, disabled, pressed, hover etc.========*/
+GDParamButtonGenie
+{
+    /*all gradients are replaced with a PNG picture.*/
+
+    border-image: url(:/ParameterButton);
+    /* a "fixed-width" doesn't work */
+    min-width: 90px;
+    min-height: 80px;
+    max-width: 90px;
+    max-height: 80px;
+
+    /*border-radius: 0px;*/
+    /*padding is use for  more realistic "pressed button" effect. see :pressed */
+    padding: 2;
+}
+
+/*GDParamButtonGenie:disabled,*/
+MinitrendButton:disabled
+{
+   background-color: gray;
+}
+
+
+GDParamButtonGenie:hover, MinitrendButton:hover
+{
+    /*hover is not necessary in touch-screen?*/
+}
+
+GDParamButtonGenie:pressed
+{
+    /*all gradients are replaced with a PNG picture.*/
+    border-image: url(:/ParameterButtonPressed);
+    /*padding is use for  more realistic "pressed button" effect*/
+    padding: 3 1 1 3;
+}
+
+MinitrendButton:pressed
+{
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop: 0 rgba(231, 230, 225, 255),
+        stop:0.353933  rgba(175, 180, 217, 255),
+        stop: 1.0 rgba(132, 142, 197, 255));
+    border: 1px solid rgba(124, 137, 183, 255);
+}
+
+/*=============== AMV Roller Widget ====================*/
+GDAMVControlGenie
+{
+    qproperty-Skin: "Genie";
+    min-height: 98px;
+    border: 1px solid #717995;
+    color:rgba(16, 28, 50, 250);
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop: 0        rgba(241, 240, 235, 255),
+        stop:0.353933  rgba(185, 190, 227, 255),
+        stop: 1.0      rgba(142, 152, 207, 255));
+    border: 0px solid rgba(104, 117, 163, 255);
+    padding:2px;
+    border-radius: 8px;
+}
+
+GDAMVControlGenie QLabel
+{
+    font: small "Segoe UI Semibold";
+    color: rgba(16, 28, 50, 255);
+}
+
+/*================Spirometry Frame======================*/
+/*
+GDSlideDrawer { max-width:400; qproperty-Target:0; }
+GDSlideDrawer #Panel
+{
+    padding: 6;
+    background:rgba(255,255,255,30);
+    border:2px solid; border-top-left-radius:40px; border-bottom-left-radius:10px; border-right:none;
+    border-color: rgba(0,0,0,120);
+}
+*/
+
+/*================SlideSwitch widget======================*/
+#GDSlideSwitchFrame
+{
+    border-radius: 5px;
+    color: black;
+    font: small "Segoe UI Semibold";
+    font-size: 20px;
+    border: 1px solid rgba(22, 41, 48, 255)
+    /*qproperty-margin: 2;*/
+}
+
+#GDSlideSwitchFrame[lock=false]
+{
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop: 0.00000 rgba(87, 87, 87, 255),
+        stop: 1.00000 rgba(87, 87, 87, 255));
+}
+
+#GDSlideSwitchFrame[lock=true]
+{
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop: 0.00000 rgba(116, 179, 194, 255),
+        stop: 0.42933 rgba(128, 170, 182, 255),
+        stop: 0.53933 rgba(128, 170, 182, 255),
+        stop: 0.65933 rgba(128, 170, 182, 255),
+        stop: 1.00000 rgba(116, 179, 194, 255));
+}
+
+#SlideSwitch
+{
+    min-width: 90px;
+    max-height: 40px;
+    qproperty-ThresholdToAcceptStateSwitchPixel: 15;
+    qproperty-BackToPositionAnimationTimeMili: 200;
+}
+
+#GDSlideSwitchButton
+{
+    border-image: url(:/switch);
+    min-width: 50px;
+    max-width: 50px;
+
+    min-height: 56px;
+    max-height: 56px;
+}
+
+/*================SlideSwitchImg widget======================*/
+#SlideSwitchImg
+{
+    min-width: 90px;
+    max-width: 90px;
+
+    max-height: 40px;
+    min-height: 40px;
+
+    border: 1px solid transparent;
+    qproperty-Roundness: 20;
+
+    qproperty-ThresholdToAcceptStateSwitchPixel: 20;
+    qproperty-BackToPositionAnimationTimeMili: 200;
+}
+
+#GDSlideSwitchImgButton
+{
+    border-image: url(:/switch_v4);
+
+    min-width: 141px;
+    max-width: 141px;
+
+    min-height: 44px;
+    max-height: 44px;
+}
+
+/*=============== Alarm Widget ====================*/
+#AlarmPanel
+{
+    border-image: url(:/Alarms/AlarmListBg);
+    border-width: 100px;
+    padding: -87px;
+    margin: 2px
+}
+
+/*=============== Buttons on TopBar: =============================*/
+#Button_Case
+{
+    min-width: 110px;
+    min-height: 70px;
+    border: 1px solid gray;
+    /*border-image: url(:/Buttons/CaseSetup);*/
+}
+
+#Button_Case:pressed
+{
+    /*border-image: url(:/Buttons/CaseSetupPressed);*/
+}
+
+#Button_AudioPause
+{
+    min-width: 110px;
+    min-height: 70px;
+    color: yellow;
+    /*border-image: url(:/Buttons/AudioPause);*/
+    border: 1px solid gray;
+
+}
+
+#Button_AudioPause:pressed
+{
+    color: yellow;
+    /*border-image: url(:/Buttons/AudioPausePressed);*/
+}
+
+/*===============DigitalCLock settings on the TopBar ==========================*/
+#Button_Timer
+{
+    min-width: 110px;
+    min-height: 70px;
+    background-color: rgba(0,0,0,0);
+    text-align: bottom;
+    border: 1px solid gray;
+    padding: 3, 1, 1, 3;
+}
+
+#Button_Timer:pressed
+{
+    border: 1px solid white;
+}
+
+#TimerButtonCaption
+{
+    color: rgba(180, 180, 180, 255);
+    font-size: 12pt;
+    font: small "Segoe UI Semibold";
+}
+
+#DigitalCLock
+{
+    color: rgba(255, 255, 255, 255);    
+    font-size: 25pt;
+    font: small "Segoe UI";
+    min-width: 80px;    
+}
+
+#Button_AlarmSetup
+{
+    min-width: 100px;
+    min-height: 70px;
+    background-color: rgba(0,0,0,0);
+    border: 1px solid gray;
+}
+
+#AlarmsClear         {  border-image: url(:/Alarms/Clear); }
+#AlarmsClear:pressed {  border-image: url(:/Alarms/Clear_Pressed);  }
+#AlarmsClear:disable {  border-image: url(:/Alarms/Clear_Disable);  }
+
+GDAlarmsHList #History
+{
+    color: white;
+    min-height:45;
+    border: 1px solid white;
+    border-radius: 2;
+    padding:2;
+    margin: 1;
+}
+/*======= Primary Alarm Display Settings ======== */
+GDParam[Alert='1'] { background-color: rgba( 209, 11, 35, 255); border: none;}
+/*GDNumericSet[Alert='1']  #mPrimaryDigit{ background-color: rgba( 209, 11, 35, 255); }*/
+/*GDParamButtonGenie[Alert="1"] { background-color: Yellow; border:none; } */
+
+
+/*=============== ALARM ITEMS SETTINGS ====================*/
+GDAlarmsListItemGenie #Primary
+{
+    font-size: 15px;
+    /*font: small "Segoe UI Semibold";*/
+    font: small "Segoe UI";
+}
+
+GDAlarmsListItemGenie
+{
+    margin: 1px;
+    border-radius: 6px;
+    border: 1px solid;
+    qproperty-Browsable: false;
+}
+
+/* ------ Style set for expired alarms ------ */
+/* White text on black backgroud */
+GDAlarmsListItemGenie[Active="false"]
+{
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop: 0        rgba(128, 128, 128, 255),
+        stop: 0.08     rgba(0, 0, 0, 255),
+        stop: 0.92     rgba(0, 0, 0, 255),
+        stop: 1.0     rgba(128, 128, 128, 255));
+    border-color: rgba(128, 128, 128, 255);
+}
+GDAlarmsListItemGenie[Active="false"] #Primary
+{
+    color: White;
+}
+
+/* ------ Style set for low severity alarms ------ */
+/* Black text on yellow backgroud */
+GDAlarmsListItemGenie[Active="true"][Severity="0"],
+GDAlarmsListItemGenie[Active="true"][Severity="1"]
+{
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop: 0        rgba(255, 255, 0, 192),
+        stop: 0.08     rgba(255, 255, 0, 255),
+        stop: 0.92     rgba(255, 255, 0, 255),
+        stop: 1.0     rgba(255, 255, 0, 192));
+    border-color: rgba(255, 255, 0, 128);
+}
+GDAlarmsListItemGenie[Active="true"][Severity="0"] #Primary,
+GDAlarmsListItemGenie[Active="true"][Severity="1"] #Primary
+{
+    color: Black;
+}
+
+/* ------ Style set for high severity alarms ------ */
+/* White text on red backgroud */
+GDAlarmsListItemGenie[Active="true"][Severity="2"],
+GDAlarmsListItemGenie[Active="true"][Severity="3"]
+{
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop: 0        rgba(192, 0, 0, 192),
+        stop: 0.08     rgba(192, 0, 0, 255),
+        stop: 0.92     rgba(192, 0, 0, 255),
+        stop: 1.0     rgba(192, 0, 0, 192));
+    border-color: rgba(192, 0, 0, 128);
+}
+GDAlarmsListItemGenie[Active="true"][Severity="2"] #Primary,
+GDAlarmsListItemGenie[Active="true"][Severity="3"] #Primary
+{
+    color: White;
+}
+
+/* ------ Style set for notifications ------ */
+/* White text on gray backgroud */
+GDAlarmsListItemGenie[Active="true"][Severity="4"]
+{
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop: 0        rgba(96, 96, 96, 192),
+        stop: 0.08     rgba(96, 96, 96, 255),
+        stop: 0.92     rgba(96, 96, 96, 255),
+        stop: 1.0      rgba(96, 96, 96, 192));
+    border-color: rgba(96, 96, 96, 128);
+}
+GDAlarmsListItemGenie[Active="true"][Severity="4"] #Primary
+{
+    color: White;
+}
+
+
+/*
+GDAlarmsListItemGenie[Active="false"]                 { background: url(:/Alarms/Green) no-repeat; }
+GDAlarmsListItemGenie[Active="false"][Pressed="true"] { background: url(:/Alarms/Green_Pressed) no-repeat; }
+
+GDAlarmsListItem[Active="true"][Severity="0"]                 { background: url(:/Alarms/Yellow) no-repeat; }
+GDAlarmsListItem[Active="true"][Severity="0"][Pressed="true"] { background: url(:/Alarms/Yellow_Pressed) no-repeat; }
+
+GDAlarmsListItem[Active="true"][Severity="1"]                 { background: url(:/Alarms/Yellow) no-repeat; }
+GDAlarmsListItem[Active="true"][Severity="1"][Pressed="true"] { background: url(:/Alarms/Yellow_Pressed) no-repeat; }
+
+GDAlarmsListItem[Active="true"][Severity="2"]                 { background: url(:/Alarms/Red) no-repeat; }
+GDAlarmsListItem[Active="true"][Severity="2"][Pressed="true"] { background: url(:/Alarms/Red_Pressed) no-repeat; }
+
+GDAlarmsListItem[Active="true"][Severity="3"]                 { background: url(:/Alarms/Red) no-repeat; }
+GDAlarmsListItem[Active="true"][Severity="3"][Pressed="true"] { background: url(:/Alarms/Red_Pressed) no-repeat; }
+
+GDAlarmsListItem[Active="true"][Severity="4"]                 { background-color: rgba(220, 220, 220, 255); border: 1px solid white; border-radius: 4;}
+GDAlarmsListItem[Active="true"][Severity="4"][Pressed="true"] { background-color: rgba(128, 128, 128, 255); }
+*/
+/*
+GDAlarmsListItem[Group="Power"] #LeftIcon { qproperty-pixmap: url(:/Alarms/PowerIcon);}
+GDAlarmsListItem[Group="Clinical"] #LeftIcon { qproperty-pixmap: url(:/Alarms/ClinicalIcon);}
+GDAlarmsListItem[Group="Technical"] #LeftIcon { qproperty-pixmap: url(:/Alarms/TechIcon);}
+
+GDAlarmsListItem[Silenced="true"] #RighIcon { qproperty-pixmap: url(:/AudioPause);}
+GDAlarmsListItem[Silenced="false"] #RightIcon { qproperty-pixmap: url(:/Alarms/InfoIcon);}
+*/
+
+
+/*==============================================================================*/
+/*========================== ALARM ITEMS SETTINGS ==============================*/
+/*==============================================================================*/
+#AlarmDrawer
+{
+    background-color: rgba(148, 154, 178, 255);
+    border: 1px solid rgba(69, 86, 132, 255);
+    margin: 2px;
+    min-width: 350;
+    max-width: 450;
+}
+
+QTabWidget::pane
+{
+    border-radius: 0px;
+    border: 0px solid;
+    background-color: rgba(71, 69, 72, 255);
+}
+
+#mUpperLimit
+{
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+
+}
+
+#mLowerLimit
+{
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+
+#AlarmSetupCloseButton, #AlarmSetupUndoButton
+{
+    background: transparent;
+    border: none;
+}
+
+#AlarmSetupCloseButton
+{
+    color:Black;
+    min-width: 60px;
+}
+
+#AlarmSetupUndoButton
+{
+    color: rgba(113, 113, 105, 255);
+}
+
+#AlarmSetupDefaultLimitsButton, #AlarmSetupNarrowLimitsButton, #AlarmSetupWideLimitsButton
+{
+    color: Black;
+    font-size: 12px;
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                      stop: 0       rgba(140, 150, 200, 255),
+                      stop: 1.0     rgba(80, 90, 110, 255));
+    border: 0px;
+    border-radius: 5px;
+    width: 75px;
+    height: 40px;
+}
+
+
+GDMinitrend QLabel
+{
+   color: White;
+}
+
+#mUpperLimit QLabel, #mLowerLimit QLabel
+{
+   color: Black;
+}
+
+ClickLabel
+{
+    color: White;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#AlarmSetupCheckBox
+{
+    color: white;
+    min-width: 40px;
+    max-width: 40px;
+}
+
+#AlarmSetupVentAlarmsPage, #AlarmSetupSafetyAlarmsPage, #AlarmSetupSettingsPage
+{
+    background-color: rgba(71, 69, 72, 255);
+}
+
+#AlarmSetupStackedWidget
+{
+    background-color: rgba(71, 69, 72, 255);
+
+}
+
+#AlarmSetupTitle, #TrendsSetupTitle
+{
+    font-size: 14px;
+}
+
+QTabWidget QWidget
+{
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+
+/*==============================================================================*/
+/*========================== TREND ITEMS SETTINGS ==============================*/
+/*==============================================================================*/
+
+#TrendViewDrawer
+{
+    background-color: rgba(148, 154, 178, 255);
+    border: 1px solid rgba(69, 86, 132, 255);
+    margin: 2px;
+    max-width: 625px;
+    min-width: 625px;
+    /*qproperty-MaxWidth: 450;*/
+}
+
+#TrendsCloseButton, #TrendsUndoButton
+{
+    background: transparent;
+    border: none;
+}
+
+#TrendsCloseButton
+{
+    color:Black;
+    min-width: 60px;
+}
+
+#TrendsUndoButton
+{
+    color: rgba(113, 113, 105, 255);
+}
+
+#TrendsFrameTabWidget
+{
+    background-color:rgba(71, 69, 72, 255);
+    min-height: 425px;
+    max-height: 800px;
+    max-width: 600px;
+    min-width: 600px;
+}
+
+/*================= SVG graphics frame ====================*/
+#SvgFrame
+{
+    qproperty-svgFileUpper: ":/SvgLungs";
+    qproperty-svgFileLower: ":/SvgWindpipe";
+    min-width: 600px;
+    max-width: 600px;
+    border-radius:8px;
+    border: 1px solid rgba(64, 64, 64, 255);
+    background: transparent;
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop: 0.000 rgba(127, 127, 127, 127),
+        stop: 0.010 rgba(127, 127, 127, 63),
+        stop: 0.015 rgba(127, 127, 127, 30),
+        stop: 0.022 rgba(127, 127, 127, 15),
+        stop: 0.030 rgba(127, 127, 127, 7),
+        stop: 0.037 rgba(127, 127, 127, 2),
+        stop: 0.045 rgba(127, 127, 127, 0),
+        stop: 1.000 rgba(127, 127, 127, 0));
+}
+
+#SvgDrawerHeader #Button
+{
+    max-width: 50px;
+    min-width: 50px;
+    max-height: 30px;
+}
+
+#SvgDrawerHeader
+{
+    qproperty-image: ":/Buttons/CloseCross";
+    margin-left: 10px;
+    margin-top: -2px;
+    margin-right: -1px;
+}
+
+#SvgDrawerHeader #Title
+{
+    font: small "Segoe UI Semibold";
+    font-size: 15px;
+    color: rgba(255, 255, 255, 255);
+}
+/*========== QtWebKit Widgets =================*/
+
+#DemoWebFrame
+{
+    qproperty-Target: 0;
+    qproperty-startOpen: false;
+    qproperty-autoOpen: false;
+    qproperty-closing: LeftSide;
+    qproperty-duration: 300;
+    border-radius:8px;
+    max-width: 700px;
+    min-width: 700px;
+    border: 1px solid rgba(64, 64, 64, 255);
+    background: transparent;
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop: 0.000 rgba(127, 127, 127, 127),
+        stop: 0.010 rgba(127, 127, 127, 63),
+        stop: 0.015 rgba(127, 127, 127, 30),
+        stop: 0.022 rgba(127, 127, 127, 15),
+        stop: 0.030 rgba(127, 127, 127, 7),
+        stop: 0.037 rgba(127, 127, 127, 2),
+        stop: 0.045 rgba(127, 127, 127, 0),
+        stop: 1.000 rgba(127, 127, 127, 0));
+     qproperty-camAddress: "http://3.187.27.42/cgi-bin/placeholder.pl";
+}
+
+#DemoWebFrame QWebView
+{
+    min-width: 400px;
+}
+
+#DemoWebFrame QLabel
+{
+    background-color: Gray;
+}
+
+#WebFrameHeader
+{
+    qproperty-image: ":/Buttons/CloseCross";
+    margin-left: 10px;
+    margin-top: -2px;
+    margin-right: -1px;
+    max-height: 30px;
+}
+
+#WebFrameHeader #Title
+{
+    background-color: transparent;
+    font: small "Segoe UI Semibold";
+    font-size: 15px;
+    color: rgba(255, 255, 255, 255);
+}
+
+#WebFrameHeader #Button
+{
+    max-width: 50px;
+    min-width: 50px;
+    max-height: 30px;
+}
+
+AlarmPopupInfo
+{
+    min-width: 400px;
+    max-width: 400px;
+    min-height: 230px;
+    max-height: 230px;
+    border-radius:8px;
+    border: 3px solid rgba(64, 64, 64, 255);
+    background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+        stop: 0.000 rgba(127, 127, 127, 127),
+        stop: 0.010 rgba(127, 127, 127, 63),
+        stop: 0.015 rgba(127, 127, 127, 30),
+        stop: 0.022 rgba(127, 127, 127, 15),
+        stop: 0.030 rgba(127, 127, 127, 7),
+        stop: 0.037 rgba(127, 127, 127, 2),
+        stop: 0.045 rgba(127, 127, 127, 0),
+        stop: 1.000 rgba(127, 127, 127, 0));
+}
+
+/*============= Screen Lock Shroud ================*/
+
+#MainViewShroud
+{
+    background-color: rgba(155, 155, 155, 150);
+}
+
+#MainViewShroud #ScreenShroudCaption, 
+#MainViewShroud #ScreenShroudConfirmCaption
+{
+    font-size: 50px;
+    color: white;
+}
+
+#MainViewShroud #ConfirmButtonYes, 
+#MainViewShroud #ConfirmButtonNo
+{
+    font-size: 40px;
+    min-height: 100px;
+    min-width: 130px;
+}
+
+#MainViewShroud #ConfirmButtonNo
+{
+    color: rgba(100, 0, 0, 255);
+}
+
+#MainViewShroud #ConfirmButtonYes
+{
+    color: rgba(0, 100, 0, 255);
+}
+
+#MainViewShroud #UnlockButton1, 
+#MainViewShroud #UnlockButton2, 
+#MainViewShroud #UnlockButton3
+{
+    font-size: 40px;
+    min-height: 100px;
+    min-width: 130px;
+    color: rgba(0, 0, 200, 255);
+}
+
+#MainViewShroud #UnlockButton1:checked, 
+#MainViewShroud #UnlockButton2:checked,
+#MainViewShroud #UnlockButton3:checked
+{
+    color: rgba(200, 0, 200, 255);
+}
+
+#Button_ScreenLock, #Button_RevertToStartup, #Button_Shutdown
+{
+    font: small "Segoe UI Semibold";
+    font: 20px;    
+    color: rgba(255, 255, 255, 255);
+    
+    
+    /*
+     color: gray;
+     background-color: qlineargradient(spread:reflect, x1:0, y1:0, x2:0, y2:1,
+        stop:0.0   rgba(90, 90, 90, 255),
+        stop:0.92 rgba(50, 50, 50, 255),
+        stop:1 rgba(60, 60, 60, 255));
+    border-top: 1px solid rgb(180,180,180);
+    border-left: 1px solid rgb(150,150,150);
+    border-right: 1px solid rgb(70,70,70);
+    border-bottom: 1px solid rgb(50,50,50);
+
+    border-radius: 6px;
+    */
+    
+    min-width: 180px;
+    max-width: 180px;
+    min-height: 45px;
+
+    border-image: url(:/Buttons/PhaseComboBox);    
+}
+
+#Button_ScreenLock:pressed
+{
+    border-image: url(:/Buttons/PhaseComboBoxPressed);
+}
+
