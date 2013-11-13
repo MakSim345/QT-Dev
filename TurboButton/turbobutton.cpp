@@ -14,8 +14,8 @@
 #include "turbobutton.h"
 
 TurboButton::TurboButton(QDialog *parent)
-     : QDialog(parent, Qt::FramelessWindowHint)
-     //:QDialog(parent)
+     //:QDialog(parent, Qt::FramelessWindowHint)
+     :QDialog(parent)
      , nCounter(0)
      , radioButtonsTime(0) // 0 - minutes, 1 - seconds
      , radioButtonsSound(0) //
@@ -134,8 +134,9 @@ void TurboButton::tuneMainWindow()
     //set icon:
     // QIcon m_Icon = QIcon(":/plane.png");
     // see - alias:
-    QIcon m_iconPlane(STR_PLANE_ICON);
-    setWindowIcon(m_iconPlane);
+    QIcon m_iconMainWindow("://Resources/Button_Shutdown.png");
+    setWindowIcon(m_iconMainWindow);
+    // setWindowIcon(QIcon(":/images/icon.png"));
     //set caption:
     setMainWindowTitle("");    
     picOn.load("://Resources/TurboButton01.jpg");
@@ -143,6 +144,12 @@ void TurboButton::tuneMainWindow()
     picOff.load("://Resources/TurboButton01.jpg");    
     // pic.load("Resources/TurboButton01.png");
     // setStyleSheet("background-image: url(:/Resources/TurboButton01.png)");
+    
+    //setWindowFlags(Qt::FramelessWindowHint); 
+    setWindowFlags(Qt::WindowTitleHint);
+    // setWindowFlags(Qt::Tool);
+    
+    //setWindowFlags(flags & ~Qt::WindowContextHelpButtonHint);
 }
 
 void TurboButton::setMainWindowTitle(QString strToShow)
