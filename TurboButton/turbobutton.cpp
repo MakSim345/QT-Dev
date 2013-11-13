@@ -132,11 +132,9 @@ void TurboButton::resizeEvent(QResizeEvent *e)
 void TurboButton::tuneMainWindow()
 {
     //set icon:
-    // QIcon m_Icon = QIcon(":/plane.png");
-    // see - alias:
-    QIcon m_iconMainWindow("://Resources/Button_Shutdown.png");
-    setWindowIcon(m_iconMainWindow);
+    this->updateMainWindowIcon(BUTTON_STYLE::GREEN_BUTTON);
     // setWindowIcon(QIcon(":/images/icon.png"));
+ 
     //set caption:
     setMainWindowTitle("");    
     picOn.load("://Resources/TurboButton01.jpg");
@@ -145,11 +143,7 @@ void TurboButton::tuneMainWindow()
     // pic.load("Resources/TurboButton01.png");
     // setStyleSheet("background-image: url(:/Resources/TurboButton01.png)");
     
-    //setWindowFlags(Qt::FramelessWindowHint); 
     setWindowFlags(Qt::WindowTitleHint);
-    // setWindowFlags(Qt::Tool);
-    
-    //setWindowFlags(flags & ~Qt::WindowContextHelpButtonHint);
 }
 
 void TurboButton::setMainWindowTitle(QString strToShow)
@@ -172,7 +166,8 @@ void TurboButton::onStart()
     startTimer();
     updateRemainTxt();
     btnStart->setEnabled(false);
-    isRun = true;
+    isRun = true;    
+    this->updateMainWindowIcon(BUTTON_STYLE::RED_BUTTON);
     this->update();
 }
 
@@ -218,9 +213,29 @@ void TurboButton::decrementCounter()
         btnStart->setStyleSheet(
         "background: transparent; border-image: url(://Resources/Button_Restart.png);"
         );
+        this->updateMainWindowIcon(BUTTON_STYLE::GREEN_BUTTON);
         this->update();
     }
     updateRemainTxt();
+}
+
+void TurboButton::updateMainWindowIcon(BUTTON_STYLE _button_color)
+{
+    //QIcon m_iconMainWindow("://Resources/Button_Restart.png");    
+    //QIcon m_iconMainWindow("://Resources/Button_Shutdown.png");    
+    // m_iconMainWindow.addPixmap("://Resources/Button_Restart.png");
+
+    // setWindowIcon(m_iconMainWindow);
+     switch (_button_color) 
+     {
+        case BUTTON_STYLE::GREEN_BUTTON:
+            setWindowIcon(QIcon("://Resources/Button_Restart.png"));
+            break;
+        case BUTTON_STYLE::RED_BUTTON: 
+            setWindowIcon(QIcon("://Resources/Button_Shutdown.png"));
+            break;
+        default: ;
+     }
 }
 
 void TurboButton::updateRemainTxt()

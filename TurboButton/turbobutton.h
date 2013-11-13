@@ -42,6 +42,7 @@ public:
     void restoreSettingsFromINI();
     void closeEvent (QCloseEvent *);
     void playSound();
+    void updateMainWindowIcon(BUTTON_STYLE);
 
     void paintEvent(QPaintEvent *e);
     void resizeEvent(QResizeEvent *e);
@@ -75,6 +76,7 @@ private:
     
     QPixmap picOn;
     QPixmap picOff;
+    QIcon m_iconMainWindow;
 
     QString m_FontName;
     

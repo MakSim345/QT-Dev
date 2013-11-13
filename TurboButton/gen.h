@@ -42,4 +42,10 @@
 #include <QMessageBox>
 #include <QtWidgets/QDialog>
 
+typedef enum
+{
+    RED_BUTTON,
+    GREEN_BUTTON
+} BUTTON_STYLE;
+
 #endif
