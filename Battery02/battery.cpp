@@ -100,11 +100,14 @@ void WidgetBattery::paintEvent ( QPaintEvent * event )
         QPointF(size().width() / 2, size().height() / 2 + height_battery / 2));
     gradient.setColorAt(gradient_pos1, color_gradient1);
     gradient.setColorAt(gradient_pos2, color_gradient2);
+    
+    int fill_offset_x = 1;
+    int fill_offset_y = 1;
 
-    painter.fillRect(offset_x + 2,
-        size().height() / 2 - height_battery / 2 + 2,
+    painter.fillRect(offset_x + fill_offset_x,
+        (size().height() / 2) - (height_battery / 2) + fill_offset_y,
         (int)((qreal)(size().width() - offset_x * 2 - width_nipple - 5) * (qreal)m_nBatteryPercent / 100.),
-        height_battery - 3,
+        height_battery - 2,
         //QBrush(QColor(200, 200, 200)));
         QBrush(gradient));
 

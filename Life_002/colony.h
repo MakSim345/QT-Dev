@@ -37,7 +37,8 @@ class colony // Storage of SCR id's for giving them grant to talk.
     int get_cell_block() {return cell_block;}
     int getCellAliveStatus(int i, int j);
     int getCellColor(int i, int j);
-
+    
+    void setLifeIteration(int _n) {life_iteration = _n;}
     int getLifeIteration() {return life_iteration;}
     int getCellsAlive() {return live_cells;}
     

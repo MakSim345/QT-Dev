@@ -9,6 +9,10 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h</Extensions>
     </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{D9D6E242-F8AF-46E4-B9FD-80ECBC20BA3E}</UniqueIdentifier>
       <Extensions>qrc;*</Extensions>
@@ -20,12 +24,12 @@
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Debug">
-      <UniqueIdentifier>{d45bc32a-4625-4082-abbf-d37d625c66bf}</UniqueIdentifier>
+      <UniqueIdentifier>{9464b0d7-6dd7-4975-96a5-60f363dccd42}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Release">
-      <UniqueIdentifier>{a2a4d5ee-fc2e-4f4a-a7fe-5574edd1c75a}</UniqueIdentifier>
+      <UniqueIdentifier>{87ffe5d5-cb69-4645-9052-f230d9b21cb6}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
@@ -33,6 +37,9 @@
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_thread12.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="mythread.cpp">
       <Filter>Source Files</Filter>
@@ -45,6 +52,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <CustomBuild Include="thread12.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
     <CustomBuild Include="mythread.h">
       <Filter>Header Files</Filter>
     </CustomBuild>

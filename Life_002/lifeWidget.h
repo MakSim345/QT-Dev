@@ -11,7 +11,7 @@ class lifeWidget : public QWidget
     Q_OBJECT
 public:
     explicit lifeWidget(QWidget *parent = 0);
-
+    void init_colony_once();
 protected:
     void paintEvent(QPaintEvent *);
     void mousePressEvent(QMouseEvent *e);

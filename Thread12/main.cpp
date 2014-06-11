@@ -1,4 +1,3 @@
-
 #include <QtCore/QCoreApplication>
 #include <QList>
 #include <QDebug>
@@ -34,3 +33,4 @@ int main(int argc, char *argv[])
     */
     return a.exec();
 }
+

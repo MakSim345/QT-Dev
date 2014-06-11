@@ -49,7 +49,7 @@ void colony::init(int screen_dimention_x, int screen_dimention_y)
 {
     int i, j;
 
-    if (life_iteration)
+    if (getLifeIteration())
         return;
 
     //dimention_x = (screen_dimention_x/cell_block)*1.05; //+(cell_block/2);
@@ -106,8 +106,10 @@ void colony::set_random_config()
 {
     // init random table:
     srand(time(NULL));
-    int max_cell_alive = (1 + rand() % (dimention_x * dimention_y)); 
+    int max_cell_alive = (1 + rand() % (dimention_x * dimention_y));     
+    qDebug()<<"start!";
     // t.TRACEY("Total amount of cells: %d\n", max_cell_alive);
+    qDebug()<<"Total amount of cells: "<< max_cell_alive << "\n";
     for (int r = 0; r < max_cell_alive; r++)
     {
         int i = (1+rand()%(dimention_x-1));

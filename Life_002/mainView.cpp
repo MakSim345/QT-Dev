@@ -77,14 +77,16 @@ void mainView::initWidgets()
 
 void mainView::setConnections()
  {
-    // connect(bQuit, SIGNAL(clicked()), this, SLOT(quit()));
-    // connect(bQuit, SIGNAL(clicked()), &app, SLOT(quit()));
     connect(bStart, SIGNAL(clicked()), this, SLOT(startGame()));
-    // connect(bStart, SIGNAL(clicked()), this, SLOT (StartMyThread()));
     connect(bRnd, SIGNAL(clicked ()), this, SLOT (setValue()));
-    // connect(slider, SIGNAL(valueChanged(int)), lcd, SLOT(display(int)));
     connect(timer, SIGNAL(timeout()), lifeWgt, SLOT(newGeneration()));
     connect(timer, SIGNAL(timeout()), this, SLOT(updateLabels()));
+
+    // connect(bQuit, SIGNAL(clicked()), this, SLOT(quit()));
+    // connect(bStart, SIGNAL(clicked()), this, SLOT (StartMyThread()));
+    // connect(bQuit, SIGNAL(clicked()), &app, SLOT(quit()));
+    // connect(slider, SIGNAL(valueChanged(int)), lcd, SLOT(display(int)));
+
     
     //QObject::connect (&m_thread, SIGNAL(currentValue(int)), lcd, SLOT(display(int)) );
     //QObject::connect (&m_thread, SIGNAL(finished()), qApp, SLOT(quit()));
@@ -98,8 +100,12 @@ void mainView::startGame()
 
 void mainView::updateLabels()
 {
-    int value = lifeWgt->getCellsAlive();    
+    int value = 0;
+    value = lifeWgt->getCellsAlive();    
     lnCells->setText(QString::number(value));
+
+    value = lifeWgt->getLifeIteration();    
+    lnIteration->setText(QString::number(value));
 }
 
 void mainView::StartMyThread()
@@ -110,6 +116,7 @@ void mainView::StartMyThread()
 
  void mainView::setValue()
 {
+    lifeWgt->init_colony_once();
     //lnMSTime->setText(QString::number(GetRNDValue()));
     //lcd->display(lnMSTime->text());
     // lnMSTime->setText(QString::number(Get1msTimeMS() ));

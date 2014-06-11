@@ -36,6 +36,12 @@ lifeWidget::lifeWidget(QWidget *parent) :
     this->setMinimumSize(universeSize*5, universeSize*5);
 }
 
+void lifeWidget::init_colony_once()
+{
+    my_colony = new colony();
+    my_colony->init(universeSize, universeSize);
+}
+
 void lifeWidget::startGame(const int &number)
 {
     generations = number;

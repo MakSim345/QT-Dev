@@ -11,6 +11,8 @@
   #include <Windows.h>
 #endif
 
+#include <QDebug>
+
 // nSpeedRegulator iteration changes in milliseconds. See ini-file.
 const int nSpeedRegulator = 500;
 const int nIterationNumber = 100;
