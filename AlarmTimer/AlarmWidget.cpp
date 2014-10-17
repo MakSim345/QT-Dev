@@ -25,6 +25,7 @@ AlarmWidget::AlarmWidget(QFrame *parent)
      , nSeconds(60)
      , m_FontName("arial")
      , isPause(false)
+     , isRunning(false)
 
  {
      // by default it is minutes
@@ -210,10 +211,25 @@ void AlarmWidget::setConnections()
 
 void AlarmWidget::onStart()
 {
-    nCounter = timerValue->value() * nSeconds; // set to minutes
-    startTimer();
-    updateRemainTxt();
-    btnPause->setEnabled(true);
+    if (!isRunning)
+    {
+        nCounter = timerValue->value() * nSeconds; // set to minutes
+        startTimer();
+        updateRemainTxt();
+        btnPause->setEnabled(true);
+        btnStart->setText(STR_BTN_STOP);
+        isRunning = true;
+    }
+    else // already running
+    {
+        stopTimer();
+        btnStart->setText(STR_BTN_START);
+        btnPause->setEnabled(false);
+        isRunning = false;
+        QString strTmpVal = QString();
+        strTmpVal.sprintf("%02d:%02d", 0, 0);
+        txtRemain->setText(strTmpVal);
+    }
 }
 
 void AlarmWidget::onPause()
@@ -264,16 +280,23 @@ void AlarmWidget::decrementCounter()
 void AlarmWidget::updateRemainTxt()
 {
     int nTmpVal = nCounter;
+    int minutes, seconds;
     QString strTmpVal = QString();
 
     if (60 > nTmpVal)
     {
-        strTmpVal = QString().setNum(nTmpVal);
+        minutes = 0;
+        seconds = nTmpVal;
+        strTmpVal.sprintf("%02d:%02d", minutes, seconds);
+        // strTmpVal = QString().setNum(nTmpVal);
         // setMainWindowTitle(strTmpVal)
     }
     else
     {
-        strTmpVal = QString().setNum(nTmpVal / 60) + ":" + QString().setNum(nTmpVal % 60);
+        minutes =  nTmpVal / 60;
+        seconds = nTmpVal % 60;
+        strTmpVal.sprintf("%02d:%02d", minutes, seconds);
+        // strTmpVal = QString().setNum(nTmpVal / 60) + ":" + QString().setNum(nTmpVal % 60);
     }
 
     txtRemain->setText(strTmpVal);

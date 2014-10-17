@@ -66,6 +66,7 @@ private:
     int radioButtonsSound;
 
     bool isPause;
+    bool isRunning;
 
     QTimer *m_timer_ctd;
     
