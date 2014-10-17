@@ -66,9 +66,10 @@ void AlarmWidget::initTimerBoxes()
 
     txtRemain = new QLineEdit(STR_INIT_TIME);
     txtRemain->setEnabled(false);
+    txtRemain->setStyleSheet("color: red");
 
     txtRemain->setAlignment(Qt::AlignCenter);
-    txtRemain->setFont(QFont(m_FontName, 20));
+    txtRemain->setFont(QFont(m_FontName, 30));
 }
 
 void AlarmWidget::initButtons()
@@ -272,6 +273,7 @@ void AlarmWidget::decrementCounter()
         nCounter = 0;
         stopTimer();
         btnPause->setEnabled(false);
+        btnStart->setText(STR_BTN_START);
     }
     updateRemainTxt();
 
