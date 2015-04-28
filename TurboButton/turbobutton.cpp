@@ -54,8 +54,8 @@ void TurboButton::initTimerBoxes()
     txtRemain = new QLabel(this);
     txtRemain->setAlignment(Qt::AlignCenter);
     txtRemain->setFont(QFont(m_FontName, 80));
-    txtRemain->setGeometry(QRect(90, 260, 300, 120));
-    txtRemain->move(115, 65);
+    txtRemain->setGeometry(QRect(0, 260, 320, 120));
+    txtRemain->move(105, 65);
     txtRemain->setStyleSheet(
         "color: black;"
         );

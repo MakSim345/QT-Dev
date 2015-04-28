@@ -24,12 +24,12 @@
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Debug">
-      <UniqueIdentifier>{1bbdd4ba-6404-47a2-b3e4-34cfccebfa74}</UniqueIdentifier>
+      <UniqueIdentifier>{d733ca2d-034a-440f-a71f-7f93b47e5169}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Release">
-      <UniqueIdentifier>{4f023e47-3426-46fe-8ad4-6c254d72ba9c}</UniqueIdentifier>
+      <UniqueIdentifier>{42628f29-fb2b-4918-8d30-7103ee53bfbb}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
@@ -58,14 +58,17 @@
     <CustomBuild Include="turbobutton.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="turbobutton.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
     <CustomBuild Include="turbobutton.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <None Include="_ReadMe.log" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_turbobutton.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
     <ClInclude Include="appSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
