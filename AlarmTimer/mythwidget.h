@@ -1,6 +1,7 @@
 #ifndef MYTHWIDGET_H
 #define MYTHWIDGET_H
 
+#include "gen.h"
 #include <QtGui>
 #include <time.h>
 #include "mythread.h"

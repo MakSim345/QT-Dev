@@ -29,6 +29,7 @@
 #include <QPixmap>
 #include <QString>
 #include <QSpinBox>
+#include <QSlider>
 #include <QLabel>
 #include <QLineEdit>
 #include <QPushButton>
@@ -38,5 +39,7 @@
 #include <QFrame>
 #include <QGroupBox>
 #include <QMessageBox>
+#include <QLCDNumber>
+#include <QApplication>
 
 #endif

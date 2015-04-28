@@ -1,13 +1,15 @@
 #ifndef __MY_WIDGET_H__
 #define __MY_WIDGET_H__
 
+#include "gen.h"
+
 #include <QtCore>
-#include <QtGui/QApplication>
-#include <QtGui/QPushButton>
-#include <QtGui/QLCDNumber>
-#include <QtGui/QSlider>
-#include <QtGui/QLayout>
-#include <QtGui/QLineEdit>
+//#include <QtGui/QApplication>
+//#include <QtGui/QPushButton>
+//#include <QtGui/QLCDNumber>
+//#include <QtGui/QSlider>
+//#include <QtGui/QLayout>
+//#include <QtGui/QLineEdit>
 #include "mythread.h"
 #include <iostream>
 
