@@ -22,5 +22,6 @@
      QString text = time.toString("hh:mm");
      if ((time.second() % 2) == 0)
          text[2] = ' ';
-     display(text);
+     // display(text+"sec");
+     display(text + ":" + time.second());
  }
