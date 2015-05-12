@@ -6,17 +6,17 @@
 
 #ifndef QT_RND_SERVER
  #include <time.h>
-#endif 
+#endif
 
 ICSWidgetPB::ICSWidgetPB(QWidget *parent)
      : QWidget(parent)
  {
      // setFixedSize(450, 300);
-	 initWidgets();
-	 setStyleSheets();
-	 setAllLayouts();
-	 setConnectionsWidgets();
-	 // this->setMaximumWidth(85);
+     initWidgets();
+     setStyleSheets();
+     setAllLayouts();
+     setConnectionsWidgets();
+     // this->setMaximumWidth(85);
  }
 
 void ICSWidgetPB::closeApp()
@@ -26,14 +26,14 @@ void ICSWidgetPB::closeApp()
 
 void ICSWidgetPB::initWidgets()
 {
-  
+
   pcw = new CustomWidget();
   // bQuit = new QPushButton(tr("&Exit"));
   bShowNum = new QPushButton(tr("0"));
   bShowNum->setText(QString().setNum(0));
   bShowNum->setFont(QFont("Arial", 25, QFont::Bold));
-  
-  // line1 = new QLineEdit();      
+
+  // line1 = new QLineEdit();
   // line1->setText(QString().setNum(0));
   // line1->setFont(QFont("Arial", 25, QFont::Bold));
   // line1->setAlignment(Qt::AlignHCenter);
@@ -63,15 +63,15 @@ void ICSWidgetPB::setStyleSheets()
                                        stop: 0.3 black,  \
                                        stop: 0.8 black,  \
                                        stop: 1.0 RGB(105, 230,230));  \
-                                       border: 1px solid red;}"); 
- 
+                                       border: 1px solid red;}");
+
  // line1->setStyleSheet("QLineEdit {color: green; background-color: rgb(236, 233, 216);}");
 }
 
 void ICSWidgetPB::setAllLayouts()
 {
-  // layout setup:    
-  mainVLayout = new QVBoxLayout;	 
+  // layout setup:
+  mainVLayout = new QVBoxLayout;
   mainVLayout->addWidget(bShowNum);
   mainVLayout->addWidget(pcw);
   //pvbxLayout->addWidget(bQuit);

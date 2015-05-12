@@ -24,17 +24,20 @@
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Debug">
-      <UniqueIdentifier>{f1d49a81-6cb4-4182-a606-26dd217e025a}</UniqueIdentifier>
+      <UniqueIdentifier>{1d09464d-746e-453d-ab8b-ac437ce82c0b}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Release">
-      <UniqueIdentifier>{52f47cdf-c478-47b1-ad57-f0d092790d2d}</UniqueIdentifier>
+      <UniqueIdentifier>{1b5b5580-bd12-432b-9f54-f0729ea1d6d2}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="customwidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -44,8 +47,8 @@
     <ClCompile Include="GeneratedFiles\Release\moc_customwidget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="GeneratedFiles\qrc_customwidget.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="mainWidget.cpp">
       <Filter>Source Files</Filter>
@@ -56,19 +59,16 @@
     <ClCompile Include="GeneratedFiles\Release\moc_mainWidget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\qrc_vertprogressbar.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="customwidget.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="customwidget.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
     <CustomBuild Include="mainWidget.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="vertprogressbar.qrc">
-      <Filter>Resource Files</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>
