@@ -1,7 +1,4 @@
-//#include "mythwidget.h"
 #include "fib_widget.h"
-
-#include <QtGui/QApplication>
 
 int main(int argc, char *argv[])
 {

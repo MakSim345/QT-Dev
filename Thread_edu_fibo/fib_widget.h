@@ -1,18 +1,9 @@
 #ifndef _FIB_WIDGET_H_
 #define _FIB_WIDGET_H_
 
-#include <QtGui>
-#include <time.h>
-#include "fibo_thread.h"
+#include <gen.h>
 
-#include <QtConcurrentRun>
-#include <QFuture>
-#include <QFutureWatcher>
-#include <QDebug>
-#include <QThread>
-#include <QString>
-#include <qtconcurrentrun.h>
-#include <QApplication>
+#include "fibo_thread.h"
 
 class fib_widget : public QWidget
 {

@@ -1,8 +1,7 @@
 #ifndef MYTHWIDGET_H
 #define MYTHWIDGET_H
 
-#include <QtGui>
-#include <time.h>
+#include <gen.h>
 #include "mythread.h"
 
 class MyThWidget : public QWidget
