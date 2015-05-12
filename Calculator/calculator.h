@@ -8,6 +8,9 @@
 
 #include <QWidget>
 #include <QStack>
+#include <QLCDNumber>
+#include <QPushButton>
+#include <QGridLayout>
 
 class QLCDNumber;
 class QPushButton;
