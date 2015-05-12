@@ -24,12 +24,12 @@
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Debug">
-      <UniqueIdentifier>{d064cd89-4f37-461d-a84a-8b05e8e5afd9}</UniqueIdentifier>
+      <UniqueIdentifier>{69d3c70a-83c4-43c3-b558-82f0d46b90ad}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Release">
-      <UniqueIdentifier>{b78ddf5a-4204-4cad-a594-def411f0e899}</UniqueIdentifier>
+      <UniqueIdentifier>{f6aa9522-d496-4796-83f5-6026c8a6577e}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
@@ -62,9 +62,6 @@
     <ClCompile Include="test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="worker.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_HasherThread.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
@@ -95,14 +92,11 @@
     <ClCompile Include="GeneratedFiles\Release\moc_myThread.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_worker.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_worker.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <CustomBuild Include="thread_hasher.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
     <CustomBuild Include="thread_hasher.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
@@ -121,11 +115,11 @@
     <CustomBuild Include="myThread.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="worker.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_thread_hasher.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
     <ClInclude Include="Counter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
