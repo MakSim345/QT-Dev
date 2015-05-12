@@ -94,9 +94,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="thread_hasher.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="thread_hasher.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
@@ -117,9 +114,6 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GeneratedFiles\ui_thread_hasher.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="Counter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
