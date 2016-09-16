@@ -1,0 +1,29 @@
+<UI version="4.0" >
+ <class>Life_003Class</class>
+ <widget class="QMainWindow" name="Life_003Class" >
+  <property name="objectName" >
+   <string notr="true">Life_003Class</string>
+  </property>
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Life_003</string>
+  </property>
+  <widget class="QMenuBar" name="menuBar" />
+  <widget class="QToolBar" name="mainToolBar" />
+  <widget class="QWidget" name="centralWidget" />
+  <widget class="QStatusBar" name="statusBar" />
+ </widget>
+ <layoutDefault spacing="6" margin="11" />
+ <pixmapfunction></pixmapfunction>
+ <resources>
+   <include location="life_003.qrc"/>
+ </resources>
+ <connections/>
+</UI>
