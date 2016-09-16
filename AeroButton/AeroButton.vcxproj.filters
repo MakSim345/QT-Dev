@@ -24,12 +24,12 @@
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Debug">
-      <UniqueIdentifier>{f80e445d-4fdb-4d0f-99cb-8350ffc2950d}</UniqueIdentifier>
+      <UniqueIdentifier>{0a008602-f251-4e7e-bf86-b37a36d5b04f}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Release">
-      <UniqueIdentifier>{e07725bf-dec3-4555-b43f-46f4dbad9a2d}</UniqueIdentifier>
+      <UniqueIdentifier>{651f6151-f4ef-4755-91e6-5ea972dcece0}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
@@ -38,26 +38,20 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="aerobutton.cpp">
+    <ClCompile Include="AeroButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_aerobutton.cpp">
+    <ClCompile Include="GeneratedFiles\Debug\moc_AeroButton.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_aerobutton.cpp">
+    <ClCompile Include="GeneratedFiles\Release\moc_AeroButton.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="AeroButton2.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="GeneratedFiles\qrc_AeroButton.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="MyWidget.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_AeroButton2.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_AeroButton2.cpp">
-      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Debug\moc_MyWidget.cpp">
       <Filter>Generated Files\Debug</Filter>
@@ -67,14 +61,22 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="aerobutton.h">
+    <CustomBuild Include="AeroButton.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="AeroButton2.h">
-      <Filter>Header Files</Filter>
+    <CustomBuild Include="AeroButton.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="AeroButton.qrc">
+      <Filter>Resource Files</Filter>
     </CustomBuild>
     <CustomBuild Include="MyWidget.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_AeroButton.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

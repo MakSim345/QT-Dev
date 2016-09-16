@@ -1,7 +1,7 @@
 #include <QApplication>
 #include <QLabel>
 #include "AeroButton.h"
-#include "AeroButton2.h"
+// #include "AeroButton2.h"
 #include "MyWidget.h"
 
  MyWidget::MyWidget(QWidget *parent)
