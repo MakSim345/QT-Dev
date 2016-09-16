@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "combobox", "combobox.vcxproj", "{533A8B29-AE51-3F4D-8F60-DD9986AE7823}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Combobox", "Combobox.vcxproj", "{2244DE1C-7116-4F33-B661-BC192DCC02C4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{533A8B29-AE51-3F4D-8F60-DD9986AE7823}.Debug|Win32.ActiveCfg = Debug|Win32
-		{533A8B29-AE51-3F4D-8F60-DD9986AE7823}.Debug|Win32.Build.0 = Debug|Win32
-		{533A8B29-AE51-3F4D-8F60-DD9986AE7823}.Release|Win32.ActiveCfg = Release|Win32
-		{533A8B29-AE51-3F4D-8F60-DD9986AE7823}.Release|Win32.Build.0 = Release|Win32
+		{2244DE1C-7116-4F33-B661-BC192DCC02C4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2244DE1C-7116-4F33-B661-BC192DCC02C4}.Debug|Win32.Build.0 = Debug|Win32
+		{2244DE1C-7116-4F33-B661-BC192DCC02C4}.Release|Win32.ActiveCfg = Release|Win32
+		{2244DE1C-7116-4F33-B661-BC192DCC02C4}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

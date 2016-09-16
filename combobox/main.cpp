@@ -1,18 +1,9 @@
-#include <QtGui>
-#include <QPushButton>
-#include <stdio.h>
-#include <iostream>
-using namespace std;
+#include "combobox.h"
+#include <QtWidgets>
 
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
-    QPushButton button (QString::fromLocal8Bit("&Close"));
-    button.setFont(QFont("Arial", 16, QFont::Bold));
-    QObject::connect(&button,
-                     SIGNAL(clicked()),
-                     &app,
-                     SLOT(quit()) );
+    QApplication app(argc, argv);    
     QString s =
             "QComboBox {"
             "   border: 1 px solid gray;"
@@ -59,6 +50,16 @@ int main(int argc, char *argv[])
             "}";
     app.setStyleSheet(s);
     //QApplication::setGlobalStrut(QSize(100, 50));
+    
+    QPushButton *button = new QPushButton (QString::fromLocal8Bit("&Close"));
+    button->setFont(QFont("Arial", 16, QFont::Bold));
+    
+    QObject::connect(button,
+                     SIGNAL(clicked()),
+                     &app,
+                     SLOT(quit()) );
+
+
     QWidget widget;
     QVBoxLayout *layout = new QVBoxLayout(&widget);
     QComboBox *cb = new QComboBox(&widget);
@@ -68,8 +69,12 @@ int main(int argc, char *argv[])
     cb->addItem("3 line");
     cb->addItem("4 line");
     layout->addWidget(cb);
-    layout->addWidget(&button);
+    layout->addWidget(button);
 
     widget.show();
+    
+    //Combobox w;
+    //w.show();   
+    
     return app.exec();
 }
