@@ -1,5 +1,3 @@
-#include <QtGui>
-
 #include "candydialog.h"
 
 CandyDialog::CandyDialog(QWidget *parent)

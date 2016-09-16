@@ -2,13 +2,14 @@
 #define CANDYDIALOG_H
 
 #include <QDialog>
-
-class QCheckBox;
-class QComboBox;
-class QDialogButtonBox;
-class QLabel;
-class QLineEdit;
-class QListWidget;
+#include <QCheckBox>
+#include <QComboBox>
+#include <QDialogButtonBox>
+#include <QLabel>
+#include <QLineEdit>
+#include <QListWidget>
+#include <QGridLayout>
+#include <QFile>
 
 class CandyDialog : public QDialog
 {

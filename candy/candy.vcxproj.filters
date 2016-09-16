@@ -24,12 +24,12 @@
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Debug">
-      <UniqueIdentifier>{b0d1beee-9d60-4a87-a3c4-3bbfcabd99d1}</UniqueIdentifier>
+      <UniqueIdentifier>{61265baf-1c3f-4c85-9760-03f825a5b981}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Release">
-      <UniqueIdentifier>{22b6ecb0-1074-420f-aa21-ad01d00939b1}</UniqueIdentifier>
+      <UniqueIdentifier>{60281681-07da-4b24-a19e-b4eb990cf979}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
@@ -40,6 +40,12 @@
     </ClCompile>
     <ClCompile Include="candy.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_candy.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_candy.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="GeneratedFiles\qrc_candy.cpp">
       <Filter>Generated Files</Filter>
@@ -58,12 +64,20 @@
     <CustomBuild Include="candy.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="candy.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
     <CustomBuild Include="candy.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
     <CustomBuild Include="candydialog.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_candy.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="candy.qss" />
