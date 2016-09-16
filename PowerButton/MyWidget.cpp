@@ -1,7 +1,3 @@
-#include <QApplication>
-#include <QLabel>
-// #include "AeroButton.h"
-#include "qpower.h"
 #include "MyWidget.h"
 
 void MyWidget::showMessageBox()

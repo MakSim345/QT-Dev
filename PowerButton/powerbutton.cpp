@@ -1,10 +1,9 @@
+#include "powerbutton.h"
+
 /***************************************************************************
  *                                                                         *
  *                                                                         *
  ***************************************************************************/
-
-#include "qpower.h"
-
 QPower::QPower(QWidget *parent) : QWidget(parent)
 {
     setState(false);
@@ -157,5 +156,6 @@ QSize QPower::sizeHint() const
 {
     return QSize(300, 200);
 }
+
 
 

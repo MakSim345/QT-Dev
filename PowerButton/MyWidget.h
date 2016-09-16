@@ -1,5 +1,6 @@
 #include <QApplication>
-#include "qpower.h"
+#include <QLabel>
+#include "powerbutton.h"
 #include <QWidget>
 #include <QLCDNumber>
 #include <QSlider>

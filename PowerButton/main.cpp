@@ -4,7 +4,7 @@
 #include <QSlider>
 #include <QVBoxLayout>
 #include "MyWidget.h"
-#include "qpower.h"
+#include "powerbutton.h"
 
 
 class LCDRange : public QWidget
