@@ -5,7 +5,7 @@
 
 HasherWidget::HasherWidget(QWidget *parent)
      : QWidget(parent)
-     , fileNameStr("GenieInstaller.msi")
+     , fileNameStr("Thread_Hasher.sdf")
 {
     // = QTime::currentTime();
     timeStamp.start();
