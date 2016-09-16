@@ -11,6 +11,14 @@
 #include <errno.h>
 #include <string.h>
 #include <time.h>
+#include <windows.h>
+
+#include <QApplication>
+#include <QWidget>
+#include <QLCDNumber>
+#include <QSlider>
+#include <QVBoxLayout>
+#include <QPainter>
 
 using namespace std;
 

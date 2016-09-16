@@ -1,4 +1,5 @@
-#include <QtGui/QApplication>
+
+#include <gen.h>
 #include "mainWidget.h"
 
 int main(int argc, char *argv[])

@@ -15,13 +15,8 @@
 // Description:
 // ============================================================
 
-
-#include <QtGui>
-#include <time.h>
-#include <windows.h>
 #include "gen.h"
 //#include "appSettings.h"
-
 
 class mainWidget : public QWidget
 {

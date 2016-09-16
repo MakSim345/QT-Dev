@@ -1,7 +1,7 @@
 #ifndef _APPLE_BUTTON_H_
 #define _APPLE_BUTTON_H_
 
-#include <QtGui>
+#include "gen.h"
 
 class appleButton : public QWidget
 {

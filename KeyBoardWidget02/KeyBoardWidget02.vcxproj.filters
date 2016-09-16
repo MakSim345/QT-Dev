@@ -24,12 +24,12 @@
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Debug">
-      <UniqueIdentifier>{e066730c-0013-405c-8fef-e9b7716a6f2b}</UniqueIdentifier>
+      <UniqueIdentifier>{d34df19d-0322-484d-b709-23df07fb6264}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Release">
-      <UniqueIdentifier>{534d0f40-ae58-4e1b-a0a7-0853f6ac8332}</UniqueIdentifier>
+      <UniqueIdentifier>{4f28b833-a04e-4481-8d8a-008cfa7b254c}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
@@ -37,9 +37,6 @@
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\qrc_keyboardwidget02.cpp">
-      <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="mainWidget.cpp">
       <Filter>Source Files</Filter>
@@ -49,6 +46,9 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\Release\moc_mainWidget.cpp">
       <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_keyboardwidget02.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="appleButton.cpp">
       <Filter>Source Files</Filter>
@@ -61,17 +61,23 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="keyboardwidget02.qrc">
-      <Filter>Resource Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="mainWidget.h">
       <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="keyboardwidget02.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="keyboardwidget02.qrc">
+      <Filter>Resource Files</Filter>
     </CustomBuild>
     <CustomBuild Include="appleButton.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_keyboardwidget02.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
     <ClInclude Include="gen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
