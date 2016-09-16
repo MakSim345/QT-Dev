@@ -55,10 +55,8 @@ void TurboButton::initTimerBoxes()
     txtRemain->setAlignment(Qt::AlignCenter);
     txtRemain->setFont(QFont(m_FontName, 80));
     txtRemain->setGeometry(QRect(0, 260, 320, 120));
-    txtRemain->move(105, 65);
-    txtRemain->setStyleSheet(
-        "color: black;"
-        );
+    txtRemain->move(100, 65);
+    txtRemain->setStyleSheet("color: black;");
 }
 
 void TurboButton::initButtons()
@@ -67,8 +65,10 @@ void TurboButton::initButtons()
     btnStart->setStyleSheet(
         "background: transparent; border-image: url(://Resources/Button_Restart.png);"
         );
-     btnStart->setGeometry(QRect(90, 260, 180, 180));
-    btnStart->move(175, 250);
+    // btnStart->setGeometry(QRect(90, 160, 180, 180));
+    btnStart->setGeometry(QRect(0, 0, 100, 100));
+    btnStart->move(-5, 70);
+    // btnStart->move(175, 150);
   
     btnQuit = new QPushButton(STR_BTN_QUIT);
     btnQuit->setMinimumSize(INT_BTN_W, INT_BTN_H);
@@ -144,6 +144,7 @@ void TurboButton::tuneMainWindow()
     // setStyleSheet("background-image: url(:/Resources/TurboButton01.png)");
     
     setWindowFlags(Qt::WindowTitleHint);
+    this->setMaximumHeight(360);
 }
 
 void TurboButton::setMainWindowTitle(QString strToShow)
