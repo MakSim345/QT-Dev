@@ -1,6 +1,3 @@
-/* mywidget.cpp */
-#include <QtGui>
-    
 #include "mywidget.h"
 #include "qled.h"
 
