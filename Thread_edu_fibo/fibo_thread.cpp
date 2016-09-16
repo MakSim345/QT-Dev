@@ -11,7 +11,7 @@ FiboThread::FiboThread()
    , m_Iteration(0)   
 {
 	fibo_timer = new QTimer();
-	connect (fibo_timer, SIGNAL(timeout()), this, SLOT(slotNextValue()));
+	//connect (fibo_timer, SIGNAL(timeout()), this, SLOT(slotNextValue()));
     fibo_timer->start(100); 
 }
 
@@ -33,7 +33,7 @@ void FiboThread::setMessage(const QString &message)
 int FiboThread::fib(int f)
 {
     m_Iteration++;
-    //emit currentIteration(m_Iteration);
+    this->slotNextValue(); 
 
     if (f<2)
     {
@@ -66,7 +66,7 @@ void FiboThread::slotNextValue()
 {
     emit currentIteration(m_Iteration);
   
-     // qDebug() << "currentIteration" << m_Iteration;
+    qDebug() << "qDebug - currentIteration" << m_Iteration;
 	std::cout << "currentIteration" << m_Iteration << "\n";
 
      /*if (!m_nValue)

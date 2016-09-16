@@ -12,9 +12,13 @@ public:
     fib_widget(QWidget *parent = 0);    
     ~fib_widget(){};
 
-    QLineEdit* line3;
-    QLineEdit* line4;
+    QLineEdit* lnIterations;
+    QLineEdit* lnStatus;
     QLineEdit* lnResut;
+
+    QLabel* lblStatus;
+    QLabel* lblIterations;
+    QLabel* lblResult;
     
     QPushButton* bCountDown;
     QPushButton* bRnd;

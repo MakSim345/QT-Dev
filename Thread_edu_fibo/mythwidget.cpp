@@ -22,8 +22,7 @@ MyThWidget::MyThWidget(QWidget *parent)
     QSlider *slider = new QSlider(Qt::Horizontal);
     slider->setRange(0, 999);
     slider->setValue(0);
-
-    // line3 =    new QLineEdit (this);
+    
     lnMSTime = new QLineEdit (this);
 
     QVBoxLayout *layout = new QVBoxLayout;

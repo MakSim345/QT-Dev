@@ -22,10 +22,18 @@ fib_widget::fib_widget(QWidget *parent)
     QSlider *slider = new QSlider(Qt::Horizontal);
     slider->setRange(0, 999);
     slider->setValue(0);
+    
+    lnIterations = new QLineEdit (this);
+    lblIterations = new QLabel (this);
+    lblIterations->setText("Iteration num:");
 
-    line3 =    new QLineEdit (this);
-    line4 =    new QLineEdit (this);
-    lnResut =  new QLineEdit (this);
+    lnStatus = new QLineEdit (this);    
+    lblStatus = new QLabel (this);
+    lblStatus->setText("Status:");
+
+    lnResut = new QLineEdit (this);
+    lblResult = new QLabel (this);
+    lblResult->setText("Result:");
 
     lsdFibNumber = new QLCDNumber();
     lsdFibNumber->setSegmentStyle(QLCDNumber::Filled);
@@ -33,6 +41,9 @@ fib_widget::fib_widget(QWidget *parent)
     lsdFibNumber->display(0);
 
     QVBoxLayout *layout = new QVBoxLayout;
+    QHBoxLayout *hlIterations = new QHBoxLayout;
+    QHBoxLayout *hlStatus = new QHBoxLayout;
+    QHBoxLayout *hlResult = new QHBoxLayout;
     QHBoxLayout *hLayout = new QHBoxLayout;
     connect(bQuit, SIGNAL(clicked()), qApp, SLOT(quit()));
     
@@ -48,9 +59,19 @@ fib_widget::fib_widget(QWidget *parent)
 
     layout->addWidget(lcd);
     layout->addWidget(slider);
-    layout->addWidget(line3);
-    layout->addWidget(line4);
-    layout->addWidget(lnResut);
+    
+    hlIterations->addWidget(lblIterations);
+    hlIterations->addWidget(lnIterations);    
+    layout->addLayout(hlIterations);
+    
+    hlStatus->addWidget(lblStatus);
+    hlStatus->addWidget(lnStatus);
+    layout->addLayout(hlStatus);
+    
+    hlResult->addWidget(lblResult);
+    hlResult->addWidget(lnResut);
+    layout->addLayout(hlResult);
+    
     layout->addWidget(lsdFibNumber);
 
     hLayout->addWidget(bRnd);
@@ -63,7 +84,7 @@ fib_widget::fib_widget(QWidget *parent)
 
 void fib_widget::StartMyThread()
 {
-	line4->setText("Running....");
+	lnStatus->setText("Running....");
     lnResut->setText("Running...");
     bCountDown->setEnabled(false);
 	m_thread.setMValue( lcd->intValue() );
@@ -73,13 +94,13 @@ void fib_widget::StartMyThread()
 void fib_widget::EndOfCalculation()
 {
     bCountDown->setEnabled(true);
-    line4->setText("Done!");
+    lnStatus->setText("Done!");
 }
 
 void fib_widget::DisplayIteration(double nIteration)
 {
     //lsdFibNumber->display(Fibonacci);
-	line3->setText(QString::number(nIteration));
+	lnIterations->setText(QString::number(nIteration));
 }
 
 void fib_widget::DisplayResult(double result)
