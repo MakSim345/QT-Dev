@@ -17,10 +17,11 @@ int main(int argc, char *argv[])
     {
         qDebug() << mNumber;
     }
-    /*
+    
     MyThread mThread1;
     mThread1.my_name ="one";
-
+    mThread1.start();
+    /*
     MyThread mThread2;
     mThread2.my_name ="two";
 
