@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SoundCountDown", "SoundCountDown.vcxproj", "{650BA5B5-802A-4DB4-9849-C6ED4DC3BEE5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{650BA5B5-802A-4DB4-9849-C6ED4DC3BEE5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{650BA5B5-802A-4DB4-9849-C6ED4DC3BEE5}.Debug|Win32.Build.0 = Debug|Win32
+		{650BA5B5-802A-4DB4-9849-C6ED4DC3BEE5}.Release|Win32.ActiveCfg = Release|Win32
+		{650BA5B5-802A-4DB4-9849-C6ED4DC3BEE5}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
