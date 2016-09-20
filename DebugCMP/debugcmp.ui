@@ -1,0 +1,153 @@
+<ui version="4.0" >
+ <class>DebugCMP</class>
+ <widget class="QDialog" name="DebugCMP" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>958</width>
+    <height>376</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Dialog</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_3" >
+   <item row="1" column="0" >
+    <layout class="QHBoxLayout" name="horizontalLayout" >
+     <item>
+      <widget class="QLineEdit" name="IDC_VERSION_INFO" >
+       <property name="enabled" >
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet" >
+        <string notr="true" >QLineEdit
+ {
+   border-style: outset;
+   border-width: 1px;  
+   border-color: black;
+ }
+</string>
+       </property>
+       <property name="text" >
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer" >
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0" >
+        <size>
+         <width>248</width>
+         <height>14</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="newCMPButton" >
+       <property name="text" >
+        <string>Run &amp;GUI</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="runTestButton" >
+       <property name="text" >
+        <string>Run &amp;VentCore</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="exitButton" >
+       <property name="text" >
+        <string>&amp;Exit</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="0" >
+    <widget class="QTabWidget" name="tabWidget" >
+     <property name="windowModality" >
+      <enum>Qt::NonModal</enum>
+     </property>
+     <property name="currentIndex" >
+      <number>4</number>
+     </property>
+     <widget class="QWidget" name="tabEVE" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>934</width>
+        <height>297</height>
+       </rect>
+      </property>
+      <attribute name="title" >
+       <string>Tab 1</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout" >
+       <item row="0" column="0" >
+        <widget class="QTextEdit" name="textEdit_1" />
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabGUI" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>934</width>
+        <height>297</height>
+       </rect>
+      </property>
+      <attribute name="title" >
+       <string>Tab 2</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_5" >
+       <item row="0" column="0" >
+        <widget class="QTextEdit" name="textEdit_2" />
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabGDU" >
+      <attribute name="title" >
+       <string>Page</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_6" >
+       <item row="0" column="0" >
+        <widget class="QTextEdit" name="textEdit_3" />
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabARB" >
+      <attribute name="title" >
+       <string>Page</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_7" >
+       <item row="0" column="0" >
+        <widget class="QTextEdit" name="textEdit_4" />
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tabALL" >
+      <attribute name="title" >
+       <string>Page</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_2" >
+       <item row="0" column="0" >
+        <widget class="QTextEdit" name="textEdit_5" />
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
