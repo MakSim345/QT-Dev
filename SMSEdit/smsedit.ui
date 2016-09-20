@@ -1,0 +1,264 @@
+<ui version="4.0" >
+ <class>SMSEditForm</class>
+ <widget class="QDialog" name="SMSEditForm" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>401</width>
+    <height>346</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet" >
+   <string notr="true" >QDialog
+{
+   background-color: RGB(185, 185, 185);
+}
+</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout" >
+   <item row="0" column="0" colspan="3" >
+    <widget class="QTextEdit" name="IDC_EDIT1" >
+     <property name="styleSheet" >
+      <string notr="true" >QTextEdit
+ {
+   background-color: white;
+   border-style: outset;
+   border-width: 1px;  
+   border-color: black;
+   font: bold 20px;
+ }
+</string>
+     </property>
+     <property name="html" >
+      <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'MS Shell Dlg 2'; font-weight:600; font-style:normal;">
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">test&lt;/p>&lt;/body>&lt;/html></string>
+     </property>
+    </widget>
+   </item>
+   <item rowspan="2" row="1" column="0" >
+    <layout class="QVBoxLayout" name="verticalLayout" >
+     <item>
+      <widget class="QPushButton" name="ID_COPY_TO_BUFFER" >
+       <property name="minimumSize" >
+        <size>
+         <width>100</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet" >
+        <string notr="true" >QPushButton 
+{
+  color: black;
+
+  background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 black, stop: 0.4 gray, stop: 0.5 lightgray, stop: 1.0 black);
+  border: 1px solid black;
+  border-radius: 6px;
+  font: bold 13px;  
+}
+
+QPushButton:hover 
+{  
+  background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 black, stop: 0.5 darkgray, stop: 1.0 black);
+  border: 1px solid red;
+}
+
+QPushButton:pressed 
+{
+  background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 black, stop: 0.5 RGB(255, 255, 255), stop: 1.0 black);
+}</string>
+       </property>
+       <property name="text" >
+        <string>Copy To &amp;Buffer</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="ID_CLEAR_TEXT" >
+       <property name="minimumSize" >
+        <size>
+         <width>100</width>
+         <height>40</height>
+        </size>
+       </property>
+       <property name="styleSheet" >
+        <string notr="true" >QPushButton 
+{
+  color: black;
+
+  background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 black, stop: 0.4 gray, stop: 0.5 lightgray, stop: 1.0 black);
+  border: 1px solid black;
+  border-radius: 6px;
+  font: bold 13px;  
+}
+
+QPushButton:hover 
+{  
+  background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 black, stop: 0.5 darkgray, stop: 1.0 black);
+  border: 1px solid red;
+}
+
+QPushButton:pressed 
+{
+  background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 black, stop: 0.5 RGB(255, 255, 255), stop: 1.0 black);
+}</string>
+       </property>
+       <property name="text" >
+        <string>&amp;Clear Text</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item rowspan="2" row="1" column="1" >
+    <layout class="QHBoxLayout" name="horizontalLayout" >
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_3" >
+       <item>
+        <widget class="QLabel" name="label" >
+         <property name="text" >
+          <string>Counter:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_2" >
+         <property name="text" >
+          <string>Limit:</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout_2" >
+       <item>
+        <widget class="QLineEdit" name="ID_CounterBox" >
+         <property name="maximumSize" >
+          <size>
+           <width>100</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet" >
+          <string notr="true" >QLineEdit
+ {
+   background-color: white;
+   border-style: outset;
+   border-width: 1px;  
+   border-color: black;
+   font: 20px;
+   color: blue;
+ }
+</string>
+         </property>
+         <property name="text" >
+          <string>e</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="ID_LimitBox" >
+         <property name="maximumSize" >
+          <size>
+           <width>100</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="styleSheet" >
+          <string notr="true" >QLineEdit
+ {
+   background-color: white;
+   border-style: outset;
+   border-width: 1px;  
+   border-color: black;
+   font: 20px;
+   color: blue;
+ }
+</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="2" >
+    <spacer name="verticalSpacer" >
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0" >
+      <size>
+       <width>20</width>
+       <height>59</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="2" >
+    <widget class="QPushButton" name="ID_EXIT_BUTTON" >
+     <property name="minimumSize" >
+      <size>
+       <width>100</width>
+       <height>40</height>
+      </size>
+     </property>
+     <property name="styleSheet" >
+      <string notr="true" >QPushButton 
+{
+  color: black;
+
+  background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 black, stop: 0.4 gray, stop: 0.5 lightgray, stop: 1.0 black);
+  border: 1px solid black;
+  border-radius: 6px;
+  font: bold 13px;  
+}
+
+QPushButton:hover 
+{  
+  background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 black, stop: 0.5 darkgray, stop: 1.0 black);
+  border: 1px solid red;
+}
+
+QPushButton:pressed 
+{
+  background-color: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 black, stop: 0.5 RGB(255, 255, 255), stop: 1.0 black);
+}</string>
+     </property>
+     <property name="text" >
+      <string>&amp;Exit</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="2" >
+    <widget class="QLabel" name="IDC_VERSION_INFO" >
+     <property name="minimumSize" >
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="text" >
+      <string>Version info:</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>IDC_EDIT1</tabstop>
+  <tabstop>ID_COPY_TO_BUFFER</tabstop>
+  <tabstop>ID_CLEAR_TEXT</tabstop>
+  <tabstop>ID_EXIT_BUTTON</tabstop>
+  <tabstop>ID_LimitBox</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
