@@ -1,0 +1,29 @@
+<UI version="4.0" >
+ <class>Thread04_One_ButtonClass</class>
+ <widget class="QMainWindow" name="Thread04_One_ButtonClass" >
+  <property name="objectName" >
+   <string notr="true">Thread04_One_ButtonClass</string>
+  </property>
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Thread04_One_Button</string>
+  </property>
+  <widget class="QMenuBar" name="menuBar" />
+  <widget class="QToolBar" name="mainToolBar" />
+  <widget class="QWidget" name="centralWidget" />
+  <widget class="QStatusBar" name="statusBar" />
+ </widget>
+ <layoutDefault spacing="6" margin="11" />
+ <pixmapfunction></pixmapfunction>
+ <resources>
+   <include location="thread04_one_button.qrc"/>
+ </resources>
+ <connections/>
+</UI>
