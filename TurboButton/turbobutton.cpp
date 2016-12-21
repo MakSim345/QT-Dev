@@ -23,7 +23,8 @@ TurboButton::TurboButton(QDialog *parent)
      , m_LabelFontSize (20)
      , nSeconds(60)
      , mainTime(25) // 25
-     , m_FontName("MONACO")
+     , m_FontName ("STENCIL") // ("Sans Serif")// ("MONACO")
+     , m_FontSize(75)
      , isPause(false)
      , isRun(false)
 
@@ -53,7 +54,7 @@ void TurboButton::initTimerBoxes()
 {   
     txtRemain = new QLabel(this);
     txtRemain->setAlignment(Qt::AlignCenter);
-    txtRemain->setFont(QFont(m_FontName, 80));
+    txtRemain->setFont(QFont(m_FontName, m_FontSize));
     txtRemain->setGeometry(QRect(0, 260, 320, 120));
     txtRemain->move(100, 65);
     txtRemain->setStyleSheet("color: black;");
@@ -144,7 +145,7 @@ void TurboButton::tuneMainWindow()
     // setStyleSheet("background-image: url(:/Resources/TurboButton01.png)");
     
     setWindowFlags(Qt::WindowTitleHint);
-    this->setMaximumHeight(360);
+    this->setMaximumHeight(3.5 * m_FontSize);
 }
 
 void TurboButton::setMainWindowTitle(QString strToShow)

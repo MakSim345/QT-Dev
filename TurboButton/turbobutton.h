@@ -79,6 +79,7 @@ private:
     QIcon m_iconMainWindow;
 
     QString m_FontName;
+    const int m_FontSize;
     
     QLabel *txtRemain;
 
