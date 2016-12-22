@@ -26,6 +26,7 @@
 #define STR_BTN_QUIT   "&Quit"
 #define STR_COMPANY_NAME "YS"
 #define STR_APP_NAME "TurboButton"
+#define INT_MILLISEC_CHECK 500
 
 #include <QTimer>
 #include <QPixmap>

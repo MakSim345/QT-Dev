@@ -4,7 +4,7 @@
 //============================================================
 //
 // File:           TurboButton.cpp
-// Project:        
+// Project:
 //
 // Author:         YS
 //
@@ -34,12 +34,12 @@ TurboButton::TurboButton(QDialog *parent)
     initMainWindow();
     m_settings = new AppSettings(STR_COMPANY_NAME, STR_APP_NAME);
     restoreSettingsFromINI();
-    
+
     nCounter = mainTime * nSeconds; // set to minutes
-    
+
     // nCounter = timerValue->value() * nSeconds; //  set to minutes
     updateRemainTxt();
-    setConnections();    
+    setConnections();
  }
 
 void TurboButton::initMainWindow()
@@ -51,7 +51,7 @@ void TurboButton::initMainWindow()
 }
 
 void TurboButton::initTimerBoxes()
-{   
+{
     txtRemain = new QLabel(this);
     txtRemain->setAlignment(Qt::AlignCenter);
     txtRemain->setFont(QFont(m_FontName, m_FontSize));
@@ -66,11 +66,16 @@ void TurboButton::initButtons()
     btnStart->setStyleSheet(
         "background: transparent; border-image: url(://Resources/Button_Restart.png);"
         );
+    // setting 1:
     // btnStart->setGeometry(QRect(90, 160, 180, 180));
-    btnStart->setGeometry(QRect(0, 0, 100, 100));
-    btnStart->move(-5, 70);
     // btnStart->move(175, 150);
-  
+    // setting 2:
+    // btnStart->setGeometry(QRect(0, 0, 100, 100));
+    //btnStart->move(-5, 70);
+    // setting 3:
+    btnStart->setGeometry(QRect(0, 0, 80, 80));
+    btnStart->move(5, 90);
+
     btnQuit = new QPushButton(STR_BTN_QUIT);
     btnQuit->setMinimumSize(INT_BTN_W, INT_BTN_H);
 
@@ -79,7 +84,7 @@ void TurboButton::initButtons()
     // btnQuit->setIcon(m_iconPlane);
     // btnQuit->setIconSize(QSize(30, 30));
 
-    btnStart->setFont(QFont(m_FontName, m_ButtonFontSize));    
+    btnStart->setFont(QFont(m_FontName, m_ButtonFontSize));
     btnQuit->setFont(QFont(m_FontName, m_ButtonFontSize));
 }
 
@@ -104,18 +109,18 @@ void TurboButton::paintEvent(QPaintEvent *e)
     {
         QRegion r1(picOn.rect());
         QPainter painter(this);
-            
+
         painter.setClipRegion(r1);
-        painter.drawPixmap(picOn.rect(), picOn); 
+        painter.drawPixmap(picOn.rect(), picOn);
     }
     else if (isRun == false)
     {
-        QRegion r1(picOff.rect());        
+        QRegion r1(picOff.rect());
         QPainter painter(this);
-            
+
         painter.setClipRegion(r1);
-        painter.drawPixmap(picOff.rect(), picOff); 
-    }    
+        painter.drawPixmap(picOff.rect(), picOff);
+    }
 }
 
 void TurboButton::resizeEvent(QResizeEvent *e)
@@ -135,15 +140,15 @@ void TurboButton::tuneMainWindow()
     //set icon:
     this->updateMainWindowIcon(BUTTON_STYLE::GREEN_BUTTON);
     // setWindowIcon(QIcon(":/images/icon.png"));
- 
+
     //set caption:
-    setMainWindowTitle("");    
+    setMainWindowTitle("");
     picOn.load("://Resources/TurboButton01.jpg");
     // picOn.load(":/MainViewOFF");
-    picOff.load("://Resources/TurboButton01.jpg");    
+    picOff.load("://Resources/TurboButton01.jpg");
     // pic.load("Resources/TurboButton01.png");
     // setStyleSheet("background-image: url(:/Resources/TurboButton01.png)");
-    
+
     setWindowFlags(Qt::WindowTitleHint);
     this->setMaximumHeight(3.5 * m_FontSize);
 }
@@ -161,16 +166,17 @@ void TurboButton::setConnections()
 }
 
 void TurboButton::onStart()
-{    
+{
     btnStart->setStyleSheet(
         "background: transparent; border-image: url(://Resources/Button_Shutdown.png);"
         );
     startTimer();
     updateRemainTxt();
     btnStart->setEnabled(false);
-    isRun = true;    
+    isRun = true;
     this->updateMainWindowIcon(BUTTON_STYLE::RED_BUTTON);
     this->update();
+    prev_seconds = QTime::currentTime().second();
 }
 
 void TurboButton::onPause()
@@ -189,7 +195,7 @@ void TurboButton::onPause()
 
 void TurboButton::startTimer()
 {
-    m_timer_ctd->start(1000);
+    m_timer_ctd->start(INT_MILLISEC_CHECK);
 }
 void TurboButton::stopTimer()
 {
@@ -198,7 +204,13 @@ void TurboButton::stopTimer()
 
 void TurboButton::onTimerEvent()
 {
-    decrementCounter();
+    int tmp_seconds = QTime::currentTime().second();
+
+    if (tmp_seconds != prev_seconds)
+    {
+        prev_seconds = QTime::currentTime().second();
+        decrementCounter();
+    }
 }
 
 void TurboButton::decrementCounter()
@@ -206,7 +218,7 @@ void TurboButton::decrementCounter()
     nCounter = nCounter - 1;
     if (0 > nCounter)
     {
-        // updateRemainTxt(); 
+        // updateRemainTxt();
         nCounter = mainTime * nSeconds; // set to minutes
         stopTimer();
         btnStart->setEnabled(true);
@@ -223,17 +235,17 @@ void TurboButton::decrementCounter()
 
 void TurboButton::updateMainWindowIcon(BUTTON_STYLE _button_color)
 {
-    //QIcon m_iconMainWindow("://Resources/Button_Restart.png");    
-    //QIcon m_iconMainWindow("://Resources/Button_Shutdown.png");    
+    //QIcon m_iconMainWindow("://Resources/Button_Restart.png");
+    //QIcon m_iconMainWindow("://Resources/Button_Shutdown.png");
     // m_iconMainWindow.addPixmap("://Resources/Button_Restart.png");
 
     // setWindowIcon(m_iconMainWindow);
-     switch (_button_color) 
+     switch (_button_color)
      {
         case BUTTON_STYLE::GREEN_BUTTON:
             setWindowIcon(QIcon("://Resources/Button_Restart.png"));
             break;
-        case BUTTON_STYLE::RED_BUTTON: 
+        case BUTTON_STYLE::RED_BUTTON:
             setWindowIcon(QIcon("://Resources/Button_Shutdown.png"));
             break;
         default: ;
@@ -247,7 +259,7 @@ void TurboButton::updateRemainTxt()
 
     _sec = nTmpVal % 60;
     _min = nTmpVal / 60;
-    
+
         if (0 == _min)
         {
             min_str = "00";
@@ -259,7 +271,7 @@ void TurboButton::updateRemainTxt()
             else
                 min_str = QString().setNum(_min);
         }
-        
+
         if (0 == _sec)
         {
             sec_str = "00";
@@ -268,19 +280,19 @@ void TurboButton::updateRemainTxt()
         {
             if (_sec < 10)
                 sec_str = "0" + QString().setNum(_sec);
-            else               
+            else
                 sec_str = QString().setNum(_sec);
         }
-        
+
         strTmpVal = min_str + ":" + sec_str;
-    
+
     txtRemain->setText(strTmpVal);
 }
 
 void TurboButton::raiseAlarm()
 {
     showNormal();
-    activateWindow();    
+    activateWindow();
     playSound();
     QMessageBox::information(this, "Timer Info", "Timer has got it's limit!");
 /*    QtGui.QMessageBox.critical(None, "OpenGL hellogl",
@@ -334,20 +346,20 @@ void TurboButton::restoreSettingsFromINI()
 
     nTmp = m_settings->restoreIntValues("MainWindow/Values/LastTimerValue");
     m_settings->restoreAppSizePos(this);
-    
+
     // timerValue->setValue (nTmp);
 
     nTmp = m_settings->restoreIntValues("MainWindow/Values/TimeUnit");
     radioButtonsTime = nTmp;
-    
+
     qDebug ("radioButtonsTime = %d", radioButtonsTime);
-    qDebug ("call changeTimeUnit() from restoreSettingsFromINI");    
+    qDebug ("call changeTimeUnit() from restoreSettingsFromINI");
 
     //changeTimeUnit();
-    
+
     nTmp = m_settings->restoreIntValues("MainWindow/Values/Sound_ON_OFF");
-    radioButtonsSound = nTmp;    
-    
+    radioButtonsSound = nTmp;
+
 }
 
 void TurboButton::closeEvent(QCloseEvent* e)
@@ -364,7 +376,7 @@ void TurboButton::closeEvent(QCloseEvent* e)
 void TurboButton::playSound()
 {
     Beep(500, 100);
-    Beep(300, 500);    
-    //time.sleep(0.2)    
+    Beep(300, 500);
+    //time.sleep(0.2)
 }
 

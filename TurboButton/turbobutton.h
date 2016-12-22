@@ -65,7 +65,8 @@ private:
     int mainTime;
     bool isPause;
     bool isRun;
-
+    
+    int prev_seconds;
     int _sec;
     int _min;
     QString min_str;
