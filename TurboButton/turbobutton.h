@@ -27,7 +27,7 @@ public:
     ~TurboButton(){};
 
     void initMainWindow();
-    void initTimerBoxes();
+    void initTimerLabels();
     void initButtons();
     void initLayouts();
     void initRadioButtons();
@@ -39,13 +39,19 @@ public:
     void decrementCounter();
     void updateRemainTxt();
     void raiseAlarm();
-    void restoreSettingsFromINI();
+    void INISettingsRestore();
+    void INISettingsSave();
     void closeEvent (QCloseEvent *);
     void playSound();
     void updateMainWindowIcon(BUTTON_STYLE);
 
     void paintEvent(QPaintEvent *e);
     void resizeEvent(QResizeEvent *e);
+
+    int getTomatoCounter() {return m_tomato_counter;}
+    QString currentDate();
+    void setTomatoCounter(int, QString, int increment=0);
+
 
 public slots:
     void onStart();
@@ -62,16 +68,16 @@ private:
     int nSeconds;
     int radioButtonsTime;
     int radioButtonsSound;
-    int mainTime;
+    int m_mainTime;
     bool isPause;
     bool isRun;
+    int m_tomato_counter;
     
     int prev_seconds;
     int _sec;
     int _min;
     QString min_str;
     QString sec_str;
-
 
     QTimer *m_timer_ctd;
     
@@ -82,7 +88,7 @@ private:
     QString m_FontName;
     const int m_FontSize;
     
-    QLabel *txtRemain;
+    QLabel *txtRemain;    
 
     QPushButton *btnStart;
     QPushButton *btnQuit;

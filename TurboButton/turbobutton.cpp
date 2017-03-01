@@ -22,7 +22,8 @@ TurboButton::TurboButton(QDialog *parent)
      , m_ButtonFontSize(15)
      , m_LabelFontSize (20)
      , nSeconds(60)
-     , mainTime(25) // 25
+     , m_mainTime(25) // 25
+     , m_tomato_counter(0)
      , m_FontName ("STENCIL") // ("Sans Serif")// ("MONACO")
      , m_FontSize(75)
      , isPause(false)
@@ -33,9 +34,9 @@ TurboButton::TurboButton(QDialog *parent)
 
     initMainWindow();
     m_settings = new AppSettings(STR_COMPANY_NAME, STR_APP_NAME);
-    restoreSettingsFromINI();
+    INISettingsRestore();
 
-    nCounter = mainTime * nSeconds; // set to minutes
+    nCounter = m_mainTime * nSeconds; // set to minutes
 
     // nCounter = timerValue->value() * nSeconds; //  set to minutes
     updateRemainTxt();
@@ -44,13 +45,13 @@ TurboButton::TurboButton(QDialog *parent)
 
 void TurboButton::initMainWindow()
 {
-    initTimerBoxes();
+    initTimerLabels();
     initButtons();
     initLayouts();
     tuneMainWindow();
 }
 
-void TurboButton::initTimerBoxes()
+void TurboButton::initTimerLabels()
 {
     txtRemain = new QLabel(this);
     txtRemain->setAlignment(Qt::AlignCenter);
@@ -135,6 +136,41 @@ void TurboButton::resizeEvent(QResizeEvent *e)
     }
 }
 
+QString TurboButton::currentDate()
+{
+    QDateTime now = QDateTime::currentDateTime();
+    return now.date().toString(STR_DATE_FORMAT); 
+}
+
+void TurboButton::setTomatoCounter(int _ini_value, QString _ini_date, int increment)
+{
+    if (increment)
+    {
+        m_tomato_counter++;
+    }
+    else
+    {   
+        QString _now_date = currentDate();    
+        int n = _now_date.compare(_ini_date);
+
+        if (n == 0)
+        {
+            m_tomato_counter = _ini_value;
+        }
+        else // date in ini is different than today
+        {
+            //1. save today date to ini
+            //2. set tomato_counter to 0
+            //3. save tomato_counter to ini
+            m_tomato_counter = 0;
+            m_settings->saveValues("MainWindow/Values/Date", this->currentDate());
+        }
+    }    
+    m_settings->saveValues("MainWindow/Values/Tomato_Counter", this->m_tomato_counter);
+    // update main window caption:
+    setMainWindowTitle(QString().setNum(m_tomato_counter));
+}
+
 void TurboButton::tuneMainWindow()
 {
     //set icon:
@@ -142,7 +178,7 @@ void TurboButton::tuneMainWindow()
     // setWindowIcon(QIcon(":/images/icon.png"));
 
     //set caption:
-    setMainWindowTitle("");
+    setMainWindowTitle(QString().setNum(m_tomato_counter));
     picOn.load("://Resources/TurboButton01.jpg");
     // picOn.load(":/MainViewOFF");
     picOff.load("://Resources/TurboButton01.jpg");
@@ -155,7 +191,10 @@ void TurboButton::tuneMainWindow()
 
 void TurboButton::setMainWindowTitle(QString strToShow)
 {
-    setWindowTitle(strToShow + STR_MAIN_TITLE);
+    QString strCombine = STR_MAIN_TITLE;
+    // strCombine.append(CURRENT_VERSION);
+    strCombine.append(": ");
+    setWindowTitle(strCombine + strToShow);
 }
 
 void TurboButton::setConnections()
@@ -167,6 +206,9 @@ void TurboButton::setConnections()
 
 void TurboButton::onStart()
 {
+    /************************************************************************/
+    /* Function reacts to a START button press                              */
+    /************************************************************************/
     btnStart->setStyleSheet(
         "background: transparent; border-image: url(://Resources/Button_Shutdown.png);"
         );
@@ -218,8 +260,7 @@ void TurboButton::decrementCounter()
     nCounter = nCounter - 1;
     if (0 > nCounter)
     {
-        // updateRemainTxt();
-        nCounter = mainTime * nSeconds; // set to minutes
+        nCounter = m_mainTime * nSeconds; // set to minutes
         stopTimer();
         btnStart->setEnabled(true);
         raiseAlarm();
@@ -227,8 +268,9 @@ void TurboButton::decrementCounter()
         btnStart->setStyleSheet(
         "background: transparent; border-image: url(://Resources/Button_Restart.png);"
         );
+        setTomatoCounter(0, "", DO_INCREMENT); // increment today counter.
         this->updateMainWindowIcon(BUTTON_STYLE::GREEN_BUTTON);
-        this->update();
+        this->update();        
     }
     updateRemainTxt();
 }
@@ -340,7 +382,7 @@ void TurboButton::updateTimeUnits()
     }
 }
 
-void TurboButton::restoreSettingsFromINI()
+void TurboButton::INISettingsRestore()
 {
     int nTmp = 0;
 
@@ -357,20 +399,28 @@ void TurboButton::restoreSettingsFromINI()
 
     //changeTimeUnit();
 
-    nTmp = m_settings->restoreIntValues("MainWindow/Values/Sound_ON_OFF");
-    radioButtonsSound = nTmp;
-
+    QString str_ini_date = m_settings->restoreStrValues("MainWindow/Values/Date");
+    nTmp = m_settings->restoreIntValues("MainWindow/Values/Tomato_Counter");
+    setTomatoCounter(nTmp, str_ini_date);
 }
 
-void TurboButton::closeEvent(QCloseEvent* e)
+void TurboButton::INISettingsSave()
 {
-    m_timer_ctd->stop();
     m_settings->saveAppSizePos(this);
     //m_settings->saveValues("MainWindow/Values/LastTimerValue", timerValue->value());
 
     m_settings->saveValues("MainWindow/Values/TimeUnit", radioButtonsTime);
     m_settings->saveValues("MainWindow/Values/Sound_ON_OFF", radioButtonsSound);
+    
+    m_settings->saveValues("MainWindow/Values/Date", this->currentDate());
+    m_settings->saveValues("MainWindow/Values/Tomato_Counter", this->m_tomato_counter);
     //qDebug("radioButtonsTime= %d\n", radioButtonsTime);
+}
+
+void TurboButton::closeEvent(QCloseEvent* e)
+{
+    m_timer_ctd->stop();
+    INISettingsSave();
 }
 
 void TurboButton::playSound()

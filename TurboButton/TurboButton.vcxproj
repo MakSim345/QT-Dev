@@ -84,6 +84,7 @@
     <ClCompile Include="GeneratedFiles\Release\moc_turbobutton.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="LogFile.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="turbobutton.cpp" />
   </ItemGroup>
@@ -116,6 +117,7 @@
     <ClInclude Include="appSettings.h" />
     <ClInclude Include="gen.h" />
     <ClInclude Include="GeneratedFiles\ui_turbobutton.h" />
+    <ClInclude Include="LogFile.h" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="turbobutton.qrc">

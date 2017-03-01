@@ -7,7 +7,7 @@
 #define INT_BTN_W 100
 #define INT_BTN_H 50
 
-#define STR_MAIN_TITLE " TurboButton "
+#define STR_MAIN_TITLE "TurboButton. Today done"
 #define CURRENT_VERSION "ver. 0.0.4"
 #define STR_SEC " sec"
 #define STR_MIN " min"
@@ -25,10 +25,13 @@
 #define STR_BTN_STOP   "S&top"
 #define STR_BTN_QUIT   "&Quit"
 #define STR_COMPANY_NAME "YS"
+#define STR_DATE_FORMAT "dd.MM.yyyy"
 #define STR_APP_NAME "TurboButton"
 #define INT_MILLISEC_CHECK 500
+#define DO_INCREMENT 1
 
 #include <QTimer>
+#include <QTime>
 #include <QPixmap>
 #include <QString>
 #include <QSpinBox>
@@ -48,5 +51,7 @@ typedef enum
     RED_BUTTON,
     GREEN_BUTTON
 } BUTTON_STYLE;
+
+using namespace std;
 
 #endif
