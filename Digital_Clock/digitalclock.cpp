@@ -3,6 +3,7 @@
 
  DigitalClock::DigitalClock(QWidget *parent)
      : QLCDNumber(parent)
+     , prev_seconds(0)
  {
      setSegmentStyle(Filled);
 
@@ -18,10 +19,20 @@
 
  void DigitalClock::showTime()
  {
-     QTime time = QTime::currentTime();
+     QTime time = QTime::currentTime();     
      QString text = time.toString("hh:mm");
+     
+     int tmp_seconds = time.second();
+
      if ((time.second() % 2) == 0)
          text[2] = ' ';
-     // display(text+"sec");
-     display(text + ":" + time.second());
+     if (tmp_seconds != prev_seconds)
+     {
+         prev_seconds = time.second();
+         std::cout << "1";         
+     }
+
+     // this->display("12 + " + " -sec");
+     // this->display(text);
+     this->display(text);// + ":" + time.second());
  }

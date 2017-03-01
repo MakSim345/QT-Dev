@@ -1,7 +1,10 @@
- #ifndef DIGITALCLOCK_H
- #define DIGITALCLOCK_H
+#ifndef DIGITALCLOCK_H
+#define DIGITALCLOCK_H
 
- #include <QLCDNumber>
+#include <QLCDNumber>
+#include <stdio.h>
+#include <sstream>
+#include <iostream>
 
  class DigitalClock : public QLCDNumber
  {
@@ -9,6 +12,9 @@
 
  public:
      DigitalClock(QWidget *parent = 0);
+
+ private:
+     int prev_seconds;
 
  private slots:
      void showTime();
