@@ -2,8 +2,6 @@
 #define DIGITALCLOCK_H
 
 #include <QLCDNumber>
-#include <stdio.h>
-#include <sstream>
 #include <iostream>
 
  class DigitalClock : public QLCDNumber
