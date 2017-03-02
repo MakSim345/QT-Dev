@@ -51,6 +51,7 @@ public:
     int getTomatoCounter() {return m_tomato_counter;}
     QString currentDate();
     void setTomatoCounter(int, QString, int increment=0);
+    void readCounterFromINI();
 
 
 public slots:

@@ -144,6 +144,9 @@ QString TurboButton::currentDate()
 
 void TurboButton::setTomatoCounter(int _ini_value, QString _ini_date, int increment)
 {
+    /************************************************************************/
+    /*                                                                      */
+    /************************************************************************/
     if (increment)
     {
         m_tomato_counter++;
@@ -216,6 +219,7 @@ void TurboButton::onStart()
     updateRemainTxt();
     btnStart->setEnabled(false);
     isRun = true;
+    readCounterFromINI();
     this->updateMainWindowIcon(BUTTON_STYLE::RED_BUTTON);
     this->update();
     prev_seconds = QTime::currentTime().second();
@@ -399,9 +403,7 @@ void TurboButton::INISettingsRestore()
 
     //changeTimeUnit();
 
-    QString str_ini_date = m_settings->restoreStrValues("MainWindow/Values/Date");
-    nTmp = m_settings->restoreIntValues("MainWindow/Values/Tomato_Counter");
-    setTomatoCounter(nTmp, str_ini_date);
+    readCounterFromINI();
 }
 
 void TurboButton::INISettingsSave()
@@ -415,6 +417,13 @@ void TurboButton::INISettingsSave()
     m_settings->saveValues("MainWindow/Values/Date", this->currentDate());
     m_settings->saveValues("MainWindow/Values/Tomato_Counter", this->m_tomato_counter);
     //qDebug("radioButtonsTime= %d\n", radioButtonsTime);
+}
+
+void TurboButton::readCounterFromINI()
+{
+    QString str_ini_date = m_settings->restoreStrValues("MainWindow/Values/Date");
+    int nTmp = m_settings->restoreIntValues("MainWindow/Values/Tomato_Counter");
+    setTomatoCounter(nTmp, str_ini_date);
 }
 
 void TurboButton::closeEvent(QCloseEvent* e)
