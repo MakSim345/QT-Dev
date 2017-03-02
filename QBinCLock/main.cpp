@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     ClockFrame* clock = new ClockFrame();    
     clock->show();
     clock->move(100, 100);
-    // clock->resize(200, 200);
+    clock->resize(200, 200);
     
     return app.exec();
 }
