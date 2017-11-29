@@ -2,10 +2,9 @@
 
 LangLoad::LangLoad(QWidget *parent)
      : QWidget(parent)
-     , m_ButtonFontSize(15)
-     , m_LabelFontSize (20)
-     , m_FontName ("Sans Serif")// ("STENCIL") // ("Sans Serif")// ("MONACO")
-     , m_FontSize(12)
+     , m_ButtonFontSize(INT_BUTTON_FONT_SIZE) 
+     , m_LabelFontSize(INT_LABEL_FONT_SIZE)
+     , m_FontName ("Sans Serif")// ("STENCIL") // ("Sans Serif")// ("MONACO")     
  {
     timerRebootWait = new QTimer();
 
@@ -61,7 +60,7 @@ void LangLoad::saveConfigFile()
 
 void LangLoad::readConfigFile()
 {
-    strncpy(configFileName, "LangLoad.cfg", FILE_NAME_LEN_CONFIG);
+    strncpy(configFileName, "LangLoad.cfg", INT_CONFIG_FILE_NAME_LEN);
 
     hConfigFile = fopen(configFileName, "r");
 
@@ -111,11 +110,11 @@ void LangLoad::readConfigFile()
 void LangLoad::initLabels()
 {
     fileNameTextLabel = new QLabel("File to load: ");
-    fileNameTextLabel->setFont(QFont(m_FontName, m_FontSize));
+    fileNameTextLabel->setFont(QFont(m_FontName, m_LabelFontSize));
 
     fileNameEdit = new QComboBox();
-    fileNameEdit->setFont(QFont(m_FontName, m_FontSize));
-    fileNameEdit->setMinimumSize(340, 25);
+    fileNameEdit->setFont(QFont(m_FontName, m_LabelFontSize));
+    fileNameEdit->setMinimumSize(INT_LABEL_FILE_W, INT_LABEL_H);
 
     // get file listing
     char m_strFileFilter[MAX_LEN];
@@ -133,7 +132,7 @@ void LangLoad::initLabels()
     }
 
     ipEdit = new QLineEdit();
-    ipEdit->setFont(QFont(m_FontName, m_FontSize));
+    ipEdit->setFont(QFont(m_FontName, m_LabelFontSize));
     /* Create a string for a regular expression */
     QString ipRange = "(?:[0-1]?[0-9]?[0-9]|2[0-4][0-9]|25[0-5])";
     /* Create a regular expression with a string
@@ -149,43 +148,43 @@ void LangLoad::initLabels()
     QRegExpValidator *ipValidator = new QRegExpValidator(ipRegex, this);
     /* Set Validator on QLineEdit */
     ipEdit->setValidator(ipValidator);
-    ipEdit->setMinimumSize(180, 25);
+    ipEdit->setFixedSize(INT_LABEL_W, INT_LABEL_H);
     // ipEdit->setText("192.168.1.1");
 
     ipTextLabel = new QLabel("IP Address:");
-    ipTextLabel->setFont(QFont(m_FontName, m_FontSize));
+    ipTextLabel->setFont(QFont(m_FontName, m_LabelFontSize));
 
     monitorTypeTextLabel = new QLabel("Monitor type: ");
-    monitorTypeTextLabel->setFont(QFont(m_FontName, m_FontSize));
+    monitorTypeTextLabel->setFont(QFont(m_FontName, m_LabelFontSize));
     // MonitorTypeLabel->setStyleSheet("color: black;");
 
     fileTypeTextLabel = new QLabel("File Type:");
-    fileTypeTextLabel->setFont(QFont(m_FontName, m_FontSize));
+    fileTypeTextLabel->setFont(QFont(m_FontName, m_LabelFontSize));
 
     fileTypeEdit = new QComboBox();
-    fileTypeEdit->setFont(QFont(m_FontName, m_FontSize));
-    fileTypeEdit->setMinimumSize(180, 25);
+    fileTypeEdit->setFont(QFont(m_FontName, m_LabelFontSize));
+    fileTypeEdit->setMinimumSize(INT_LABEL_W, INT_LABEL_H);
     fileTypeEdit->addItem("Export");
     fileTypeEdit->addItem("Import");
 
     outputLngTextLabel = new QLabel("[Output File]:");
-    outputLngTextLabel->setFont(QFont(m_FontName, m_FontSize));
+    outputLngTextLabel->setFont(QFont(m_FontName, m_LabelFontSize));
 
     outputLngEdit = new QLineEdit();
-    outputLngEdit->setFont(QFont(m_FontName, m_FontSize));
-    outputLngEdit->setMinimumSize(180, 25);
+    outputLngEdit->setFont(QFont(m_FontName, m_LabelFontSize));
+    outputLngEdit->setMinimumSize(INT_LABEL_W, INT_LABEL_H);
 
     monitorTypeEdit = new QComboBox();
-    monitorTypeEdit->setMinimumSize(180, 25);
-    monitorTypeEdit->setFont(QFont(m_FontName, m_FontSize));
-    monitorTypeEdit->addItem("Max");
-    monitorTypeEdit->addItem("Flex");
-    monitorTypeEdit->addItem("Lite");
-    monitorTypeEdit->addItem("ppd");
+    monitorTypeEdit->setMinimumSize(INT_LABEL_W, INT_LABEL_H);
+    monitorTypeEdit->setFont(QFont(m_FontName, m_LabelFontSize));
+    monitorTypeEdit->addItem(STR_MAX);
+    monitorTypeEdit->addItem(STR_FLEX);
+    monitorTypeEdit->addItem(STR_LITE);
+    monitorTypeEdit->addItem(STR_PPD);
 
     dbgOutputLabel= new QLabel("");
-    dbgOutputLabel->setFont(QFont(m_FontName, m_FontSize));
-    dbgOutputLabel->setMinimumSize(400, 25);
+    dbgOutputLabel->setFont(QFont(m_FontName, m_LabelFontSize));
+    dbgOutputLabel->setMinimumSize(INT_LABEL_DBG_W, INT_LABEL_H);
 }
 
 void LangLoad::initButtons()
@@ -220,8 +219,7 @@ void LangLoad::initLayouts()
 {
     prbTransferProgressBar = new QProgressBar();
     prbTransferProgressBar->setMinimumWidth(200);
-    prbTransferProgressBar->setRange(0,100);
-    prbTransferProgressBar->setValue(40);
+    prbTransferProgressBar->setRange(0,100);    
     prbTransferProgressBar->setTextVisible(false);
 
     vLayoutMain = new QVBoxLayout();
@@ -332,7 +330,7 @@ void LangLoad::performConvertFileToLng()
     else
     {
         showErrorMessageBox();
-        cleanInfoWidgets();
+        cleanAppState();
         return;
     }
 }
@@ -350,7 +348,7 @@ void LangLoad::performResetRemoteESP()
     else
     {
         showErrorMessageBox();
-        cleanInfoWidgets();
+        cleanAppState();
         return;
     }
 }
@@ -368,7 +366,7 @@ void LangLoad::performSendLngFileToESP()
     else
     {
         showErrorMessageBox();
-        cleanInfoWidgets();
+        cleanAppState();
         return;
     }
 }
@@ -376,34 +374,39 @@ void LangLoad::performSendLngFileToESP()
 void LangLoad::onTransferButton()
 {
     btnTransfer->setEnabled(false);
+    btnQuit->setEnabled(false);
+
     updateProgressBar(0);
 
     if ( convertFileToLNG() )
-        updateProgressBar(30);
+        updateProgressBar(30);        
     else
     {
         showErrorMessageBox();
-        cleanInfoWidgets();
+        cleanAppState();
         return;
     }
+    this->update();
 
     if ( sendLngFileToESP() )
         updateProgressBar(60);
     else
     {
         showErrorMessageBox();
-        cleanInfoWidgets();
+        cleanAppState();
         return;
     }
+    this->update();
 
     if ( resetRemoteESP() )
         updateProgressBar(100);
     else
     {
         showErrorMessageBox();
-        cleanInfoWidgets();
+        cleanAppState();
         return;
     }
+    this->update();
 
     startTimer();
 }
@@ -477,11 +480,12 @@ bool LangLoad::resetRemoteESP()
         return false;
 }
 
-void LangLoad::cleanInfoWidgets()
+void LangLoad::cleanAppState()
 {
     updateProgressBar(0);
     dbgOutputLabel->setText("");
     btnTransfer->setEnabled(true);
+    btnQuit->setEnabled(true);
 }
 
 void LangLoad::updateProgressBar(const int & newValueP)
@@ -491,15 +495,14 @@ void LangLoad::updateProgressBar(const int & newValueP)
 
 void LangLoad::showErrorMessageBox()
 {
+    // read string from debug output label and show it on pop up msgbox
+
     msgBox = new QMessageBox(QMessageBox::Critical, tr("ERROR"), dbgOutputLabel->text() );
     msgBox->setStyleSheet("QLabel{height: 150px; min-height: 150px; max-height: 300px; font: 15pt;}  QPushButton{font: 15pt}");
 
-    //msgBox.setStandardButtons(QMessageBox::Ok);
-    //msgBox.setDefaultButton(QMessageBox::Ok);
     msgBox->exec();
     delete msgBox;
 }
-
 
 void LangLoad::startTimer()
 {
@@ -514,7 +517,7 @@ void LangLoad::stopTimer()
 void LangLoad::onTimerEvent()
 {
 
-    cleanInfoWidgets();
+    cleanAppState();
     stopTimer();
 
     // int tmp_seconds = QTime::currentTime().second();

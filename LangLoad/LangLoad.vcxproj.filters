@@ -96,4 +96,7 @@
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="LangLoad.rc" />
+  </ItemGroup>
 </Project>

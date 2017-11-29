@@ -39,7 +39,7 @@ public:
     
     void sentTextToController();
 
-    void cleanInfoWidgets();
+    void cleanAppState();
     void showErrorMessageBox();
 
 public slots:        
@@ -62,11 +62,8 @@ private:
     QMessageBox *msgBox;
 
     QTimer *timerRebootWait;
-       
-    QIcon m_iconMainWindow;
-
+    
     QString m_FontName;
-    const int m_FontSize;
         
     QPushButton *btnStart;
     QPushButton *btnQuit;
@@ -124,5 +121,5 @@ private:
     QLabel *dbgOutputLabel;
     
     FILE* hConfigFile;
-    char configFileName[FILE_NAME_LEN_CONFIG];
+    char configFileName[INT_CONFIG_FILE_NAME_LEN];
 };

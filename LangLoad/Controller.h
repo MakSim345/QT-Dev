@@ -23,6 +23,7 @@ public:
 
     void setDebugLabel(QLabel &infoLabelP);
     void showMsgOnDbgLabel(const QString & str);
+    int windowsSystem(const char *cmd);
 
 private:
     
@@ -39,7 +40,7 @@ private:
     QMessageBox msgBox;
     QLabel *infoLabelPtr;
 
-    char outputLogFileName[FILE_NAME_LEN_OUTPUT];// "output.txt"
+    char outputLogFileName[INT_OUTPUT_FILE_NAME_LEN];
 
     FILE* hOutputLogFile;
 

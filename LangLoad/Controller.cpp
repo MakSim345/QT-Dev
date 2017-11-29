@@ -180,14 +180,14 @@ bool Controller::convertLngFile()
 bool Controller::convertLngFileMakeName()
 {
     char buf[MAX_LEN];
-    char m_strConvertCmd[MAX_LEN];
-    
+    char m_strConvertCmd[MAX_LEN];    
     // write result filename to output.txt:    
     sprintf(m_strConvertCmd, 
-            "python .\\bin\\espl10ntool.py --config .\\bin\\espl10ntool.conf print-l10n-file-name %s > .\\output.txt", 
-            strInputXmlFile.toStdString().c_str());
+            "python.exe .\\bin\\espl10ntool.py --config .\\bin\\espl10ntool.conf print-l10n-file-name %s > .\\%s", 
+            strInputXmlFile.toStdString().c_str(),
+            STR_OUTPUT_FILE_NAME);
     
-    status = system(m_strConvertCmd);
+    status = system(m_strConvertCmd);    
     if (status == 0)
     {
         sprintf(buf, "Write LNG name to a log file - OK.");
@@ -223,9 +223,8 @@ bool Controller::doFileNameToTransferV3()
         strLngFile = strOutputLngFile;
 
       int pos = strLngFile.indexOf(".LNG");
-      
-      // const char* p = strstr(strLngFile, ".LNG");
-      if (pos == 3)
+            
+      if (pos == INT_LNG_LENGHT)
       {       
           isLngFileNameDefault = false;
           return true;
@@ -234,7 +233,7 @@ bool Controller::doFileNameToTransferV3()
     else
     {   
         char* line;
-        strncpy(outputLogFileName, "output.txt", FILE_NAME_LEN_OUTPUT);
+        strncpy(outputLogFileName, STR_OUTPUT_FILE_NAME, INT_OUTPUT_FILE_NAME_LEN);
         
         hOutputLogFile = fopen(outputLogFileName, "r");
 
@@ -306,22 +305,28 @@ void Controller::setMonitorType(const QString & strMonitorTypeP)
         strSshKey.clear();
         strSshKey.append("id_dsa");
     }
+}
 
-    // make the commands
-
-    // CLEAN OUTPUT FILE
+int Controller::windowsSystem(const char *cmd)
+{    
     /*
-    hConfigFile = fopen(outputLogFileName, "w");
-    fclose(hConfigFile);
-    */
+    PROCESS_INFORMATION p_info;
+    STARTUPINFO s_info;
+    LPSTR cmdline, programpath;
+    
+    memset(&s_info, 0, sizeof(s_info));
+    memset(&p_info, 0, sizeof(p_info));
+    s_info.cb = sizeof(s_info);
 
-    /* 
-    outputLngEdit
-    strOutputLngFile.MakeUpper();
-    if (strOutputLngFile.GetLength() > 0 && strOutputLngFile.Find(".") < 0)
+    cmdline     = (LPSTR)cmd);
+
+    if (CreateProcess(NULL, cmdline, NULL, NULL, 0, 0, NULL, NULL, &s_info, &p_info))
     {
-        strOutputLngFile += ".LNG";
+        WaitForSingleObject(p_info.hProcess, INFINITE);
+        CloseHandle(p_info.hProcess);
+        CloseHandle(p_info.hThread);
     }
-    const char* p = strstr(strOutputLngFile, ".LNG");
-    */   
+    */
+    
+    return 0;
 }
