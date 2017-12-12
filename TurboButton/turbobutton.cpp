@@ -14,34 +14,44 @@
 #include "turbobutton.h"
 
 TurboButton::TurboButton(QDialog *parent)
-     //:QDialog(parent, Qt::FramelessWindowHint)
      :QDialog(parent)
-     , nCounter(0)
+     , m_CounterTimeDown(0)
      , radioButtonsTime(0) // 0 - minutes, 1 - seconds
      , radioButtonsSound(0) //
      , m_ButtonFontSize(15)
      , m_LabelFontSize (20)
-     , nSeconds(60)
-     , m_mainTime(25) // 25
-     , m_tomato_counter(0)
      , m_FontName ("STENCIL") // ("Sans Serif")// ("MONACO")
      , m_FontSize(75)
+     , m_Seconds(INT_SECONDS_IN_MINUTE)
+     , m_mainTimeMinutes(INT_MINUTES_TOMATO) // 25 min
+     , m_shortBreakTimeMinutes(INT_MINUTES_SHORT_BREAK) // 5 min
+     , m_longBreakTimeMinutes(INT_MINUTES_LONG_BREAK) // 30 min
+     , m_CounterTomato(0)
+     , m_CounterBreaks(0)
      , isPause(false)
-     , isRun(false)
+     , m_CurrentState(NO_ACTION)
 
  {
     m_timer_ctd = new QTimer();
 
     initMainWindow();
-    m_settings = new AppSettings(STR_COMPANY_NAME, STR_APP_NAME);
-    INISettingsRestore();
 
-    nCounter = m_mainTime * nSeconds; // set to minutes
+    m_settings = new AppSettings(STR_COMPANY_NAME, STR_APP_NAME);    
+    setTomatoCounter(NO_INCREMENT);
+
+    m_CounterTimeDown = convertMinutesToSeconds(m_mainTimeMinutes); // set to minutes
 
     // nCounter = timerValue->value() * nSeconds; //  set to minutes
     updateRemainTxt();
     setConnections();
+
+    restoreMainWindowSizePos();
  }
+
+void TurboButton::restoreMainWindowSizePos()
+{
+    m_settings->restoreAppSizePos(this);
+}
 
 void TurboButton::initMainWindow()
 {
@@ -106,26 +116,31 @@ void TurboButton::initRadioButtons()
 
 void TurboButton::paintEvent(QPaintEvent *e)
 {
-    if (isRun == true)
-    {
-        QRegion r1(picOn.rect());
-        QPainter painter(this);
+    QPainter painter(this);
+    QRegion r1;
 
-        painter.setClipRegion(r1);
-        painter.drawPixmap(picOn.rect(), picOn);
-    }
-    else if (isRun == false)
+    switch (m_CurrentState)
     {
-        QRegion r1(picOff.rect());
-        QPainter painter(this);
-
+    case NO_ACTION:
+        r1 = QRegion(picOff.rect());
         painter.setClipRegion(r1);
         painter.drawPixmap(picOff.rect(), picOff);
+        break;
+    case RUNNING_BREAK_SHORT:
+        r1 = QRegion(picOff.rect());
+        painter.drawPixmap(picOff.rect(), picOff);
+        break;
+    case RUNNING_TOMATO:
+        r1 = QRegion(picOn.rect());
+        painter.setClipRegion(r1);
+        painter.drawPixmap(picOn.rect(), picOn);
+        break;
     }
 }
 
 void TurboButton::resizeEvent(QResizeEvent *e)
 {
+    /*
     if (isRun == true)
     {
         setMask(picOff.mask());
@@ -134,54 +149,50 @@ void TurboButton::resizeEvent(QResizeEvent *e)
     {
         setMask(picOn.mask());
     }
+  */
 }
 
 QString TurboButton::currentDate()
 {
     QDateTime now = QDateTime::currentDateTime();
-    return now.date().toString(STR_DATE_FORMAT); 
+    return now.date().toString(STR_DATE_FORMAT);
 }
 
-void TurboButton::setTomatoCounter(int _ini_value, QString _ini_date, int increment)
+void TurboButton::setTomatoCounter(int incrementP)
 {
-    /************************************************************************/
-    /*                                                                      */
-    /************************************************************************/
-    if (increment)
+    if (incrementP)
     {
-        m_tomato_counter++;
+        m_CounterTomato++;
     }
     else
-    {   
-        QString _now_date = currentDate();    
-        int n = _now_date.compare(_ini_date);
+    {
+        QString dateNow = currentDate();        
+        int n = dateNow.compare(m_settings->restoreStrValues(STR_INI_PATH_DATE));
 
         if (n == 0)
         {
-            m_tomato_counter = _ini_value;
+            m_CounterTomato = m_settings->restoreIntValues(STR_INI_PATH_TOMATO_COUNTER);
+            m_CounterBreaks = m_settings->restoreIntValues(STR_INI_PATH_BREAK_COUNTER);
         }
-        else // date in ini is different than today
-        {
-            //1. save today date to ini
-            //2. set tomato_counter to 0
-            //3. save tomato_counter to ini
-            m_tomato_counter = 0;
-            m_settings->saveValues("MainWindow/Values/Date", this->currentDate());
+        else 
+        {            
+            m_CounterTomato = 0;
+            m_CounterBreaks = 0;
         }
-    }    
-    m_settings->saveValues("MainWindow/Values/Tomato_Counter", this->m_tomato_counter);
+    }
+    iniSaveCurrentState();
+
     // update main window caption:
-    setMainWindowTitle(QString().setNum(m_tomato_counter));
+    setMainWindowTitle(QString().setNum(m_CounterTomato));
 }
 
 void TurboButton::tuneMainWindow()
 {
     //set icon:
-    this->updateMainWindowIcon(BUTTON_STYLE::GREEN_BUTTON);
-    // setWindowIcon(QIcon(":/images/icon.png"));
+    this->updateMainWindowIcon();
 
     //set caption:
-    setMainWindowTitle(QString().setNum(m_tomato_counter));
+    setMainWindowTitle(QString().setNum(m_CounterTomato));
     picOn.load("://Resources/TurboButton01.jpg");
     // picOn.load(":/MainViewOFF");
     picOff.load("://Resources/TurboButton01.jpg");
@@ -218,9 +229,9 @@ void TurboButton::onStart()
     startTimer();
     updateRemainTxt();
     btnStart->setEnabled(false);
-    isRun = true;
-    readCounterFromINI();
-    this->updateMainWindowIcon(BUTTON_STYLE::RED_BUTTON);
+    m_CurrentState = RUNNING_TOMATO;
+    setTomatoCounter(NO_INCREMENT);
+    this->updateMainWindowIcon();
     this->update();
     prev_seconds = QTime::currentTime().second();
 }
@@ -256,96 +267,149 @@ void TurboButton::onTimerEvent()
     {
         prev_seconds = QTime::currentTime().second();
         decrementCounter();
+        stateUpdate();
     }
+}
+
+int TurboButton::convertMinutesToSeconds(int nMinutesToConvertP)
+{
+    return nMinutesToConvertP * m_Seconds; // set main time to minutes
 }
 
 void TurboButton::decrementCounter()
 {
-    nCounter = nCounter - 1;
-    if (0 > nCounter)
+    m_CounterTimeDown = m_CounterTimeDown - 1;
+}
+
+void TurboButton::breakStatusUpdate()
+{
+    m_CounterBreaks = m_CounterBreaks + 1;
+}
+
+bool TurboButton::isLongBreak()
+{
+    if (m_CounterBreaks >= 3)
     {
-        nCounter = m_mainTime * nSeconds; // set to minutes
-        stopTimer();
-        btnStart->setEnabled(true);
-        raiseAlarm();
-        isRun = false;
-        btnStart->setStyleSheet(
-        "background: transparent; border-image: url(://Resources/Button_Restart.png);"
-        );
-        setTomatoCounter(0, "", DO_INCREMENT); // increment today counter.
-        this->updateMainWindowIcon(BUTTON_STYLE::GREEN_BUTTON);
-        this->update();        
+        m_CounterBreaks = 0;
+        return true;
     }
+    return false;
+}
+
+void TurboButton::stateUpdate()
+{
+    if (0 > m_CounterTimeDown)
+    {
+        switch (m_CurrentState)
+        {
+        case NO_ACTION:
+            break;
+        case RUNNING_BREAK_LONG:
+            m_CounterTimeDown = convertMinutesToSeconds(m_mainTimeMinutes); // set to minutes
+            m_CurrentState = NO_ACTION;            
+            btnStart->setStyleSheet(
+                "background: transparent; border-image: url(://Resources/Button_Restart.png);"
+                );
+            btnStart->setEnabled(true);
+            stopTimer();
+            raiseAlarm(STR_TIMER_LONG_BREAK_OVER);
+            break;
+        case RUNNING_BREAK_SHORT:
+            m_CounterTimeDown = convertMinutesToSeconds(m_mainTimeMinutes); // set to minutes
+            m_CurrentState = NO_ACTION;            
+            btnStart->setStyleSheet(
+                "background: transparent; border-image: url(://Resources/Button_Restart.png);"
+                );            
+            btnStart->setEnabled(true);
+            stopTimer();
+            raiseAlarm(STR_TIMER_SHORT_BREAK_OVER);
+            breakStatusUpdate(); // increment break numbers
+            break;
+        case RUNNING_TOMATO:
+            selectBreak();
+            btnStart->setStyleSheet(
+                "background: transparent; border-image: url(://Resources/Button_Break.png);"
+                );
+            setTomatoCounter(DO_INCREMENT); // increment today counter.
+            break;
+        }
+    }
+    this->updateMainWindowIcon();
+    this->update();
     updateRemainTxt();
 }
 
-void TurboButton::updateMainWindowIcon(BUTTON_STYLE _button_color)
+void TurboButton::selectBreak()
 {
-    //QIcon m_iconMainWindow("://Resources/Button_Restart.png");
-    //QIcon m_iconMainWindow("://Resources/Button_Shutdown.png");
-    // m_iconMainWindow.addPixmap("://Resources/Button_Restart.png");
+    if (isLongBreak())
+    {
+        m_CounterTimeDown = convertMinutesToSeconds(m_longBreakTimeMinutes); 
+        m_CurrentState = RUNNING_BREAK_LONG;
+    }    
+    else
+    {
+        m_CounterTimeDown = convertMinutesToSeconds(m_shortBreakTimeMinutes); 
+        m_CurrentState = RUNNING_BREAK_SHORT;
+    }    
+}
 
-    // setWindowIcon(m_iconMainWindow);
-     switch (_button_color)
-     {
-        case BUTTON_STYLE::GREEN_BUTTON:
+void TurboButton::updateMainWindowIcon()
+{
+    switch (m_CurrentState)
+    {
+        case NO_ACTION:
             setWindowIcon(QIcon("://Resources/Button_Restart.png"));
             break;
-        case BUTTON_STYLE::RED_BUTTON:
+        case RUNNING_BREAK_SHORT:
+            setWindowIcon(QIcon("://Resources/Button_Break.png"));
+            break;
+        case RUNNING_TOMATO:
             setWindowIcon(QIcon("://Resources/Button_Shutdown.png"));
             break;
-        default: ;
-     }
+    }
 }
 
 void TurboButton::updateRemainTxt()
 {
-    int nTmpVal = nCounter;
-    QString strTmpVal = QString();
+    m_SecInt = m_CounterTimeDown % 60;
+    m_MinInt = m_CounterTimeDown / 60;
 
-    _sec = nTmpVal % 60;
-    _min = nTmpVal / 60;
-
-        if (0 == _min)
+        if (0 == m_MinInt)
         {
-            min_str = "00";
+            m_MinStr = "00";
         }
         else
         {
-            if (_min < 10)
-                min_str = "0" + QString().setNum(_min);
+            if (m_MinInt < 10)
+                m_MinStr = "0" + QString().setNum(m_MinInt);
             else
-                min_str = QString().setNum(_min);
+                m_MinStr = QString().setNum(m_MinInt);
         }
 
-        if (0 == _sec)
+        if (0 == m_SecInt)
         {
-            sec_str = "00";
+            m_SecStr = "00";
         }
         else
         {
-            if (_sec < 10)
-                sec_str = "0" + QString().setNum(_sec);
+            if (m_SecInt < 10)
+                m_SecStr = "0" + QString().setNum(m_SecInt);
             else
-                sec_str = QString().setNum(_sec);
+                m_SecStr = QString().setNum(m_SecInt);
         }
 
-        strTmpVal = min_str + ":" + sec_str;
-
-    txtRemain->setText(strTmpVal);
+    txtRemain->setText(m_MinStr + ":" + m_SecStr);
 }
 
-void TurboButton::raiseAlarm()
+void TurboButton::raiseAlarm(QString strMessageP)
 {
     showNormal();
     activateWindow();
     playSound();
-    QMessageBox::information(this, "Timer Info", "Timer has got it's limit!");
-/*    QtGui.QMessageBox.critical(None, "OpenGL hellogl",
-                            "PyOpenGL must be installed to run this example.",
-                            QtGui.QMessageBox.Ok | QtGui.QMessageBox.Default,
-                            QtGui.QMessageBox.NoButton)
-*/
+    /*
+    msgBox = new QMessageBox(QMessageBox::Information, tr("Timer Info"), strMessageP);    msgBox->setStyleSheet("QLabel{height: 150px; min-height: 100px; max-height: 150px; font: 15pt;} QPushButton {font: 15pt}");    msgBox->exec();    delete msgBox;
+    */
+    QMessageBox::information(this, "Timer Info", strMessageP);
 }
 
 void TurboButton::changeSoundOutput()
@@ -376,66 +440,44 @@ void TurboButton::updateTimeUnits()
 {
     if (radioButtonsTime)
     {
-        nSeconds = 1;
+        m_Seconds = 1;
         //timerValue->setSuffix(STR_SEC);
     }
     else
     {
-        nSeconds = 60;
+        m_Seconds = 60;
         //timerValue->setSuffix(STR_MIN);
     }
 }
 
-void TurboButton::INISettingsRestore()
-{
-    int nTmp = 0;
-
-    nTmp = m_settings->restoreIntValues("MainWindow/Values/LastTimerValue");
-    m_settings->restoreAppSizePos(this);
-
-    // timerValue->setValue (nTmp);
-
-    nTmp = m_settings->restoreIntValues("MainWindow/Values/TimeUnit");
-    radioButtonsTime = nTmp;
-
-    qDebug ("radioButtonsTime = %d", radioButtonsTime);
-    qDebug ("call changeTimeUnit() from restoreSettingsFromINI");
-
-    //changeTimeUnit();
-
-    readCounterFromINI();
-}
-
-void TurboButton::INISettingsSave()
+void TurboButton::iniSaveMainWindowSizePos()
 {
     m_settings->saveAppSizePos(this);
-    //m_settings->saveValues("MainWindow/Values/LastTimerValue", timerValue->value());
-
-    m_settings->saveValues("MainWindow/Values/TimeUnit", radioButtonsTime);
-    m_settings->saveValues("MainWindow/Values/Sound_ON_OFF", radioButtonsSound);
-    
-    m_settings->saveValues("MainWindow/Values/Date", this->currentDate());
-    m_settings->saveValues("MainWindow/Values/Tomato_Counter", this->m_tomato_counter);
-    //qDebug("radioButtonsTime= %d\n", radioButtonsTime);
 }
 
-void TurboButton::readCounterFromINI()
+void TurboButton::iniSaveCurrentState()
 {
-    QString str_ini_date = m_settings->restoreStrValues("MainWindow/Values/Date");
-    int nTmp = m_settings->restoreIntValues("MainWindow/Values/Tomato_Counter");
-    setTomatoCounter(nTmp, str_ini_date);
+    m_settings->saveValues(STR_INI_PATH_DATE, currentDate());
+    m_settings->saveValues(STR_INI_PATH_TOMATO_COUNTER, m_CounterTomato);
+    m_settings->saveValues(STR_INI_PATH_BREAK_COUNTER,  m_CounterBreaks);
+
+    //m_settings->saveValues("MainWindow/Values/LastTimerValue", timerValue->value());
+    //m_settings->saveValues("MainWindow/Values/TimeUnit", radioButtonsTime);
+    //m_settings->saveValues("MainWindow/Values/Sound_ON_OFF", radioButtonsSound);
+
+    //qDebug("radioButtonsTime= %d\n", radioButtonsTime);
 }
 
 void TurboButton::closeEvent(QCloseEvent* e)
 {
     m_timer_ctd->stop();
-    INISettingsSave();
+    iniSaveCurrentState();
+    iniSaveMainWindowSizePos();
 }
 
 void TurboButton::playSound()
 {
     Beep(500, 100);
-    Beep(300, 500);
-    //time.sleep(0.2)
+    Beep(300, 500);    
 }
 

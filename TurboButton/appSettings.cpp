@@ -27,7 +27,6 @@ void AppSettings::saveAppSizePos(QWidget *app)
     // settings.setValue("MainWindow/State", QVariant(saveState()));
 }
 
-
 int AppSettings::restoreIntValues(QString strPath)
 {
     int num = settings->value(strPath, QVariant("0")).toInt();

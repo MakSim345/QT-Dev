@@ -37,22 +37,29 @@ public:
     void startTimer();
     void stopTimer();
     void decrementCounter();
+    void stateUpdate();
+    void breakStatusUpdate();    
+    bool isLongBreak();
+    void selectBreak();
     void updateRemainTxt();
-    void raiseAlarm();
-    void INISettingsRestore();
-    void INISettingsSave();
-    void closeEvent (QCloseEvent *);
+    void raiseAlarm(QString strMessageP);
+
+    void iniSaveCurrentState();   
+
+    void closeEvent (QCloseEvent* clEv);
     void playSound();
-    void updateMainWindowIcon(BUTTON_STYLE);
+    void updateMainWindowIcon();
 
-    void paintEvent(QPaintEvent *e);
-    void resizeEvent(QResizeEvent *e);
+    void paintEvent(QPaintEvent* e);
+    void resizeEvent(QResizeEvent* e);
 
-    int getTomatoCounter() {return m_tomato_counter;}
+    int getTomatoCounter() {return m_CounterTomato;}
     QString currentDate();
-    void setTomatoCounter(int, QString, int increment=0);
-    void readCounterFromINI();
+    void setTomatoCounter(int incrementP);
 
+    int convertMinutesToSeconds(int nMinutesToConvertP);
+    void restoreMainWindowSizePos();
+    void iniSaveMainWindowSizePos();
 
 public slots:
     void onStart();
@@ -63,39 +70,45 @@ public slots:
     void updateTimeUnits();
 
 private:
-    int nCounter;
+    int m_CounterTimeDown;
+    int m_CounterTomato;
+    int m_CounterBreaks;
+
     int m_ButtonFontSize;
     int m_LabelFontSize;
-    int nSeconds;
+    int m_Seconds;
     int radioButtonsTime;
     int radioButtonsSound;
-    int m_mainTime;
+    int m_breakTime;
+    int m_mainTimeMinutes;
+    int m_shortBreakTimeMinutes;
+    int m_longBreakTimeMinutes;
     bool isPause;
-    bool isRun;
-    int m_tomato_counter;
-    
+    CURRENT_STATE m_CurrentState;
+
+
     int prev_seconds;
-    int _sec;
-    int _min;
-    QString min_str;
-    QString sec_str;
+    int m_SecInt;
+    int m_MinInt;
+    QString m_MinStr;
+    QString m_SecStr;
 
     QTimer *m_timer_ctd;
-    
+
     QPixmap picOn;
     QPixmap picOff;
     QIcon m_iconMainWindow;
 
     QString m_FontName;
     const int m_FontSize;
-    
-    QLabel *txtRemain;    
+
+    QLabel *txtRemain;
 
     QPushButton *btnStart;
     QPushButton *btnQuit;
 
     QRadioButton *radioMin;
-    QRadioButton *radioSec;         
+    QRadioButton *radioSec;
     QRadioButton *radioSoundOn;
     QRadioButton *radioSoundOFF;
 
@@ -109,7 +122,9 @@ private:
     QHBoxLayout *hLayoutRemainTime;
     QHBoxLayout *hLayoutTimeShow;
 
-    AppSettings *m_settings; 
+    AppSettings *m_settings;
+
+    QMessageBox *msgBox;
 };
 
 #endif

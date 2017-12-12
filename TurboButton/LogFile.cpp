@@ -136,7 +136,7 @@ void LogFile::Log(QString name, QString value, QString status)
         mOut << name.toStdString() << ", " << value.toStdString() << ", CANCELLED, " << elapsed << "\n";
     }
     else
-    {   
+    {
         mLogTime->restart();
         mOut << mLogTime->toString("hh:mm:ss.zzz").toStdString() << ", ";
         mOut << name.toStdString() << ", " << value.toStdString() << ", INFO "<< status.toStdString() << "\n";

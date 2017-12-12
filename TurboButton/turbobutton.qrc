@@ -5,5 +5,6 @@
       <file>Resources/Red_Button.jpg</file>
       <file>Resources/Button_Restart.png</file>
       <file>Resources/Button_Shutdown.png</file>
+      <file>Resources/Button_Break.png</file>
     </qresource>
 </RCC>
