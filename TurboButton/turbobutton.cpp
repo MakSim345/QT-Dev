@@ -29,9 +29,7 @@ TurboButton::TurboButton(QDialog *parent)
      , m_CounterTomato(0)
      , m_CounterBreaks(0)
      , isPause(false)
-     , m_CurrentState(NO_ACTION)
-
- {
+{     
     m_timer_ctd = new QTimer();
 
     initMainWindow();
@@ -41,7 +39,7 @@ TurboButton::TurboButton(QDialog *parent)
 
     m_CounterTimeDown = convertMinutesToSeconds(m_mainTimeMinutes); // set to minutes
 
-    // nCounter = timerValue->value() * nSeconds; //  set to minutes
+    // m_CounterTimeDown = 3; // DEBUG
     updateRemainTxt();
     setConnections();
 
@@ -119,6 +117,10 @@ void TurboButton::paintEvent(QPaintEvent *e)
     QPainter painter(this);
     QRegion r1;
 
+    r1 = QRegion(picOff.rect());
+    painter.setClipRegion(r1);
+    painter.drawPixmap(picOff.rect(), picOff);
+    /*
     switch (m_CurrentState)
     {
     case NO_ACTION:
@@ -136,6 +138,7 @@ void TurboButton::paintEvent(QPaintEvent *e)
         painter.drawPixmap(picOn.rect(), picOn);
         break;
     }
+   */
 }
 
 void TurboButton::resizeEvent(QResizeEvent *e)
@@ -203,12 +206,15 @@ void TurboButton::tuneMainWindow()
     this->setMaximumHeight(3.5 * m_FontSize);
 }
 
-void TurboButton::setMainWindowTitle(QString strToShow)
+void TurboButton::setMainWindowTitle(QString strToShowP)
 {
-    QString strCombine = STR_MAIN_TITLE;
+    QString strTitle = STR_MAIN_TITLE;
     // strCombine.append(CURRENT_VERSION);
-    strCombine.append(": ");
-    setWindowTitle(strCombine + strToShow);
+    strTitle.append(": ");
+    strTitle.append(strToShowP);
+    strTitle.append(" - ");
+    strTitle.append(st.getStrStatus());
+    setWindowTitle(strTitle);
 }
 
 void TurboButton::setConnections()
@@ -229,7 +235,7 @@ void TurboButton::onStart()
     startTimer();
     updateRemainTxt();
     btnStart->setEnabled(false);
-    m_CurrentState = RUNNING_TOMATO;
+    st.setStatus(RUNNING_TOMATO);
     setTomatoCounter(NO_INCREMENT);
     this->updateMainWindowIcon();
     this->update();
@@ -300,13 +306,13 @@ void TurboButton::stateUpdate()
 {
     if (0 > m_CounterTimeDown)
     {
-        switch (m_CurrentState)
+        switch (st.state)
         {
         case NO_ACTION:
             break;
         case RUNNING_BREAK_LONG:
             m_CounterTimeDown = convertMinutesToSeconds(m_mainTimeMinutes); // set to minutes
-            m_CurrentState = NO_ACTION;            
+            st.setStatus(NO_ACTION);
             btnStart->setStyleSheet(
                 "background: transparent; border-image: url(://Resources/Button_Restart.png);"
                 );
@@ -316,7 +322,7 @@ void TurboButton::stateUpdate()
             break;
         case RUNNING_BREAK_SHORT:
             m_CounterTimeDown = convertMinutesToSeconds(m_mainTimeMinutes); // set to minutes
-            m_CurrentState = NO_ACTION;            
+            st.setStatus(NO_ACTION);
             btnStart->setStyleSheet(
                 "background: transparent; border-image: url(://Resources/Button_Restart.png);"
                 );            
@@ -344,23 +350,24 @@ void TurboButton::selectBreak()
     if (isLongBreak())
     {
         m_CounterTimeDown = convertMinutesToSeconds(m_longBreakTimeMinutes); 
-        m_CurrentState = RUNNING_BREAK_LONG;
+        st.setStatus(RUNNING_BREAK_LONG);
     }    
     else
     {
         m_CounterTimeDown = convertMinutesToSeconds(m_shortBreakTimeMinutes); 
-        m_CurrentState = RUNNING_BREAK_SHORT;
+        st.setStatus(RUNNING_BREAK_SHORT);
     }    
 }
 
 void TurboButton::updateMainWindowIcon()
 {
-    switch (m_CurrentState)
+    switch (st.state)
     {
         case NO_ACTION:
             setWindowIcon(QIcon("://Resources/Button_Restart.png"));
             break;
         case RUNNING_BREAK_SHORT:
+        case RUNNING_BREAK_LONG:
             setWindowIcon(QIcon("://Resources/Button_Break.png"));
             break;
         case RUNNING_TOMATO:

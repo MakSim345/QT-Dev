@@ -33,8 +33,7 @@ public:
     QString restoreStrValues(QString strPath);
     void saveValues(QString strPath, QVariant qValue);
 
-private:
-    int nCounter;
+private:    
     QSettings *settings;
     // void restoreAppSettings();
 

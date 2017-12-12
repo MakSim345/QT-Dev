@@ -17,6 +17,44 @@
 #include "gen.h"
 #include "appSettings.h"
 
+class StatusTomato
+{
+public:
+    StatusTomato()
+    {
+        setStatus(NO_ACTION);
+    }
+
+    ~StatusTomato(){};
+    
+    CURRENT_STATE state;
+    
+    QString getStrStatus() {return this->str_status;}
+    
+    void setStatus(CURRENT_STATE newStatusP)
+    {
+        state = newStatusP;
+        switch (newStatusP)
+        {
+        case NO_ACTION:
+            str_status = STR_STATUS_IDLE;
+            break;
+        case RUNNING_BREAK_SHORT:
+            str_status = STR_STATUS_SHORT_BREAK;
+            break;
+        case RUNNING_BREAK_LONG:
+            str_status = STR_STATUS_LONG_BREAK;
+            break;
+        case RUNNING_TOMATO:
+            str_status = STR_STATUS_RUN;
+            break;
+        }
+    }
+
+private:
+    QString str_status;
+};
+
 
 class TurboButton : public QDialog
 {
@@ -84,15 +122,15 @@ private:
     int m_shortBreakTimeMinutes;
     int m_longBreakTimeMinutes;
     bool isPause;
-    CURRENT_STATE m_CurrentState;
-
-
+    // CURRENT_STATE state;
+    StatusTomato st;
+    
     int prev_seconds;
     int m_SecInt;
     int m_MinInt;
     QString m_MinStr;
     QString m_SecStr;
-
+    
     QTimer *m_timer_ctd;
 
     QPixmap picOn;

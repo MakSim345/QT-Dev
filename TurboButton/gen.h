@@ -36,6 +36,10 @@
 #define STR_INI_PATH_BREAK_COUNTER "MainWindow/Values/Break_Counter"
 #define STR_INI_PATH_DATE           "MainWindow/Values/Date"
 
+#define STR_STATUS_IDLE "Idle"
+#define STR_STATUS_RUN "Tomato running"
+#define STR_STATUS_LONG_BREAK "Long break"
+#define STR_STATUS_SHORT_BREAK "Short break"
 
 #define INT_MILLISEC_CHECK 500
 #define INT_MINUTES_SHORT_BREAK 5
@@ -66,7 +70,6 @@ typedef enum
 {
     RED_BUTTON, GREEN_BUTTON
 } BUTTON_STYLE;
-
 
 typedef enum
 {
