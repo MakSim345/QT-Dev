@@ -6,14 +6,11 @@ Controller::Controller()
     , isLngFileNameDefault(true)
     , strTmpFile("tmp.txt")
 {
-
+    strncpy(outputLogFileName, STR_OUTPUT_FILE_NAME, INT_OUTPUT_FILE_NAME_LEN);
 }
 
 bool Controller::transferFileToESP()
 {
-    char buf[MAX_LEN];
-    char m_strTransferCmd[MAX_LEN];
-
     // COMMAND = python espl10ntool.py --config espl10ntool.conf create-lng -d . %OVERLAY% %FILE_TO_CONVERT%
     // File strInputXmlFile first fixed by fix_xml_file_for_convertion.py script and new file tmp.txt is use for LNG
 
@@ -42,6 +39,7 @@ bool Controller::transferFileToESP()
     showMsgOnDbgLabel("Transferring file");
 
     status = system(m_strTransferCmd);
+    //status = executeProcess(LPCTSTR(m_strTransferCmd), LPCTSTR(outputLogFileName), exitCode, "Transferring file");
     if (status == 0)
     {
         sprintf(buf, "File transferred successfully - OK");
@@ -63,15 +61,13 @@ void Controller::showMsgOnDbgLabel(const QString & strMsgP)
 }
 
 bool Controller::resetESP()
-{
-    char buf[MAX_LEN];
-    char m_strResetCmd[MAX_LEN];
-
+{   
     sprintf(m_strResetCmd, ".\\bin\\ssh -o StrictHostKeyChecking=no root@%s systemctl restart esp", strIpAddress.toStdString().c_str());
 
     showMsgOnDbgLabel("Reboot remote ESP...");
 
     status = system(m_strResetCmd);
+    // status = executeProcess(LPCTSTR(m_strResetCmd), LPCTSTR(outputLogFileName), exitCode, "Reboot remote ESP...");
     if (status == 0)
     {
         sprintf(buf, "Shutting down ESP, please wait");
@@ -94,11 +90,6 @@ bool Controller::convertLngFileRemoveExtra()
     // COMMAND = python espl10ntool.py --config espl10ntool.conf create-lng -d . %OVERLAY% %FILE_TO_CONVERT%
     // File strInputXmlFile first fixed by fix_xml_file_for_convertion.py script and new file tmp.txt is use for LNG
 
-    char buf[MAX_LEN];
-
-    char m_strConvertCmd[MAX_LEN];
-    char m_strTransferCmd[MAX_LEN];
-    
     // QString.sprintf(m_strConvertCmd, "python.exe .\\bin\\fix_xml_file_for_convertion.py %s %s", strInputXmlFile, strTmpFile);
     // QString("python.exe .\\bin\\fix_xml_file_for_convertion.py %s %s").arg(strInputXmlFile, strTmpFile);
 
@@ -106,9 +97,9 @@ bool Controller::convertLngFileRemoveExtra()
 
     // sprintf(buf, "Converting xml");
     showMsgOnDbgLabel("Converting xml");
-    // m_strInfo.fromUtf8(buf);
-
+    
     status = system(m_strConvertCmd);
+    //status = executeProcess(LPCTSTR(m_strConvertCmd), LPCTSTR(outputLogFileName), exitCode, "Converting xml.");
     if (status == 0)
     {
         sprintf(buf, "File <%s> created successfully - OK.", strTmpFile.toStdString().c_str());
@@ -125,9 +116,6 @@ bool Controller::convertLngFileRemoveExtra()
 
 bool Controller::convertLngFile()
 {
-    char buf[MAX_LEN];    
-    char m_strConvertCmd[MAX_LEN];
-
     // actual conversion:
     if (strEspType.compare("ppd") == 0)
     {
@@ -161,7 +149,11 @@ bool Controller::convertLngFile()
     sprintf(buf, "Create LNG file....");    
     showMsgOnDbgLabel(QString(buf));
     
+    char okText[] = "ok";
+    char failedText[] = "failed";
+    
     status = system(m_strConvertCmd);
+    //status = executeProcess(LPCWSTR(m_strConvertCmd), LPCWSTR(outputLogFileName), exitCode, buf, okText, failedText);
     if (status == 0)
     {
         sprintf(buf, "LNG file created successfully - OK.");
@@ -179,8 +171,6 @@ bool Controller::convertLngFile()
 
 bool Controller::convertLngFileMakeName()
 {
-    char buf[MAX_LEN];
-    char m_strConvertCmd[MAX_LEN];    
     // write result filename to output.txt:    
     sprintf(m_strConvertCmd, 
             "python.exe .\\bin\\espl10ntool.py --config .\\bin\\espl10ntool.conf print-l10n-file-name %s > .\\%s", 
@@ -188,6 +178,7 @@ bool Controller::convertLngFileMakeName()
             STR_OUTPUT_FILE_NAME);
     
     status = system(m_strConvertCmd);    
+    // status = executeProcess(LPCTSTR(m_strConvertCmd), LPCTSTR(outputLogFileName), exitCode, "Get output file name");
     if (status == 0)
     {
         sprintf(buf, "Write LNG name to a log file - OK.");
@@ -212,7 +203,6 @@ bool Controller::doFileNameToTransferV3()
 {   
     // get name for the transferable file.
     // if filename was given by user, use it.
-    char buf[MAX_LEN];
     isLngFileNameDefault = true;
         
     if ( strOutputLngFile.length() )    
@@ -233,7 +223,6 @@ bool Controller::doFileNameToTransferV3()
     else
     {   
         char* line;
-        strncpy(outputLogFileName, STR_OUTPUT_FILE_NAME, INT_OUTPUT_FILE_NAME_LEN);
         
         hOutputLogFile = fopen(outputLogFileName, "r");
 
@@ -306,6 +295,179 @@ void Controller::setMonitorType(const QString & strMonitorTypeP)
         strSshKey.append("id_dsa");
     }
 }
+
+
+bool Controller::executeProcess(LPCTSTR processCmdLineP
+                              , LPCTSTR outputFileNameP
+                              , int& rExitCodeP
+                              , char* commentP
+                              , char* okP
+                              , char* failP
+                              , bool bShowP
+                              , bool showFailingP)
+{
+    SECURITY_ATTRIBUTES saAttr;
+    HANDLE hSaveStdout;
+    HANDLE hChildStdoutRd;
+    HANDLE hChildStdoutWr;
+    HANDLE hChildStdoutRdDup;
+    HANDLE hOutput;
+    BOOL fSuccess;
+    PROCESS_INFORMATION piProcInfo;
+    STARTUPINFO siStartInfo;
+    BOOL bFuncRetn = FALSE;
+    DWORD dwRead;
+    DWORD dwWritten;
+    DWORD dwFlags = 0;
+    const int BUFSIZE = 1024;
+    CHAR chBuf[BUFSIZE];
+    bool bres = true;
+    
+    if (commentP)
+    {
+        sprintf(chBuf, commentP);
+        showMsgOnDbgLabel(QString(chBuf));
+    }
+
+    // Set the bInheritHandle flag so pipe handles are inherited.
+    saAttr.nLength = sizeof(SECURITY_ATTRIBUTES);
+    saAttr.bInheritHandle = TRUE;
+    saAttr.lpSecurityDescriptor = NULL;
+    // Save current STDOUT handle
+    hSaveStdout = GetStdHandle(STD_OUTPUT_HANDLE);
+    // Create a pipe for the child process's STDOUT.
+    if (CreatePipe(&hChildStdoutRd, &hChildStdoutWr, &saAttr, 0))
+    {
+        // Set a write handle to the pipe to be STDOUT.
+        if (SetStdHandle(STD_OUTPUT_HANDLE, hChildStdoutWr))
+        {
+            // Create non-inheritable read handle and close the inheritable read handle.
+            fSuccess = DuplicateHandle(
+                GetCurrentProcess(), hChildStdoutRd,
+                GetCurrentProcess(), &hChildStdoutRdDup , 0,
+                FALSE,
+                DUPLICATE_SAME_ACCESS);
+            if(fSuccess)
+            {
+                CloseHandle(hChildStdoutRd);
+                hChildStdoutRd = NULL;
+                // Create child process
+                ZeroMemory( &piProcInfo, sizeof(PROCESS_INFORMATION) );
+                ZeroMemory( &siStartInfo, sizeof(STARTUPINFO) );
+                siStartInfo.cb = sizeof(STARTUPINFO);
+                siStartInfo.dwFlags = STARTF_USESHOWWINDOW|STARTF_USESTDHANDLES;
+                siStartInfo.hStdOutput = hChildStdoutWr;
+                siStartInfo.hStdError = hChildStdoutWr;
+                siStartInfo.hStdInput = NULL;
+                siStartInfo.wShowWindow = bShowP ? SW_SHOWDEFAULT : SW_HIDE;
+                bFuncRetn = CreateProcess(
+                    NULL,
+                    (LPWSTR)processCmdLineP,  // command line
+                    NULL,          // process security attributes
+                    NULL,          // primary thread security attributes
+                    TRUE,          // handles are inherited
+                    dwFlags,       // creation flags
+                    NULL,          // use parent's environment
+                    NULL,          // use parent's current directory
+                    &siStartInfo,  // STARTUPINFO pointer
+                    &piProcInfo);  // receives PROCESS_INFORMATION
+                if (bFuncRetn)
+                {
+                    WaitForSingleObject(piProcInfo.hProcess, 10000);
+                    if (GetExitCodeProcess(piProcInfo.hProcess, (DWORD*)&rExitCodeP))
+                    {
+                        // write child process output to file
+                        hOutput = CreateFile(
+                            outputFileNameP,
+                            GENERIC_WRITE,
+                            0,
+                            NULL,
+                            OPEN_ALWAYS,
+                            FILE_ATTRIBUTE_NORMAL,
+                            NULL);
+                        if (hOutput != INVALID_HANDLE_VALUE)
+                        {
+                            //if (showFailingP==false) // dont show output if not needed
+                            //{
+                            //    rExitCodeP = 0;
+                            //}
+                            SetFilePointer(hOutput, 0, 0, FILE_END);
+                            if (CloseHandle(hChildStdoutWr))
+                            {
+                                hChildStdoutWr = NULL;
+                                for (;;)
+                                {
+                                    if (!ReadFile(hChildStdoutRdDup, chBuf, BUFSIZE, &dwRead, NULL) || dwRead == 0)
+                                    {
+                                        break;
+                                    }
+                                    if (!WriteFile(hOutput, chBuf, dwRead, &dwWritten, NULL))
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            bres = false;
+                        }
+                    }
+                    else
+                    {
+                        bres = false;
+                    }
+                }
+                else
+                {
+                    bres = false;
+                }
+            }
+            else
+            {
+                bres = false;
+            }
+        }
+        else
+        {
+            bres = false;
+        }
+    }
+    else
+    {
+        bres = false;
+    }
+
+    if (hOutput != INVALID_HANDLE_VALUE)
+    {
+        if (bres && (rExitCodeP == 0 /*|| showFailingP*/) && commentP && okP)
+        {
+            sprintf(chBuf, "INFO - %s... %s\n", commentP, okP);
+            WriteFile(hOutput, chBuf, strlen(chBuf), &dwWritten, NULL);
+        }
+        else if(commentP && failP)
+        {
+            sprintf(chBuf, "INFO - %s... %s\n", commentP, failP);
+            WriteFile(hOutput, chBuf, strlen(chBuf), &dwWritten, NULL);
+        }
+    }
+    // Clean up
+    CloseHandle(piProcInfo.hProcess);
+    CloseHandle(piProcInfo.hThread);
+    CloseHandle(hOutput);
+    CloseHandle(hChildStdoutRdDup);
+    if (hChildStdoutRd)
+    {
+        CloseHandle(hChildStdoutRd);
+    }
+    if (hChildStdoutWr)
+    {
+        CloseHandle(hChildStdoutWr);
+    }
+
+    return (bres && (rExitCodeP == 0 || showFailingP));
+}
+
 
 int Controller::windowsSystem(const char *cmd)
 {    

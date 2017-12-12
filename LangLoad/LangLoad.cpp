@@ -60,11 +60,10 @@ void LangLoad::saveConfigFile()
 
 void LangLoad::readConfigFile()
 {
+    char buf[MAX_LEN];
     strncpy(configFileName, "LangLoad.cfg", INT_CONFIG_FILE_NAME_LEN);
 
     hConfigFile = fopen(configFileName, "r");
-
-    char buf[MAX_LEN];
 
     while(hConfigFile != NULL && fgets(buf, MAX_LEN, hConfigFile))
     {

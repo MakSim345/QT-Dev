@@ -24,6 +24,14 @@ public:
     void setDebugLabel(QLabel &infoLabelP);
     void showMsgOnDbgLabel(const QString & str);
     int windowsSystem(const char *cmd);
+    bool executeProcess(LPCTSTR processCmdLineP, 
+                        LPCTSTR outputFileP, 
+                        int& rExitCodeP, 
+                        char* commentP = NULL, 
+                        char* okP = NULL, 
+                        char* failP = NULL, 
+                        bool bShowP = false, 
+                        bool showFailingP = true);
 
 private:
     
@@ -41,8 +49,14 @@ private:
     QLabel *infoLabelPtr;
 
     char outputLogFileName[INT_OUTPUT_FILE_NAME_LEN];
+    // LPCWSTR m_strConvertCmd;//[MAX_LEN];
+    char m_strConvertCmd[MAX_LEN];
+    char m_strTransferCmd[MAX_LEN];
+    char m_strResetCmd[MAX_LEN];
+    char buf[MAX_LEN];
 
     FILE* hOutputLogFile;
 
     bool isLngFileNameDefault;
+    int exitCode;
 };
