@@ -76,7 +76,7 @@ public:
     void stopTimer();
     void decrementCounter();
     void stateUpdate();
-    void breakStatusUpdate();    
+    void updateBreakStatus();    
     bool isLongBreak();
     void selectBreak();
     void updateRemainTxt();

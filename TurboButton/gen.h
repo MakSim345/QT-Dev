@@ -8,7 +8,7 @@
 #define INT_BTN_H 50
 
 #define STR_MAIN_TITLE "TurboButton. Today done"
-#define CURRENT_VERSION "ver. 0.0.8"
+#define CURRENT_VERSION "ver. 1.0.2"
 #define STR_SEC " sec"
 #define STR_MIN " min"
 #define STR_MINUTES  "Minutes"
@@ -49,6 +49,8 @@
 
 #define DO_INCREMENT 1
 #define NO_INCREMENT 0
+
+#define INT_TIME_GONE 1
 
 #include <QTimer>
 #include <QTime>

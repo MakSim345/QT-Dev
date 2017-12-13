@@ -29,12 +29,12 @@ TurboButton::TurboButton(QDialog *parent)
      , m_CounterTomato(0)
      , m_CounterBreaks(0)
      , isPause(false)
-{     
+{
     m_timer_ctd = new QTimer();
 
     initMainWindow();
 
-    m_settings = new AppSettings(STR_COMPANY_NAME, STR_APP_NAME);    
+    m_settings = new AppSettings(STR_COMPANY_NAME, STR_APP_NAME);
     setTomatoCounter(NO_INCREMENT);
 
     m_CounterTimeDown = convertMinutesToSeconds(m_mainTimeMinutes); // set to minutes
@@ -169,7 +169,7 @@ void TurboButton::setTomatoCounter(int incrementP)
     }
     else
     {
-        QString dateNow = currentDate();        
+        QString dateNow = currentDate();
         int n = dateNow.compare(m_settings->restoreStrValues(STR_INI_PATH_DATE));
 
         if (n == 0)
@@ -177,8 +177,8 @@ void TurboButton::setTomatoCounter(int incrementP)
             m_CounterTomato = m_settings->restoreIntValues(STR_INI_PATH_TOMATO_COUNTER);
             m_CounterBreaks = m_settings->restoreIntValues(STR_INI_PATH_BREAK_COUNTER);
         }
-        else 
-        {            
+        else
+        {
             m_CounterTomato = 0;
             m_CounterBreaks = 0;
         }
@@ -287,9 +287,10 @@ void TurboButton::decrementCounter()
     m_CounterTimeDown = m_CounterTimeDown - 1;
 }
 
-void TurboButton::breakStatusUpdate()
+void TurboButton::updateBreakStatus()
 {
     m_CounterBreaks = m_CounterBreaks + 1;
+    m_settings->saveValues(STR_INI_PATH_BREAK_COUNTER,  m_CounterBreaks);
 }
 
 bool TurboButton::isLongBreak()
@@ -304,7 +305,7 @@ bool TurboButton::isLongBreak()
 
 void TurboButton::stateUpdate()
 {
-    if (0 > m_CounterTimeDown)
+    if (0 >= m_CounterTimeDown)
     {
         switch (st.state)
         {
@@ -319,17 +320,19 @@ void TurboButton::stateUpdate()
             btnStart->setEnabled(true);
             stopTimer();
             raiseAlarm(STR_TIMER_LONG_BREAK_OVER);
+            setMainWindowTitle(QString().setNum(m_CounterTomato));
             break;
         case RUNNING_BREAK_SHORT:
             m_CounterTimeDown = convertMinutesToSeconds(m_mainTimeMinutes); // set to minutes
             st.setStatus(NO_ACTION);
             btnStart->setStyleSheet(
                 "background: transparent; border-image: url(://Resources/Button_Restart.png);"
-                );            
+                );
             btnStart->setEnabled(true);
             stopTimer();
             raiseAlarm(STR_TIMER_SHORT_BREAK_OVER);
-            breakStatusUpdate(); // increment break numbers
+            updateBreakStatus(); // increment break numbers
+            setMainWindowTitle(QString().setNum(m_CounterTomato));
             break;
         case RUNNING_TOMATO:
             selectBreak();
@@ -349,14 +352,14 @@ void TurboButton::selectBreak()
 {
     if (isLongBreak())
     {
-        m_CounterTimeDown = convertMinutesToSeconds(m_longBreakTimeMinutes); 
+        m_CounterTimeDown = convertMinutesToSeconds(m_longBreakTimeMinutes);
         st.setStatus(RUNNING_BREAK_LONG);
-    }    
+    }
     else
     {
-        m_CounterTimeDown = convertMinutesToSeconds(m_shortBreakTimeMinutes); 
+        m_CounterTimeDown = convertMinutesToSeconds(m_shortBreakTimeMinutes);
         st.setStatus(RUNNING_BREAK_SHORT);
-    }    
+    }
 }
 
 void TurboButton::updateMainWindowIcon()
@@ -381,29 +384,29 @@ void TurboButton::updateRemainTxt()
     m_SecInt = m_CounterTimeDown % 60;
     m_MinInt = m_CounterTimeDown / 60;
 
-        if (0 == m_MinInt)
-        {
-            m_MinStr = "00";
-        }
+    if (0 == m_MinInt)
+    {
+        m_MinStr = "00";
+    }
+    else
+    {
+        if (m_MinInt < 10)
+            m_MinStr = "0" + QString().setNum(m_MinInt);
         else
-        {
-            if (m_MinInt < 10)
-                m_MinStr = "0" + QString().setNum(m_MinInt);
-            else
-                m_MinStr = QString().setNum(m_MinInt);
-        }
+            m_MinStr = QString().setNum(m_MinInt);
+    }
 
-        if (0 == m_SecInt)
-        {
-            m_SecStr = "00";
-        }
+    if (0 == m_SecInt)
+    {
+        m_SecStr = "00";
+    }
+    else
+    {
+        if (m_SecInt < 10)
+            m_SecStr = "0" + QString().setNum(m_SecInt);
         else
-        {
-            if (m_SecInt < 10)
-                m_SecStr = "0" + QString().setNum(m_SecInt);
-            else
-                m_SecStr = QString().setNum(m_SecInt);
-        }
+            m_SecStr = QString().setNum(m_SecInt);
+    }
 
     txtRemain->setText(m_MinStr + ":" + m_SecStr);
 }
@@ -485,6 +488,6 @@ void TurboButton::closeEvent(QCloseEvent* e)
 void TurboButton::playSound()
 {
     Beep(500, 100);
-    Beep(300, 500);    
+    Beep(300, 500);
 }
 
