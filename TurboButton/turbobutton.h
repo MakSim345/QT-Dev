@@ -93,6 +93,7 @@ public:
 
     int getTomatoCounter() {return m_CounterTomato;}
     QString currentDate();
+    
     void setTomatoCounter(int incrementP);
 
     int convertMinutesToSeconds(int nMinutesToConvertP);
@@ -108,9 +109,12 @@ public slots:
     void updateTimeUnits();
 
 private:
+    QString convertIntToStrXX(int nToConvertP);
+    void setBreakCounter(const int &nNewValueP);
+    
     int m_CounterTimeDown;
     int m_CounterTomato;
-    int m_CounterBreaks;
+    int m_BreakCounter;
 
     int m_ButtonFontSize;
     int m_LabelFontSize;

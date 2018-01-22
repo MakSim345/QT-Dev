@@ -7,8 +7,10 @@
 #define INT_BTN_W 100
 #define INT_BTN_H 50
 
+// #define DEBUG_ON 
+
 #define STR_MAIN_TITLE "TurboButton. Today done"
-#define CURRENT_VERSION "ver. 1.0.2"
+#define CURRENT_VERSION "ver. 1.0.4"
 #define STR_SEC " sec"
 #define STR_MIN " min"
 #define STR_MINUTES  "Minutes"
@@ -16,9 +18,13 @@
 #define STR_SOUND_ON  "Sound ON"
 #define STR_SOUND_OFF  "Sound OFF"
 #define STR_REMAINS  "Remains:"
-#define STR_INIT_TIME "00:00"
+
+#define STR_TIME_INIT "00:00"
+#define STR_TIME_ZERO "00"
+#define STR_TIME_DIVIDER ":"
+
 #define STR_SET_TIME  "Set Time: "
-#define STR_PLANE_ICON ":/Plane"
+
 #define STR_BTN_PAUSE  "&Pause"
 #define STR_BTN_RESUME "&Resume"
 #define STR_BTN_START  "&Start"
@@ -28,12 +34,12 @@
 #define STR_DATE_FORMAT "dd.MM.yyyy"
 #define STR_APP_NAME "TurboButton"
 
-// #define STR_TIMER_GOT_LIMIT "Timer has got it's limit!"
+#define STR_TIMER_GOT_LIMIT "Timer has got it's limit!"
 #define STR_TIMER_SHORT_BREAK_OVER "Short break is over."
 #define STR_TIMER_LONG_BREAK_OVER "Long break is over."
 
 #define STR_INI_PATH_TOMATO_COUNTER "MainWindow/Values/Tomato_Counter"
-#define STR_INI_PATH_BREAK_COUNTER "MainWindow/Values/Break_Counter"
+#define STR_INI_PATH_BREAK_COUNTER  "MainWindow/Values/Break_Counter"
 #define STR_INI_PATH_DATE           "MainWindow/Values/Date"
 
 #define STR_STATUS_IDLE "Idle"
@@ -50,7 +56,8 @@
 #define DO_INCREMENT 1
 #define NO_INCREMENT 0
 
-#define INT_TIME_GONE 1
+#define INT_BREAKS_BEFORE_LONG 3
+#define INT_TIME_GONE 0
 
 #include <QTimer>
 #include <QTime>
