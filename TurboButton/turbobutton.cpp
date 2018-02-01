@@ -274,7 +274,7 @@ void TurboButton::onTimerEvent()
 int TurboButton::convertMinutesToSeconds(int nMinutesToConvertP)
 {
 #ifdef DEBUG_ON
-    return 3; // DEBUG
+    return 5; // DEBUG
 #else
     return nMinutesToConvertP * m_Seconds; // set main time to minutes
 #endif
@@ -340,9 +340,9 @@ void TurboButton::stateUpdate()
             selectBreak();
             btnStart->setStyleSheet(
                 "background: transparent; border-image: url(://Resources/Button_Break.png);"
-                );
-            raiseAlarm(STR_TIMER_GOT_LIMIT);
+                );            
             setTomatoCounter(DO_INCREMENT); // increment today counter.
+            raiseAlarm(STR_TIMER_GOT_LIMIT);
             break;
         }
     }

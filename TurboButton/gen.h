@@ -7,7 +7,7 @@
 #define INT_BTN_W 100
 #define INT_BTN_H 50
 
-// #define DEBUG_ON 
+//#define DEBUG_ON
 
 #define STR_MAIN_TITLE "TurboButton. Today done"
 #define CURRENT_VERSION "ver. 1.0.4"
@@ -56,7 +56,7 @@
 #define DO_INCREMENT 1
 #define NO_INCREMENT 0
 
-#define INT_BREAKS_BEFORE_LONG 3
+#define INT_BREAKS_BEFORE_LONG 4
 #define INT_TIME_GONE 0
 
 #include <QTimer>
