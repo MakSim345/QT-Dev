@@ -1,9 +1,10 @@
-<RCC>
-    <qresource prefix="/">
-      <file>Resources/TurboButton01.jpg</file>
-      <file>Resources/TurboButton02.jpg</file>
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource>
+      <file>Resources/plane.png</file>
+      <file>Resources/ge_logo.jpg</file>
       <file>Resources/Red_Button.jpg</file>
       <file>Resources/Button_Restart.png</file>
       <file>Resources/Button_Shutdown.png</file>
     </qresource>
 </RCC>
+

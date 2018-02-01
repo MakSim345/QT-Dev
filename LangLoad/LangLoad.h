@@ -15,12 +15,12 @@
 #include "appSettings.h"
 #include "Controller.h"
 
-class LangLoad : public QWidget
+class LangLoad : public PARENT_WGT
 {
     Q_OBJECT
 
 public:
-    LangLoad(QWidget *parent = 0);
+    LangLoad(PARENT_WGT *parent = 0);
     ~LangLoad(){};
 
     void initMainWindow();
@@ -32,47 +32,47 @@ public:
     void setConnections();
     void startTimer();
     void stopTimer();
-    
+
     void closeEvent (QCloseEvent *);
-    
+
     QString currentDate();
-    
+
     void sentTextToController();
 
     void cleanAppState();
     void showErrorMessageBox();
 
-public slots:        
-    void onTimerEvent();    
-    
+public slots:
+    void onTimerEvent();
+
     void onTransferButton();
     void onRemoveLock();
     void onFixCorruptionButton();
     void onEnableWDButton();
-        
+
 private:
     Controller *pController;
 
     int nCounter;
     int m_ButtonFontSize;
     int m_LabelFontSize;
-    
+
     QString strExport;
 
     QMessageBox *msgBox;
 
     QTimer *timerRebootWait;
-    
+
     QString m_FontName;
-        
+
     QPushButton *btnStart;
     QPushButton *btnQuit;
-            
+
     QVBoxLayout *vLayoutMain;
 
     QVBoxLayout *vLayoutButtons;
     QVBoxLayout *vLayoutLabels;
-        
+
     QHBoxLayout *hlayoutTop;
     QHBoxLayout *hLayoutBottom;
     QHBoxLayout *hlayoutExitButton;
@@ -80,21 +80,21 @@ private:
     QHBoxLayout *hlayoutIpAddress;
     QHBoxLayout *hlayoutMonitorType;
     QHBoxLayout *hlayoutFileType;
-    QHBoxLayout *hLayoutOutputLNGFile;    
-        
+    QHBoxLayout *hLayoutOutputLNGFile;
+
     QPushButton *btnFixCorruption;
     QPushButton *btnEnableWD;
     QPushButton *btnRemoveLock;
     QPushButton *btnTransfer;
     QProgressBar *prbTransferProgressBar;
-       
+
     void readConfigFile();
     void saveConfigFile();
     void prepareData();
-    
+
     bool sendLngFileToESP();
     void performSendLngFileToESP();
-    
+
     bool convertFileToLNG();
     void performConvertFileToLng();
 
@@ -102,16 +102,16 @@ private:
     void performResetRemoteESP();
 
     void updateProgressBar(const int & newValue);
-    
+
     QLabel *fileNameTextLabel;
     QComboBox *fileNameEdit;
 
-    QLabel *monitorTypeTextLabel;    
+    QLabel *monitorTypeTextLabel;
     QComboBox *monitorTypeEdit;
 
     QLabel *fileTypeTextLabel;
     QComboBox *fileTypeEdit;
-        
+
     QLabel *ipTextLabel;
     QLineEdit *ipEdit;
 
@@ -119,7 +119,7 @@ private:
     QLineEdit *outputLngEdit;
 
     QLabel *dbgOutputLabel;
-    
+
     FILE* hConfigFile;
     char configFileName[INT_CONFIG_FILE_NAME_LEN];
 };

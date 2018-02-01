@@ -15,6 +15,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QFrame>
+#include <QIcon>
 #include <QGroupBox>
 #include <QMessageBox>
 #include <QtWidgets/QDialog>
@@ -24,8 +25,11 @@
 #include <windows.h>
 #include <WinBase.h>
 #include <tchar.h>
+#include <process.h>
 
 using namespace std;
+
+#define PARENT_WGT QFrame
 
 #define INT_BTN_W 150
 #define INT_BTN_H 40
@@ -45,8 +49,8 @@ enum {INT_BUTTON_FONT_SIZE = 13, INT_LABEL_FONT_SIZE = 15};
 #define STR_OUTPUT_FILE_NAME "output.txt"
 #define STR_CONFIG_FILE_NAME "LangLoad.cfg"
 
-#define STR_MAIN_TITLE "Langload"
-#define CURRENT_VERSION "v1.0.0.20 (ESP3)"
+#define STR_MAIN_TITLE "LangLoad"
+#define CURRENT_VERSION "v1.0.0.32 (ESP3)"
 
 #define STR_BTN_FIX_CORRUPTION "&Fix Corruption" // "&Restart ESP"
 #define STR_BTN_ENABLE_WD      "Enable &WD"      // "&Send to ESP"

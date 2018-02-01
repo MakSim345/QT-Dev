@@ -1,7 +1,7 @@
 #pragma once
 
 #include "gen.h"
-    
+
 class Controller
 {
 public:
@@ -15,28 +15,20 @@ public:
     bool convertLngFileMakeName();
 
     bool doFileNameToTransferV3();
-        
+
     void setIpAddress(QString ipAddressP) {this->strIpAddress = ipAddressP;}
     void setMonitorType(const QString & strMonitorTypeP);
     void setInputXmlFileName(const QString & strFileNameP);
     void setOutputLngFileName(const QString & strLngFileNameP);
 
     void setDebugLabel(QLabel &infoLabelP);
-    void showMsgOnDbgLabel(const QString & str);
-    int windowsSystem(const char *cmd);
-    bool executeProcess(LPCTSTR processCmdLineP, 
-                        LPCTSTR outputFileP, 
-                        int& rExitCodeP, 
-                        char* commentP = NULL, 
-                        char* okP = NULL, 
-                        char* failP = NULL, 
-                        bool bShowP = false, 
-                        bool showFailingP = true);
+    void showMsgOnDbgLabel(const QString & str);    
 
+    int systemNoOutput(std::string strCommandP);
+    
 private:
     
-    int _internal_value;	
-    int status;
+    int statusExeCmd;
     QString strTmpFile;
     QString strEspType;
     QString strSshKey;
@@ -44,7 +36,7 @@ private:
     QString strIpAddress;
     QString strInputXmlFile;
     QString strOutputLngFile;
-    
+
     QMessageBox msgBox;
     QLabel *infoLabelPtr;
 
@@ -52,7 +44,7 @@ private:
     // LPCWSTR m_strConvertCmd;//[MAX_LEN];
     char m_strConvertCmd[MAX_LEN];
     char m_strTransferCmd[MAX_LEN];
-    char m_strResetCmd[MAX_LEN];
+    char m_strResetEspCmd[MAX_LEN];
     char buf[MAX_LEN];
 
     FILE* hOutputLogFile;

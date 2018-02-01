@@ -1,10 +1,10 @@
 #include "LangLoad.h"
 
-LangLoad::LangLoad(QWidget *parent)
-     : QWidget(parent)
-     , m_ButtonFontSize(INT_BUTTON_FONT_SIZE) 
+LangLoad::LangLoad(PARENT_WGT *parent)
+     : PARENT_WGT(parent)
+     , m_ButtonFontSize(INT_BUTTON_FONT_SIZE)
      , m_LabelFontSize(INT_LABEL_FONT_SIZE)
-     , m_FontName ("Sans Serif")// ("STENCIL") // ("Sans Serif")// ("MONACO")     
+     , m_FontName ("Sans Serif")// ("STENCIL") // ("Sans Serif")// ("MONACO")
  {
     timerRebootWait = new QTimer();
 
@@ -184,6 +184,7 @@ void LangLoad::initLabels()
     dbgOutputLabel= new QLabel("");
     dbgOutputLabel->setFont(QFont(m_FontName, m_LabelFontSize));
     dbgOutputLabel->setMinimumSize(INT_LABEL_DBG_W, INT_LABEL_H);
+    dbgOutputLabel->setStyleSheet("background: #FFFFE6;");
 }
 
 void LangLoad::initButtons()
@@ -206,19 +207,26 @@ void LangLoad::initButtons()
     btnEnableWD->setFont(QFont(m_FontName, m_ButtonFontSize));
     btnRemoveLock->setFont(QFont(m_FontName, m_ButtonFontSize));
     btnTransfer->setFont(QFont(m_FontName, m_ButtonFontSize));
-    /*
-    btnTransfer->setStyleSheet(
-        "background: transparent; border-image: url(://Resources/transfer.png);"
-        );
-    */
+
+    //btnTransfer->setStyleSheet(
+    //    "background: url(://Resources/transfer.png);"
+    //    );
+    QIcon m_iconPlane("://Resources/ge_logo.jpg");
+    btnTransfer->setIcon(m_iconPlane);
+    btnTransfer->setIconSize(QSize(30, 30));   
+    // btnTransfer->setStyleSheet("QPushButton {background: url(:/Resources/plane.png); }");    
+    
+     //qproperty-icon: url(:/Resources/plane.png);");
+    // btnTransfer->setIconSize(QSize(65,65));
     // btnEnableWD->setEnabled(false);
 }
 
 void LangLoad::initLayouts()
 {
     prbTransferProgressBar = new QProgressBar();
-    prbTransferProgressBar->setMinimumWidth(200);
-    prbTransferProgressBar->setRange(0,100);    
+    //prbTransferProgressBar->setMinimumWidth(200);
+    prbTransferProgressBar->setMinimumHeight(INT_BTN_H - 5);
+    prbTransferProgressBar->setRange(0,100);
     prbTransferProgressBar->setTextVisible(false);
 
     vLayoutMain = new QVBoxLayout();
@@ -290,7 +298,8 @@ QString LangLoad::currentDate()
 void LangLoad::tuneMainWindow()
 {
     //set caption:
-    setMainWindowTitle(CURRENT_VERSION);
+    setMainWindowTitle(CURRENT_VERSION);    
+    // this->setStyleSheet("background: #A3BBD7;");    
 }
 
 void LangLoad::setMainWindowTitle(QString strToShow)
@@ -378,7 +387,7 @@ void LangLoad::onTransferButton()
     updateProgressBar(0);
 
     if ( convertFileToLNG() )
-        updateProgressBar(30);        
+        updateProgressBar(30);
     else
     {
         showErrorMessageBox();
@@ -450,7 +459,7 @@ bool LangLoad::convertFileToLNG()
     {
         return false;
     }
-    
+
     if (!pController->convertLngFile())
     {
         return false;

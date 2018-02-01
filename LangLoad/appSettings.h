@@ -18,8 +18,8 @@ public:
     AppSettings();
     AppSettings(QString strCompanyName, QString strAppName);
     ~AppSettings(){};
-    
-    
+
+
     void restoreAppSizePos(QWidget *app);
     void saveAppSizePos(QWidget *app);
     int restoreIntValues(QString strPath);
@@ -30,6 +30,6 @@ private:
     int nCounter;
     QSettings *settings;
     // void restoreAppSettings();
-    
+
 };
 
