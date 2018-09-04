@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>DashBoard.qml</file>
+        <file>needleblue.png</file>
+        <file>needleorange.png</file>
+        <file>needlered.png</file>
+        <file>speedo.png</file>
+        <file>tacho.png</file>
+        <file>SpeedMeter.qml</file>
+    </qresource>
+</RCC>

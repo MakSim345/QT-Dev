@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>rocket.png</file>
+        <file>speedo.png</file>
+        <file>tacho.png</file>
+        <file>needlered.png</file>
+        <file>needleblue.png</file>
+        <file>MainForm.ui.qml</file>
+    </qresource>
+</RCC>
