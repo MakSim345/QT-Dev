@@ -24,6 +24,12 @@
 *.obj
 *.exe
 
+# Result files:
+*.html
+*.xml
+# *.js
+# *.png
+
 ipch/
 obj/
 [Bb]in
