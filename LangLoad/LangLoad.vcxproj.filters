@@ -56,6 +56,9 @@
     <ClCompile Include="GeneratedFiles\Release\moc_langload.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="ThreadCmd.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="langload.qrc">
@@ -76,6 +79,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Controller.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadCmd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

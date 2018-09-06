@@ -16,6 +16,7 @@
 #include <QHBoxLayout>
 #include <QFrame>
 #include <QIcon>
+#include <QThread>
 #include <QGroupBox>
 #include <QMessageBox>
 #include <QtWidgets/QDialog>

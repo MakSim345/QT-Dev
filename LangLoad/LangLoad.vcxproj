@@ -89,12 +89,14 @@
     <ClCompile Include="LogFile.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="langload.cpp" />
+    <ClCompile Include="ThreadCmd.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="appSettings.h" />
     <ClInclude Include="Controller.h" />
     <ClInclude Include="gen.h" />
     <ClInclude Include="LogFile.h" />
+    <ClInclude Include="ThreadCmd.h" />
     <CustomBuild Include="langload.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing langload.h...</Message>
