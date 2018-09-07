@@ -2,14 +2,10 @@
 #define M_VIEW_H
 //============================================================
 //
-// Copyright (c) 2011 GENERAL ELECTRIC COMPANY
 //
 //============================================================
 //
 // File:           mView.h
-// Project:        Genie Carestation SW
-//
-// Author:         YS / Genie SW Team
 //
 //============================================================
 // Description:

@@ -1,16 +1,7 @@
 #ifndef _MY_THREAD_H_
 #define _MY_THREAD_H_
-
 //============================================================
 //
-// Copyright (c) 2011 GENERAL ELECTRIC COMPANY
-//
-//============================================================
-//
-// File:           Worker.h
-// Project:        Genie Carestation SW
-//
-// Author:         YS / Genie SW Team
 //
 //============================================================
 // Description:

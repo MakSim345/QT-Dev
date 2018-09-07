@@ -1,16 +1,10 @@
 #ifndef _RND_GENERATOR_H_
 #define _RND_GENERATOR_H_
-
 //============================================================
-//
-// Copyright (c) 2011 GENERAL ELECTRIC COMPANY
 //
 //============================================================
 //
 // File:           Worker.cpp
-// Project:        Genie Carestation SW
-//
-// Author:         YS / Genie SW Team
 //
 //============================================================
 // Description:

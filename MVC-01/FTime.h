@@ -2,14 +2,10 @@
 #define _FTIME_H_		
 //============================================================
 //
-// Copyright (c) 2011 GENERAL ELECTRIC COMPANY
 //
 //============================================================
 //
 // File:           FTime.h
-// Project:        Genie Carestation SW
-//
-// Author:         YS / Genie SW Team
 //
 //============================================================
 // Description:

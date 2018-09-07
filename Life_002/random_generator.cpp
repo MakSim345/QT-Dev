@@ -1,13 +1,9 @@
 //============================================================
 //
-// Copyright (c) 2011 GENERAL ELECTRIC COMPANY
 //
 //============================================================
 //
 // File:           random_generator.cpp
-// Project:        Genie Carestation SW
-//
-// Author:         YS / Genie SW Team
 //
 //============================================================
 // Description:

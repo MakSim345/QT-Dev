@@ -1,13 +1,10 @@
 //============================================================
 //
-// Copyright (c) 2011 GENERAL ELECTRIC COMPANY
 //
 //============================================================
 //
 // File:           RND_Generator.cpp
-// Project:        Genie Carestation SW
 //
-// Author:         YS / Genie SW Team
 //
 //============================================================
 // Description:

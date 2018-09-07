@@ -2,14 +2,10 @@
 #define _M_MODEL_H_
 //============================================================
 //
-// Copyright (c) 2011 GENERAL ELECTRIC COMPANY
 //
 //============================================================
 //
 // File:           mModel.h
-// Project:        Genie Carestation SW
-//
-// Author:         YS / Genie SW Team
 //
 //============================================================
 // Description:
