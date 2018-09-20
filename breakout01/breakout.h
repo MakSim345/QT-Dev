@@ -1,18 +1,43 @@
-#ifndef BREAKOUT_H
-#define BREAKOUT_H
+#pragma once
 
-#include <QtWidgets/QMainWindow>
+#include <QWidget>
+#include <QKeyEvent>
+#include "ball.h"
+#include "brick.h"
+#include "paddle.h"
 
-class Breakout : public QMainWindow
-{
-    Q_OBJECT
+class Breakout : public QWidget {
 
 public:
     Breakout(QWidget *parent = 0);
     ~Breakout();
 
-private:
-    Ui::breakoutClass ui;
-};
+protected:
+    void paintEvent(QPaintEvent *);
+    void timerEvent(QTimerEvent *);
+    void keyPressEvent(QKeyEvent *);
+    void keyReleaseEvent(QKeyEvent *);
+    void drawObjects(QPainter *);
+    void finishGame(QPainter *, QString);
+    void moveObjects();
 
-#endif // BREAKOUT_H
+    void startGame();
+    void pauseGame();
+    void stopGame();
+    void victory();
+    void checkCollision();
+
+private:
+    int x;
+    int timerId;
+    static const int N_OF_BRICKS = 30;
+    static const int DELAY = 5;//10;
+    static const int BOTTOM_EDGE = 400;
+    Ball *ball;
+    Paddle *paddle;
+    Brick *bricks[N_OF_BRICKS];
+    bool gameOver;
+    bool gameWon;
+    bool gameStarted;
+    bool paused;
+};
