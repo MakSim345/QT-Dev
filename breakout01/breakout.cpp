@@ -25,6 +25,9 @@ Breakout::Breakout(QWidget *parent)
         }
         */
         QRect qr = this->geometry();
+        
+        timerGame = new QTimer(this);
+        connect(timerGame, SIGNAL(timeout()), this, SLOT(timerTick()));
 }
 
 Breakout::~Breakout()
@@ -87,13 +90,20 @@ void Breakout::drawObjects(QPainter *painter)
     */
 }
 
+void Breakout::timerTick()
+{
+    moveObjects();
+    checkCollision();
+    repaint();
+}
+
 void Breakout::timerEvent(QTimerEvent *e)
 {
     Q_UNUSED(e);
 
-    moveObjects();
-    checkCollision();
-    repaint();
+    //moveObjects();
+    //checkCollision();
+    //repaint();
 }
 
 void Breakout::moveObjects()
@@ -168,7 +178,8 @@ void Breakout::startGame()
         gameOver = false;
         gameWon = false;
         gameStarted = true;
-        timerId = startTimer(DELAY);
+        // timerId = startTimer(DELAY);
+        timerGame->start(DELAY);        
     }
 }
 

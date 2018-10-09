@@ -10,10 +10,10 @@ Paddle::Paddle()
     resetState();
 }
 
-void Paddle::loadImages() 
+void Paddle::loadImages()
 {
     QImage imagePaddle_tmp;
-    bool loadPaddle = imagePaddle_tmp.load("Resources/paddle.png");    
+    bool loadPaddle = imagePaddle_tmp.load("Resources/paddle.png");
     imagePaddle = imagePaddle_tmp.scaled(100, 100, Qt::KeepAspectRatio);
     rect = imagePaddle.rect();
 }

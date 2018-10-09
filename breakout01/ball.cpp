@@ -3,8 +3,8 @@
 
 Ball::Ball() 
 {
-    xdir = 1;
-    ydir = -1;
+    xDir = 1;
+    yDir = -1;
 
     imageBall.load("Resources/ball.png");
     
@@ -19,26 +19,26 @@ Ball::~Ball()
 
 void Ball::autoMove() 
 {
-    rect.translate(xdir, ydir);
+    rect.translate(xDir, yDir);
 
     if (rect.left() == LEFT_EDGE) 
     {
-        xdir = 1;
+        xDir = 1;
     }
 
     if (rect.right() == RIGHT_EDGE) 
     {
-        xdir = -1;
+        xDir = -1;
     }
 
     if (rect.top() == TOP_EDGE) 
     {
-        ydir = 1;
+        yDir = 1;
     }
 
     if (rect.bottom() == BOTTOM_EDGE + 79) 
     {
-        ydir = -1;
+        yDir = -1;
     }
     
 }
@@ -50,22 +50,22 @@ void Ball::resetState()
 
 void Ball::setXDir(int x) 
 {
-    xdir = x;
+    xDir = x;
 }
 
 void Ball::setYDir(int y)
 {
-    ydir = y;
+    yDir = y;
 }
 
 int Ball::getXDir() 
 {
-    return xdir;
+    return xDir;
 }
 
 int Ball::getYDir() 
 {
-    return ydir;
+    return yDir;
 }
 
 QRect Ball::getRect() 

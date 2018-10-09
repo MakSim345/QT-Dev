@@ -20,8 +20,8 @@ public:
     QImage& getImage();
 
 private:
-    int xdir;
-    int ydir;
+    int xDir;
+    int yDir;
     QImage imageBall;
     QRect rect;
     static const int INITIAL_X = 230;

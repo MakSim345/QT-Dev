@@ -2,19 +2,25 @@
 
 #include <QWidget>
 #include <QKeyEvent>
+#include <QTimer>
 #include "ball.h"
 #include "brick.h"
 #include "paddle.h"
 
-class Breakout : public QWidget {
+class Breakout : public QWidget 
+{
+    Q_OBJECT
 
 public:
     Breakout(QWidget *parent = 0);
     ~Breakout();
 
+public slots:
+    void timerTick();
+
 protected:
     void paintEvent(QPaintEvent *);
-    void timerEvent(QTimerEvent *);
+    void timerEvent(QTimerEvent *);    
     void keyPressEvent(QKeyEvent *);
     void keyReleaseEvent(QKeyEvent *);
     void drawObjects(QPainter *);
@@ -30,8 +36,9 @@ protected:
 private:
     int x;
     int timerId;
-    static const int N_OF_BRICKS = 30;
-    static const int DELAY = 5;//10;
+    QTimer* timerGame;
+    static const int N_OF_BRICKS = 30;    
+    static const int DELAY = 3;//10;
     static const int BOTTOM_EDGE = 400;
     Ball *ball;
     Paddle *paddle;
