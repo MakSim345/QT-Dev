@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/breakout">
+        <file>Resources/paddle.png</file>
+        <file>Resources/ball.png</file>
+    </qresource>
+</RCC>
