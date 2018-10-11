@@ -11,9 +11,12 @@ class Minesweeper : public QWidget
 public:
     Minesweeper(QWidget *parent = 0);
    ~Minesweeper();
-
-public slots:
-        void timerTick();
+   void startNewGame();
+   
+signals:
+   void started();
+   void stopped(bool pWinLoose);
+   void minesFlagged(int pnumberOfMines);
 
 protected:
     int calcNear(int x, int y);
@@ -23,6 +26,7 @@ protected:
     void drawObjects(QPainter *);    
     
     void startGame();
+    void bombExplosed();
     void finishGame(QPainter *, QString); 
     void pauseGame();
     void stopGame();
@@ -32,12 +36,11 @@ protected:
     bool compareMines();
     void placeMines();
     void clearMines();
-    int getRndVal(int pCoord);
+    int getRandom(int pCoord);
 
 private:
     int x;
     int timerId;
-    QTimer* timerGame;
     
     static const int DELAY = 3;//10;
     
@@ -51,7 +54,7 @@ private:
         
     static const int gridW = GRID_W;
     static const int gridH = GRID_H;
-    static const int numMines = 40;// number of mines on the board    
+    static const int numMines = 1; // 40;// number of mines on the board    
     
     static const int N_OF_BRICKS = gridW * gridH;
 

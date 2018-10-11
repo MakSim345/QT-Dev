@@ -29,6 +29,8 @@
 #define STR_MAIN_TITLE " Minesweeper"
 #define CURRENT_VERSION "ver. 0.0.4"
 
+#define WINWIN 1
+#define LOSE 0
 
 enum {NUMBER_OF_BALLS = 2};
 enum {UNIVERSE_SIZE = 100};

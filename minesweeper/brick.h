@@ -44,7 +44,7 @@ public:
     void setMines(bool pMine)      { mine = pMine; };
     void setFlags(bool pFlagValue) { flags = pFlagValue; };
     void setRevealed(bool pRev)    { revealed = pRev; };
-    // Brick *brick;
+    
 private:    
     bool mine;     // entry is 1 for having a mine and 0 for not
     bool flags;    // entry is true if you have flagged that spot
