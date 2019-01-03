@@ -212,14 +212,22 @@ void Minesweeper::drawObjects(QPainter *painter)
             if(mines[x][y]->isMarked())
             {
                 // painter->drawText(mines[x][y]->getRect(), Qt::AlignVCenter, " ?");
-                painter->drawText(coordX+CELL_SIZE/3, coordY+CELL_SIZE/1.3, "?");
+                if (!isBombed)
+                { 
+                    // after all bombs kaboom, no flags? 
+                    painter->drawText(coordX+CELL_SIZE/3, coordY+CELL_SIZE/1.3, "?");
+                }
             }
 
-            if(near > 0 && mines[x][y]->isRevealed())
-            {
-                // painter->drawImage(mines[x][y]->getRect(), mines[x][y]->getImage());
-                // painter->drawText(mines[x][y]->getRect(), Qt::AlignVCenter, QString::number(near));
-                painter->drawText(coordX+CELL_SIZE/3, coordY+CELL_SIZE/1.3, QString::number(near));
+            if(mines[x][y]->isRevealed())
+            {   
+                // TODO: draw "opened" cell, add number later if any.
+                // TODO: change color of the digit accordingly.
+                if (near > 0)
+                {
+                    painter->drawText(coordX+CELL_SIZE/3, coordY+CELL_SIZE/1.3, QString::number(near));
+                }
+                
             }
         }
     }

@@ -11,8 +11,7 @@ Brick::Brick(int x, int y)
     bool loadBrick = imageBrick.load("Resources/brickie.png");
     // bool loadBrick = imageBrick_tmp.load("Resources/brickie.png");
     // imageBrick = imageBrick_tmp.scaled(40, 40, Qt::KeepAspectRatio);
-
-    destroyed = false;
+    
     rect = imageBrick.rect();
     rect.translate(x, y);
 }
@@ -32,17 +31,7 @@ void Brick::setRect(QRect rct)
     rect = rct;
 }
 
-QImage & Brick::getImage() 
+QImage & Brick::getImageUntouched() 
 {
     return imageBrick;
-}
-
-bool Brick::isDestroyed() 
-{
-    return destroyed;
-}
-
-void Brick::setDestroyed(bool destr) 
-{
-    destroyed = destr;
 }

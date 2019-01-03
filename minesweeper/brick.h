@@ -9,17 +9,16 @@ public:
     Brick(int, int);
     ~Brick();
 
-public:
-    bool isDestroyed();
-    void setDestroyed(bool);
+public:    
     QRect getRect();
     void setRect(QRect);
-    QImage& getImage();
+    QImage& getImageUntouched();
+    // QImage& getImage();
+    // QImage& getImage();
 
 private:
     QImage imageBrick;
-    QRect rect;
-    bool destroyed;
+    QRect rect;    
 };
 
 class Mine 
@@ -39,7 +38,11 @@ public:
     bool isMarked()    { return flags; };
     bool isRevealed()  { return revealed; };
     QRect getRect()    { return brick->getRect(); };
-    QImage getImage()  { return brick->getImage(); };
+
+    QImage getImage()  
+    { 
+        return brick->getImageUntouched(); 
+    };
 
     void setMines(bool pMine)      { mine = pMine; };
     void setFlags(bool pFlagValue) { flags = pFlagValue; };
