@@ -47,7 +47,7 @@ Xonix::~Xonix()
 void Xonix::paintEvent(QPaintEvent *e)
 {
     Q_UNUSED(e);
-
+    qDebug() << "inside: paintEvent()" ;
     QPainter painter(this);
 
     if (gameOver)
@@ -122,9 +122,17 @@ void Xonix::drawObjects(QPainter *painter)
 
 void Xonix::timerTick()
 {
+    //QElapsedTimer timer;
+    //timer.start();
+    qDebug() << "inside: timerTick()" ;
+    
     moveObjects();
     checkCollision();
+    qDebug() << "call: repaint()" ;
     repaint();
+
+    //qDebug() << "The slow operation took" << timer.elapsed() << "milliseconds";
+    //qDebug() << "The slow operation took" << timer.nsecsElapsed() << "nanoseconds";
 }
 
 void Xonix::moveObjects()

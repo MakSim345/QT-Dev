@@ -3,28 +3,30 @@
 
 #include <iostream>
 
-#include <QWidget>
-#include <QKeyEvent>
-#include <QTimer>    
-#include <QPixmap>
-#include <QString>
-#include <QSpinBox>
-#include <QSlider>
-#include <QLabel>
-#include <QLineEdit>
-#include <QPushButton>
 #include <QDateTime>
-#include <QImage>
-#include <QRect>
-#include <QRadioButton>
-#include <QVBoxLayout>
-#include <QHBoxLayout>
+#include <QDebug>
+#include <QElapsedTimer>
 #include <QFrame>
 #include <QGroupBox>
-#include <QMessageBox>
+#include <QHBoxLayout>
+#include <QImage>
+#include <QKeyEvent>
 #include <QLCDNumber>
-#include <QtWidgets/QApplication>
+#include <QLabel>
+#include <QLineEdit>
+#include <QMessageBox>
 #include <QPainter>
+#include <QPixmap>
+#include <QPushButton>
+#include <QRadioButton>
+#include <QRect>
+#include <QSlider>
+#include <QSpinBox>
+#include <QString>
+#include <QTimer>    
+#include <QVBoxLayout>
+#include <QWidget>
+#include <QtWidgets/QApplication>
 
 #define INT_BTN_W 100
 #define INT_BTN_H 50
