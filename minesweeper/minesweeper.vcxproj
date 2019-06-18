@@ -129,6 +129,7 @@
     <ClInclude Include="brick.h" />
     <ClInclude Include="gen.h" />
     <ClInclude Include="GeneratedFiles\ui_minesweeper.h" />
+    <ClInclude Include="mine.h" />
     <CustomBuild Include="mainView.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing mainView.h...</Message>

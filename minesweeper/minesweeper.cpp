@@ -7,18 +7,18 @@ Minesweeper::Minesweeper(QWidget *parent)
 {
         x = 0;
         gameOver = false;
-        gameWon = false;
-        paused = false;
-        gameStarted = false;
+        isGameWon = false;
+        isGamePaused = false;
+        isGameStarted = false;
 
         for(int x=0; x<gridW; x++)
         {
             for(int y=0; y<gridH; y++)
             {
-                mines[x][y] = new Mine(x, y);
+                bombOn[x][y] = new Mine(x, y);
              }
         }
-        startNewGame();        
+        startNewGame();
         this->setFixedSize(CELL_SIZE*gridW, CELL_SIZE*gridW);
 }
 
@@ -30,9 +30,9 @@ Minesweeper::~Minesweeper()
 
 void Minesweeper::startNewGame()
 {
-    firstClick = true;
+    isFirstClick = true;
     isBombed = false;
-    gameWon = false;
+    isGameWon = false;
     clearMines();
 }
 
@@ -42,7 +42,7 @@ bool Minesweeper::outBounds(int x, int y)
     return retVal;
 }
 
-int Minesweeper::calcNear(int x, int y) 
+int Minesweeper::calcBombsNearMe(int x, int y)
 {
     if(outBounds(x,y))
     {
@@ -56,7 +56,7 @@ int Minesweeper::calcNear(int x, int y)
         {
             if(outBounds(oX + x, oY+y))
                 continue;
-            if (mines[oX+x][oY+y]->isMined())
+            if (bombOn[oX+x][oY+y]->isMined())
                 i++;
         }
     }
@@ -76,7 +76,7 @@ void Minesweeper::paintEvent(QPaintEvent *e)
     {
         finishGame(&painter, "Game lost");
     }
-    else if(gameWon)
+    else if(isGameWon)
     {
         finishGame(&painter, "Victory");
     }
@@ -114,7 +114,7 @@ int Minesweeper::getRandom(int pCoord)
     }
 
     nRandomValue = (int)(qrand() % pCoord);
-    
+
     return nRandomValue;
 }
 
@@ -125,13 +125,22 @@ void Minesweeper::placeMines()
     {
         int x = int(getRandom(gridW));
         int y = int(getRandom(gridH));
-        if(mines[x][y]->isMined())
+        if(bombOn[x][y]->isMined())
         {
             continue;
         }
-        // qDebug() << "set mine to" << x << "," << y;
-        mines[x][y]->setMines(1);
+        // qDebug() << "set bomb to" << x << "," << y;
+        bombOn[x][y]->setMines(1);
         i++;
+    }
+
+    // calculate and remember bombs near me:
+    for(int x=0; x<gridW; x++)
+    {
+        for(int y=0; y<gridH; y++)
+        {
+            bombOn[x][y]->setBombNumberNearMe(calcBombsNearMe(x, y));
+        }
     }
 }
 
@@ -141,9 +150,9 @@ void Minesweeper::clearMines()
     {
         for(int y=0; y<gridH; y++)
         {
-            mines[x][y]->setMines(false);
-            mines[x][y]->setFlags(false);
-            mines[x][y]->setRevealed(false);
+            bombOn[x][y]->setMines(false);
+            bombOn[x][y]->setTheFlag(false);
+            bombOn[x][y]->setRevealed(false);
         }
     }
     repaint();
@@ -158,26 +167,26 @@ bool Minesweeper::compareMines()
     {
         for(int y=0; y<gridH; y++)
         {
-            if (mines[x][y]->isMined() && mines[x][y]->isMarked())
+            if (bombOn[x][y]->isMined() && bombOn[x][y]->isFlagged())
             {
                 matchCounter++;
             }
-            if (mines[x][y]->isMarked())
+            if (bombOn[x][y]->isFlagged())
             {
                 markedCounter++;
             }
         }
     }
-    
+
     qDebug() << "Marked:" << markedCounter << "Match: "<< matchCounter;
-    minesFlagged(markedCounter);
+    emit minesFlagged(markedCounter);
     if ((matchCounter == numMines) && (matchCounter == markedCounter))
     {
         retVal = true;
         qDebug() << "WIN !";
         emit stopped(WINWIN);
-        gameWon = true;
-        gameStarted = false;
+        isGameWon = true;
+        isGameStarted = false;
     }
 
     return retVal;
@@ -189,61 +198,71 @@ void Minesweeper::drawObjects(QPainter *painter)
     {
         for(int y=0; y<gridH; y++)
         {
-            int near=calcNear(x, y);
-            int coordX = mines[x][y]->getRect().x();
-            int coordY = mines[x][y]->getRect().y();
+            int bombsNearMe = bombOn[x][y]->getNumberMinesNearMe();
+            int coordX = bombOn[x][y]->getRect().x();
+            int coordY = bombOn[x][y]->getRect().y();
 
-            if(false == mines[x][y]->isRevealed())
+            if(bombOn[x][y]->isRevealed())
+            {
+                // draw "opened" cell, add a number later if any bombs near me
+                painter->drawImage(bombOn[x][y]->getRect(), bombOn[x][y]->getImageOpened());
+
+                // TODO: change the digit color in dependency of bombs numbers around.
+                if (bombsNearMe > 0)
+                {
+                    painter->drawText(coordX+CELL_SIZE/3, coordY+CELL_SIZE/1.3, QString::number(bombsNearMe));
+                }
+            }
+            else
             {
                 // draw untouched cover:
-                painter->drawImage(mines[x][y]->getRect(), mines[x][y]->getImage());
+                painter->drawImage(bombOn[x][y]->getRect(), bombOn[x][y]->getImageUntouched());
             }
 
-            if(mines[x][y]->isMined())
+            if(bombOn[x][y]->isFlagged())
+            {
+                // painter->drawImage(bombOn[x][y]->getRect(), bombOn[x][y]->getImageMarked());
+                // painter->drawText(coordX+CELL_SIZE/3, coordY+CELL_SIZE/1.3, "?");
+                painter->drawImage(bombOn[x][y]->getRect(), bombOn[x][y]->getImageFlagged());
+            }
+
+            if(bombOn[x][y]->isMined())
             {
                 if (isBombed)
-                    // painter->drawText(mines[x][y]->getRect(), Qt::AlignVCenter, " X");
-                    painter->drawText(coordX+CELL_SIZE/3, coordY+CELL_SIZE/1.3, "X");
-                //else                    
-                    //painter->drawText(coordX+CELL_SIZE/3, coordY+CELL_SIZE/1.3, "O");
-
-            }
-
-            if(mines[x][y]->isMarked())
-            {
-                // painter->drawText(mines[x][y]->getRect(), Qt::AlignVCenter, " ?");
-                if (!isBombed)
-                { 
-                    // after all bombs kaboom, no flags? 
-                    painter->drawText(coordX+CELL_SIZE/3, coordY+CELL_SIZE/1.3, "?");
-                }
-            }
-
-            if(mines[x][y]->isRevealed())
-            {   
-                // TODO: draw "opened" cell, add number later if any.
-                // TODO: change color of the digit accordingly.
-                if (near > 0)
                 {
-                    painter->drawText(coordX+CELL_SIZE/3, coordY+CELL_SIZE/1.3, QString::number(near));
+                    // painter->drawText(coordX+CELL_SIZE/3, coordY+CELL_SIZE/1.3, "*");
+                    painter->drawImage(bombOn[x][y]->getRect(), bombOn[x][y]->getImageTheBomb());
                 }
-                
+                else
+                {
+                    // this is for DEBUG only
+                    //painter->drawText(coordX+CELL_SIZE/3, coordY+CELL_SIZE/1.3, "O");
+                }
             }
         }
     }
 }
 
-void Minesweeper::mineReveal(int x,int y)
+void Minesweeper::mineReveal(int x, int y)
 {
-    if(outBounds(x,y))
+    /************************************************************************/
+    /*
+    /*  Recursive function. Can cause the stack overflow.
+    */
+    /************************************************************************/
+
+    if(outBounds(x, y))
         return;
 
-    if(mines[x][y]->isRevealed())
-        return;    
+    if(bombOn[x][y]->isRevealed())
+        return;
 
-    mines[x][y]->setRevealed(true);
-    
-    if (calcNear(x, y) > 0)
+    if(bombOn[x][y]->isFlagged())
+        return;
+
+    bombOn[x][y]->setRevealed(true);
+
+    if (bombOn[x][y]->getNumberMinesNearMe() > 0)
         return;
 
     mineReveal(x-1, y-1);
@@ -261,37 +280,43 @@ void Minesweeper::bombExplosed()
 {
     qDebug() << "Dang!";
     isBombed = true;
-    gameStarted = false;
+    isGameStarted = false;
     emit stopped(LOSE);
 }
 
 void Minesweeper::mousePressEvent(QMouseEvent *event)
 {
-    if ((isBombed) || (gameWon))
+    if ((isBombed) || (isGameWon))
+        return;
+}
+
+void Minesweeper::mouseReleaseEvent(QMouseEvent *event)
+{
+    if ((isBombed) || (isGameWon))
         return;
 
     QPoint pressPos;
     pressPos = event->pos();
-    
+
     int x = int(pressPos.x()/CELL_SIZE);
     int y = int(pressPos.y()/CELL_SIZE);
 
     if (event->button() == Qt::LeftButton)
-    {        
-        if(firstClick)
+    {
+        if(isFirstClick)
         {
-            // prevent placing mine under first-clicked cell:
+            // prevent placing bomb under first-clicked cell:
             startGame();
             do
             {
                 clearMines();
                 placeMines();
             }
-            while(mines[x][y]->isMined());
+            while(bombOn[x][y]->isMined());
         }
-        
-        if(mines[x][y]->isMined())
-        {        
+
+        if(bombOn[x][y]->isMined())
+        {
             bombExplosed();
         }
         else
@@ -299,48 +324,54 @@ void Minesweeper::mousePressEvent(QMouseEvent *event)
             mineReveal(x, y);
         }
     }
-    
+
     if (event->button() == Qt::RightButton)
-    {        
-        mines[x][y]->setFlags(!mines[x][y]->isMarked());
+    {
+        bool bFlagged = bombOn[x][y]->isFlagged();
+        bool bRevealed = bombOn[x][y]->isRevealed();
+
+        if (!bRevealed)
+        {
+            bombOn[x][y]->setTheFlag(!bFlagged);
+        }
         compareMines();
     }
-    
+
     repaint();
 }
 
 void Minesweeper::startGame()
 {
-    if (!gameStarted)
+    if (!isGameStarted)
     {
-        firstClick = false;
+        isFirstClick = false;
         emit started();
         gameOver = false;
-        gameWon = false;
-        gameStarted = true;
+        isGameWon = false;
+        isGameStarted = true;
     }
 }
 
 void Minesweeper::pauseGame()
 {
-    if (paused)
+    if (isGamePaused)
     {
-        paused = false;
+        isGamePaused = false;
     }
     else
     {
-        paused = true;     
+        isGamePaused = true;
     }
 }
 
 void Minesweeper::stopGame()
-{   
+{
     gameOver = true;
-    gameStarted = false;
+    isGameStarted = false;
 }
 
 void Minesweeper::victory()
 {
-    gameWon = true;
-    gameStarted = false;
+    isGameWon = true;
+    isGameStarted = false;
 }

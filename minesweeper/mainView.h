@@ -15,10 +15,10 @@ public:
     QLineEdit* lnCells;
     // QLineEdit* lnMSTime;
     QLineEdit* lnIteration;
-        
-    QPushButton* btnRedo;    
+
+    QPushButton* btnRedo;
     QPushButton *bQuit;
-    
+
     QLCDNumber *lcdTimeDisplay;
     QLCDNumber *lcdMineCounter;
     // MyThread m_thread;
@@ -34,7 +34,7 @@ private:
     bool gameOver;
     bool gameWon;
     bool gameStarted;
-     
+
 public slots:
     void clickBtnRedo();
     void onExit ();

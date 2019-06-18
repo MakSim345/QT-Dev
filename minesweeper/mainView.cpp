@@ -37,9 +37,9 @@ void mainView::setWidgetLayout()
     hLayoutInfo->addStretch();
     hLayoutInfo->addWidget(btnRedo);
     hLayoutInfo->addStretch();
-    hLayoutInfo->addWidget(lcdTimeDisplay);    
-    
-    //hLayout->addWidget(bStart);    
+    hLayoutInfo->addWidget(lcdTimeDisplay);
+
+    //hLayout->addWidget(bStart);
     // vLayout->addWidget(bNextStep);
     vLayout->addStretch();
     vLayout->addWidget(bQuit);
@@ -59,15 +59,15 @@ void mainView::initWidgets()
     mineswpWgt = new Minesweeper();
     bQuit = new QPushButton(tr("&Quit"));
     btnRedo = new QPushButton ("&Check mines");
-    
+
     bQuit->setFont(QFont("Consolas", 15, QFont::Bold));
-    btnRedo->setFont(QFont("Consolas", 15, QFont::Bold));    
-    
+    btnRedo->setFont(QFont("Consolas", 15, QFont::Bold));
+
     lcdTimeDisplay = new QLCDNumber(3);
     lcdTimeDisplay->setSegmentStyle(QLCDNumber::Flat);
-    lcdTimeDisplay->setAutoFillBackground(1);    
+    lcdTimeDisplay->setAutoFillBackground(1);
     lcdTimeDisplay->setStyleSheet("QLCDNumber{color: rgb(255, 9, 9); background-color: rgb(0, 0, 0);}");
-    
+
     lcdMineCounter = new QLCDNumber(3);
     lcdMineCounter->setSegmentStyle(QLCDNumber::Flat);
     lcdMineCounter->setAutoFillBackground(1);
@@ -80,9 +80,9 @@ void mainView::initWidgets()
 
 void mainView::setConnections()
 {
-    connect(btnRedo, SIGNAL(clicked ()), this, SLOT (clickBtnRedo()));    
+    connect(btnRedo, SIGNAL(clicked ()), this, SLOT (clickBtnRedo()));
     connect(timer, SIGNAL(timeout()), this, SLOT(updateTimerDisplay()));
-    
+
     connect (mineswpWgt, SIGNAL(started()), this, SLOT(startGame()) );
     connect (mineswpWgt, SIGNAL(stopped(bool)), this, SLOT(stopGame(bool)) );
     connect (mineswpWgt, SIGNAL(minesFlagged(int)), this, SLOT(updateMinesDisplay(int)));
@@ -90,7 +90,7 @@ void mainView::setConnections()
 
 void mainView::startGame()
 {
-    gameStarted = true;    
+    gameStarted = true;
     timer->start();
 }
 
@@ -100,7 +100,7 @@ void mainView::stopGame(bool pWinLose)
         btnRedo->setText("Win! - &Restart");
     else
         btnRedo->setText("Loose - &Restart");
-    
+
     gameStarted = false;
     timer->stop();
 }
@@ -116,7 +116,7 @@ QString mainView::getThreeDigit(int pnumToConvert)
     if (pnumToConvert < 10)
     {
         retVal = "00" + QString::number(pnumToConvert);
-    }    
+    }
 
     return retVal;
 }
@@ -127,19 +127,19 @@ void mainView::updateMinesDisplay(int pFlaggedMines)
 }
 
 void mainView::updateTimerDisplay()
-{   
+{
     m_seconds++;
     if (m_seconds>999)
     {
         m_seconds = 999;
     }
-        
+
     lcdTimeDisplay->display(getThreeDigit(m_seconds));
 
-    // value = lifeWgt->getCellsAlive();    
+    // value = lifeWgt->getCellsAlive();
     // lnCells->setText(QString::number(value));
 
-    // value = lifeWgt->getLifeIteration();    
+    // value = lifeWgt->getLifeIteration();
     // lnIteration->setText(QString::number(value));
 }
 

@@ -10,6 +10,6 @@ int main(int argc, char *argv[])
     window->setWindowTitle("Minesweeper");
     window->show();
     a.connect(window->bQuit, SIGNAL( clicked() ), &a, SLOT( quit() ) );
-    
+
     return a.exec();
 }

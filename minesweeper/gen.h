@@ -5,7 +5,7 @@
 #include <QWidget>
 #include <QDebug>
 #include <QKeyEvent>
-#include <QTimer>    
+#include <QTimer>
 #include <QPixmap>
 #include <QString>
 #include <QSpinBox>
@@ -32,9 +32,9 @@
 #define WINWIN 1
 #define LOSE 0
 
-enum {NUMBER_OF_BALLS = 2};
 enum {UNIVERSE_SIZE = 100};
 enum {CELL_SIZE = 20};
+enum {MINES_TOTAL = 20};
 enum {GRID_W = 16, GRID_H = 16};
 
 #endif
