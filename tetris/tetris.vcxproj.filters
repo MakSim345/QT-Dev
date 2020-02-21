@@ -41,17 +41,26 @@
     <ClCompile Include="GeneratedFiles\qrc_tetris.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
-    <ClCompile Include="TetrixWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_TetrixWindow.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_TetrixWindow.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="TetrixBoard.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MainView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_MainView.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_MainView.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="TetrixPiece.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_TetrixBoard.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_TetrixBoard.cpp">
+      <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -61,7 +70,10 @@
     <CustomBuild Include="tetris.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="TetrixWindow.h">
+    <CustomBuild Include="MainView.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="TetrixBoard.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
@@ -72,7 +84,7 @@
     <ClInclude Include="gen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TetrixBoard.h">
+    <ClInclude Include="TetrixPiece.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,10 +1,10 @@
 #include "gen.h"
-#include "TetrixWindow.h"
+#include "MainView.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    TetrixWindow w;
+    MainView w;
     w.show();
     return a.exec();
 }

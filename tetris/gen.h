@@ -15,8 +15,10 @@
 #include <QPushButton>
 #include <QDateTime>
 #include <QImage>
+#include <QPointer>
 #include <QRect>
 #include <QRadioButton>
+// #include <QRandomGenerator>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QFrame>
@@ -36,5 +38,9 @@ enum {UNIVERSE_SIZE = 100};
 enum {CELL_SIZE = 20};
 enum {MINES_TOTAL = 20};
 enum {GRID_W = 16, GRID_H = 16};
+
+enum TetrixShape { NoShape, ZShape, SShape,
+                   LineShape, TShape, SquareShape,
+                   LShape, MirroredLShape };
 
 #endif

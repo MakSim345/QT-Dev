@@ -2,13 +2,13 @@
 #include "gen.h"
 #include "TetrixBoard.h"
 
-class TetrixWindow : public QWidget
+class MainView : public QWidget
 {
     Q_OBJECT
 
 public:
-    TetrixWindow(QWidget *parent = nullptr);
-    ~TetrixWindow();
+    MainView(QWidget *parent = nullptr);
+    ~MainView();
 
 private:
     TetrixBoard *board;
@@ -19,4 +19,7 @@ private:
     QPushButton *startButton;
     QPushButton *quitButton;
     QPushButton *pauseButton;
+
+    void setConnections();
+    QLabel* createLabel(const QString &text);
 };
