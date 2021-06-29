@@ -144,7 +144,8 @@ private:
     QString m_FontName;
     const int m_FontSize;
 
-    QLabel *txtRemain;
+    QLabel *txtTimeCounter;
+    QRect *rectRemain; 
 
     QPushButton *btnStart;
     QPushButton *btnQuit;

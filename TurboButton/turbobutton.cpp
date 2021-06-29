@@ -60,12 +60,15 @@ void TurboButton::initMainWindow()
 
 void TurboButton::initTimerLabels()
 {
-    txtRemain = new QLabel(this);
-    txtRemain->setAlignment(Qt::AlignCenter);
-    txtRemain->setFont(QFont(m_FontName, m_FontSize));
-    txtRemain->setGeometry(QRect(0, 260, 320, 120));
-    txtRemain->move(100, 65);
-    txtRemain->setStyleSheet("color: black;");
+    txtTimeCounter = new QLabel(this);
+    txtTimeCounter->setAlignment(Qt::AlignCenter);
+    txtTimeCounter->setFont(QFont(m_FontName, m_FontSize));
+    rectRemain = new QRect(0, 0, 720, 320);
+    //rectRemain = new QRect(0, 260, 320, 120);
+    //txtRemain->setGeometry(QRect(0, 260, 320, 120));
+    txtTimeCounter->setGeometry(*rectRemain);
+    txtTimeCounter->move(-120, -100);
+    txtTimeCounter->setStyleSheet("color: black;");
 }
 
 void TurboButton::initButtons()
@@ -82,7 +85,7 @@ void TurboButton::initButtons()
     //btnStart->move(-5, 70);
     // setting 3:
     btnStart->setGeometry(QRect(0, 0, 80, 80));
-    btnStart->move(5, 90);
+    btnStart->move(10, 20);
 
     btnQuit = new QPushButton(STR_BTN_QUIT);
     btnQuit->setMinimumSize(INT_BTN_W, INT_BTN_H);
@@ -93,7 +96,7 @@ void TurboButton::initButtons()
 
 void TurboButton::initLayouts()
 {
-    txtRemain->show();
+    txtTimeCounter->show();
     btnStart->show();
 }
 
@@ -190,11 +193,13 @@ void TurboButton::tuneMainWindow()
 
     //set caption:
     setMainWindowTitle(QString().setNum(m_CounterTomato));
-    picOn.load("://Resources/TurboButton01.jpg");
+    // picOn.load("://Resources/TurboButton01d.jpg");
     // picOn.load(":/MainViewOFF");
-    picOff.load("://Resources/TurboButton01.jpg");
-    // pic.load("Resources/TurboButton01.png");
-    // setStyleSheet("background-image: url(:/Resources/TurboButton01.png)");
+    
+    //picOff.load("://Resources/TurboButton01d.jpg");
+    // picOn.load("Resources/TurboButton01.jpg");
+    // this->setStyleSheet("Resources/TurboButton01.jpg");
+    //setStyleSheet("background-image: url(://Resources/TurboButton01.jpg)");    
 
     setWindowFlags(Qt::WindowTitleHint);
     this->setMaximumHeight(3.5 * m_FontSize);
@@ -405,7 +410,7 @@ void TurboButton::updateRemainTxt()
         m_SecStr = convertIntToStrXX(m_SecInt);
     }
 
-    txtRemain->setText(m_MinStr + ":" + m_SecStr);
+    txtTimeCounter->setText(m_MinStr + ":" + m_SecStr);
 }
 
 QString TurboButton::convertIntToStrXX(int nToConvertP)
