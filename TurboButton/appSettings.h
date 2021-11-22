@@ -14,6 +14,8 @@
 #include "gen.h"
 #include <time.h>
 
+class TurboButton;
+
 class AppSettings
 {
 public:
@@ -24,6 +26,10 @@ public:
 
     void restoreAppSizePos(QWidget *app);
     void saveAppSizePos(QWidget *app);
+
+    void restoreAppWidgetSizes(TurboButton *app);
+    void saveWidgetsSizePos(TurboButton *app);
+    
     int restoreIntValues(QString strPath);
     QString restoreStrValues(QString strPath);
     void saveValues(QString strPath, QVariant qValue);

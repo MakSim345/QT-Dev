@@ -29,6 +29,8 @@ TurboButton::TurboButton(QDialog *parent)
      , m_CounterTomato(0)
      , m_BreakCounter(0)
      , isPause(false)
+     , green_btn_point(0,0)
+     , timer_lbl_point(0,0)
 {
     m_timer_ctd = new QTimer();
 
@@ -43,6 +45,7 @@ TurboButton::TurboButton(QDialog *parent)
     setConnections();
 
     restoreMainWindowSizePos();
+    restoreMainWindowWidgetSizes();
  }
 
 void TurboButton::restoreMainWindowSizePos()
@@ -50,25 +53,37 @@ void TurboButton::restoreMainWindowSizePos()
     m_settings->restoreAppSizePos(this);
 }
 
+void TurboButton::restoreMainWindowWidgetSizes()
+{
+    m_settings->restoreAppWidgetSizes(this);
+}
+
 void TurboButton::initMainWindow()
 {
-    initTimerLabels();
+    initTimerLabel();
     initButtons();
     initLayouts();
     tuneMainWindow();
 }
 
-void TurboButton::initTimerLabels()
+void TurboButton::initTimerLabel()
 {
-    txtTimeCounter = new QLabel(this);
-    txtTimeCounter->setAlignment(Qt::AlignCenter);
-    txtTimeCounter->setFont(QFont(m_FontName, m_FontSize));
-    rectRemain = new QRect(0, 0, 720, 320);
-    //rectRemain = new QRect(0, 260, 320, 120);
-    //txtRemain->setGeometry(QRect(0, 260, 320, 120));
-    txtTimeCounter->setGeometry(*rectRemain);
-    txtTimeCounter->move(-120, -100);
-    txtTimeCounter->setStyleSheet("color: black;");
+    lblTimeCounter = new QLabel(this);
+    lblTimeCounter->setAlignment(Qt::AlignCenter);
+    lblTimeCounter->setFont(QFont(m_FontName, m_FontSize));
+
+    rectRemain = new QRect(0, 0, 720, 320); // magic numbers?
+    lblTimeCounter->setGeometry(*rectRemain);
+    
+    lblTimeCounter->setStyleSheet("color: black;");
+
+    moveTimerLabel(QPoint(INT_POS_DIGI_X, INT_POS_DIGI_Y));
+}
+
+void TurboButton::moveTimerLabel(QPoint move_pointP)
+{   
+    lblTimeCounter->move(move_pointP);
+    timer_lbl_point = move_pointP; // save point to future bkp in INI
 }
 
 void TurboButton::initButtons()
@@ -84,19 +99,28 @@ void TurboButton::initButtons()
     // btnStart->setGeometry(QRect(0, 0, 100, 100));
     //btnStart->move(-5, 70);
     // setting 3:
-    btnStart->setGeometry(QRect(0, 0, 80, 80));
-    btnStart->move(10, 20);
+    btnStart->setGeometry(QRect(0, 0, 120, 120));
+    // @TODO: read those from INI?
+    // btnStart->move(INT_POS_BTN_X, INT_POS_BTN_Y);
 
     btnQuit = new QPushButton(STR_BTN_QUIT);
     btnQuit->setMinimumSize(INT_BTN_W, INT_BTN_H);
     
     btnStart->setFont(QFont(m_FontName, m_ButtonFontSize));
     btnQuit->setFont(QFont(m_FontName, m_ButtonFontSize));
+    
+    moveButtons(QPoint(INT_POS_BTN_X, INT_POS_BTN_Y));
+}
+
+void TurboButton::moveButtons(QPoint move_pointP)
+{
+    btnStart->move(move_pointP);
+    green_btn_point = move_pointP; // save point to future bkp in INI
 }
 
 void TurboButton::initLayouts()
 {
-    txtTimeCounter->show();
+    lblTimeCounter->show();
     btnStart->show();
 }
 
@@ -410,7 +434,7 @@ void TurboButton::updateRemainTxt()
         m_SecStr = convertIntToStrXX(m_SecInt);
     }
 
-    txtTimeCounter->setText(m_MinStr + ":" + m_SecStr);
+    lblTimeCounter->setText(m_MinStr + ":" + m_SecStr);
 }
 
 QString TurboButton::convertIntToStrXX(int nToConvertP)
@@ -483,6 +507,7 @@ void TurboButton::updateTimeUnits()
 void TurboButton::iniSaveMainWindowSizePos()
 {
     m_settings->saveAppSizePos(this);
+    m_settings->saveWidgetsSizePos(this);
 }
 
 void TurboButton::iniSaveCurrentState()

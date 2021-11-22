@@ -65,10 +65,12 @@ public:
     ~TurboButton(){};
 
     void initMainWindow();
-    void initTimerLabels();
+    void initTimerLabel();
     void initButtons();
     void initLayouts();
     void initRadioButtons();
+    void moveButtons(QPoint move_pointP);
+    void moveTimerLabel(QPoint move_pointP);
     void tuneMainWindow();
     void setMainWindowTitle(QString strToShow);
     void setConnections();
@@ -93,11 +95,16 @@ public:
 
     int getTomatoCounter() {return m_CounterTomato;}
     QString currentDate();
+
+    QPoint getGreenButtonPoints() {return green_btn_point;}
+    QPoint getTimerLabelPoints()  {return timer_lbl_point;}
     
     void setTomatoCounter(int incrementP);
 
     int convertMinutesToSeconds(int nMinutesToConvertP);
     void restoreMainWindowSizePos();
+    void restoreMainWindowWidgetSizes();
+
     void iniSaveMainWindowSizePos();
 
 public slots:
@@ -144,7 +151,7 @@ private:
     QString m_FontName;
     const int m_FontSize;
 
-    QLabel *txtTimeCounter;
+    QLabel *lblTimeCounter;
     QRect *rectRemain; 
 
     QPushButton *btnStart;
@@ -166,6 +173,9 @@ private:
     QHBoxLayout *hLayoutTimeShow;
 
     AppSettings *m_settings;
+
+    QPoint green_btn_point;
+    QPoint timer_lbl_point;
 
     QMessageBox *msgBox;
 };

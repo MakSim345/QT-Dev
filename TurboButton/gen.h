@@ -7,10 +7,16 @@
 #define INT_BTN_W 100
 #define INT_BTN_H 50
 
+#define INT_POS_BTN_X 10
+#define INT_POS_BTN_Y 10
+
+#define INT_POS_DIGI_X -50
+#define INT_POS_DIGI_Y -85
+
 //#define DEBUG_ON
 
 #define STR_MAIN_TITLE "TurboButton. Today done"
-#define CURRENT_VERSION "ver. 1.0.4"
+#define CURRENT_VERSION "ver. 1.0.5"
 #define STR_SEC " sec"
 #define STR_MIN " min"
 #define STR_MINUTES  "Minutes"
@@ -42,12 +48,18 @@
 #define STR_INI_PATH_BREAK_COUNTER  "MainWindow/Values/Break_Counter"
 #define STR_INI_PATH_DATE           "MainWindow/Values/Date"
 
+#define STR_INI_PATH_MAIN_SIZE "MainWindow/Size"
+#define STR_INI_PATH_MAIN_POS  "MainWindow/Position"
+
+#define STR_INI_PATH_MAIN_GREEN_BUTTON_POS   "MainWindow/ButtonPosition"
+#define STR_INI_PATH_MAIN_DIGITAL_POS  "MainWindow/TimeLabelPosition"
+
 #define STR_STATUS_IDLE "Idle"
 #define STR_STATUS_RUN "Tomato running"
 #define STR_STATUS_LONG_BREAK "Long break"
 #define STR_STATUS_SHORT_BREAK "Short break"
 
-#define INT_MILLISEC_CHECK 500
+#define INT_MILLISEC_CHECK 100
 #define INT_MINUTES_SHORT_BREAK 5
 #define INT_MINUTES_LONG_BREAK 30
 #define INT_MINUTES_TOMATO 25
